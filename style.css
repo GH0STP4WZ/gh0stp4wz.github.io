@@ -81,6 +81,9 @@ header {
 #about-me, #works, #ghostchatter, #virtual-boy {
     transition: ease-in-out .2s;
     margin: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     &:hover {
         transition: ease-in-out .2s;
         color: blueviolet;
