@@ -1,0 +1,24 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #000000; /* Dark background color, feel free to change */
+    color: #fff; /* Text color, feel free to change */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 20px;
+}
+
+#profile-picture {
+    border-radius: 50%;
+    max-width: 150px;
+    height: auto;
+    margin: 20px;
+}
+
+#about-me, #works {
+    margin: 20px;
+}
