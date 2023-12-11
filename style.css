@@ -50,6 +50,7 @@ header {
     max-width: 150px;
     height: auto;
     margin: 20px;
+    filter: drop-shadow(0 0 5px blueviolet);
 }
 #discordstatus{
     position: absolute;
