@@ -1,24 +1,102 @@
-/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Mina&display=swap');
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Mina', sans-serif;
     text-align: center;
-    background-color: #000000; /* Dark background color, feel free to change */
-    color: #fff; /* Text color, feel free to change */
+    background-image: url(assets/background.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    color: #fff; 
     margin: 0;
     padding: 0;
+    &:before { /*in-dev notice */
+        position: relative;
+        text-align: center;
+        content: 'This website is in early development. Things may break!';
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 36px;;
+        flex-grow: 0;
+        flex-shrink: 0;
+        color: #fff;
+    }        
 }
-
 header {
-    padding: 20px;
+    transition: ease-in-out .2s;
+    padding: 30px;
+    padding-top: 10px;
+    text-size-adjust: 100%;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: blueviolet solid 1px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.200);
+    &:hover {
+        transition: ease-in-out .2s;
+        color: blueviolet;
+        margin-top: 20px;
+        margin-bottom: 35px;
+        text-shadow: blueviolet 0 0 5px;
+        transform: scale(110%);
+        filter: drop-shadow(0 0 5px blueviolet);
+    }
 }
 
 #profile-picture {
+    padding-top: 10%;
     border-radius: 50%;
     max-width: 150px;
     height: auto;
     margin: 20px;
 }
+#discordstatus{
+    position: absolute;
+    transition: ease-in-out .2s;
+    right: 45px;
+    top: 100px;
+    border: blueviolet solid 1px;
+    border-radius: 20px;
+    &:hover {
+        transition: ease-in-out .2s;
+        color: blueviolet;
+        margin-top: 20px;
+        margin-bottom: 35px;
+        text-shadow: blueviolet 0 0 5px;
+        transform: scale(115%);
+        filter: drop-shadow(0 0 5px blueviolet);
+        pointer-events: visible;
+    }
+}
+#page-content, #themes {
+    border: blueviolet solid 1px;
+    border-radius: 20px;
+    margin: 15px;
+    background-color: rgba(0, 0, 0, 0.500);
+}
 
-#about-me, #works {
+
+#about-me, #works, #ghostchatter, #virtual-boy {
+    transition: ease-in-out .2s;
     margin: 20px;
+    &:hover {
+        transition: ease-in-out .2s;
+        color: blueviolet;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-shadow: blueviolet 0 0 5px;
+        transform: scale(110%);
+        filter: drop-shadow(0 0 5px blueviolet);
+    }
+}
+#ghostchatter, #virtual-boy {
+    display: inline-block;
+    width: fit-content;
+    min-height: fit-content;
+}
+
+#vb-preview, #gc-preview {
+    max-width: 350px;
+    min-height: 350px;
 }
