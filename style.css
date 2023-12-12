@@ -10,7 +10,7 @@ body {
     color: #fff; 
     margin: 0;
     padding: 0;
-    &:before { /*in-dev notice */
+    /* &:before { /*in-dev notice
         position: relative;
         text-align: center;
         content: 'This website is in early development. Things may break!';
@@ -20,8 +20,46 @@ body {
         flex-grow: 0;
         flex-shrink: 0;
         color: #fff;
-    }        
+    }         */
 }
+#navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+.navigation-bar {
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation-bar ul {
+    display: flex;
+}
+
+.navigation-bar li {
+    margin-right: 15px;
+}
+
+.navigation-bar a {
+    transition: ease-in-out .2s;
+    text-decoration: none;
+    color: #fff; /* Choose your desired text color */
+    font-weight: bold;
+    &:hover {
+        transition: ease-in-out .2s;
+        color: blueviolet;
+        margin-top: 20px;
+        margin-bottom: 35px;
+        text-shadow: blueviolet 0 0 5px;
+        transform: scale(110%);
+        filter: drop-shadow(0 0 5px blueviolet);
+    }
+}
+
 header {
     transition: ease-in-out .2s;
     padding: 30px;
@@ -74,7 +112,7 @@ header {
     border: blueviolet solid 1px;
     border-radius: 20px;
     margin: 15px;
-    background-color: rgba(0, 0, 0, 0.500);
+    background-color: rgba(0, 0, 0, 0.651);
 }
 
 
@@ -103,4 +141,30 @@ header {
 #vb-preview, #gc-preview {
     max-width: 350px;
     min-height: 350px;
+}
+#links {
+    transition: ease-in-out .2s;
+    display: flex;
+    justify-content: center;
+}
+
+.link-container {
+    transition: ease-in-out .2s;
+    text-align: center;
+    margin: 10px;
+}
+
+.icon {
+    width: 100px;
+    margin-bottom: 0px;
+}
+
+#BlueSky, #x, #mastodon {
+    &:hover {
+        transition: ease-in-out .2s;
+        color: blueviolet;
+        margin-top: 20px;
+        transform: scale(110%);
+        filter: drop-shadow(0 0 5px blueviolet);
+    }
 }
