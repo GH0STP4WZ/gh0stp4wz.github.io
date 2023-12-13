@@ -1,0 +1,13 @@
+.clockcontainer{
+    transition: ease-in-out .2s;
+    border: blueviolet solid 1px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.666);
+    width: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 7px;
+    &:hover{
+        transform: scale(120%);
+    }
+}
