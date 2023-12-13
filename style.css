@@ -45,7 +45,7 @@ body {
     margin-right: 15px;
 }
 
-.navigation-bar a {
+.navigation-bar a, .button a {
     transition: ease-in-out .2s;
     text-decoration: none;
     color: #fff; /* Choose your desired text color */
@@ -55,8 +55,9 @@ body {
         color: blueviolet;
         margin-top: 20px;
         margin-bottom: 35px;
+        text-decoration: underline;
         text-shadow: blueviolet 0 0 5px;
-        transform: scale(110%);
+        transform: scale(120%)!important;
         filter: drop-shadow(0 0 5px blueviolet);
     }
 }
@@ -72,15 +73,6 @@ header {
     border: blueviolet solid 1px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.200);
-    &:hover {
-        transition: ease-in-out .2s;
-        color: blueviolet;
-        margin-top: 20px;
-        margin-bottom: 35px;
-        text-shadow: blueviolet 0 0 5px;
-        transform: scale(110%);
-        filter: drop-shadow(0 0 5px blueviolet);
-    }
 }
 
 #profile-picture {
@@ -116,8 +108,13 @@ header {
     background-color: rgba(0, 0, 0, 0.651);
 }
 
-
-#about-me, #works, #ghostchatter, #virtual-boy {
+#about-me, #works {
+    margin: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+#ghostchatter, #virtual-boy {
     transition: ease-in-out .2s;
     margin: 20px;
     width: fit-content;
@@ -152,12 +149,22 @@ header {
 .link-container {
     transition: ease-in-out .2s;
     text-align: center;
-    margin: 10px;
+    align-self: baseline;
+    margin: 20px;
+    &:hover .link-text{
+        transition: ease-in-out .2s;
+        color: blueviolet;
+        text-shadow: blueviolet 0 0 2px;
+    }
 }
 
 .icon {
-    width: 100px;
+    width: 130px;
     margin-bottom: 0px;
+}
+.link-text a {
+    color: #fff;
+    text-decoration: none!important;
 }
 .discord {
     width: 100px;
@@ -212,6 +219,39 @@ header {
     position: fixed; 
     bottom: 0;
     color: #fff; 
+    &:hover {
+        transition: ease-in-out .2s;
+        color: rgb(209, 160, 255)!important;
+        transform: scale(120%);
+        filter: drop-shadow(0 0 5px blueviolet);
+    }
+}
+
+
+.page-content {
+    padding-bottom: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: blueviolet solid 1px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.666);
+}
+.error-container{
+    padding-top: 20%;
+    height: 500px!important;
+}
+.button {
+    transition: ease-in-out .2s;
+    padding-top: 8px;
+    justify-content: center;
+    text-align: center;
+    border: blueviolet solid 1px;
+    width: 200px;
+    height: 35px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
     &:hover {
         transition: ease-in-out .2s;
         color: rgb(209, 160, 255)!important;
