@@ -3,7 +3,7 @@ body {
     font-family: 'Mina', sans-serif;
     text-align: center;
     background-color: black;
-    background-image: url(../assets/background.gif);
+    background-image: url(/assets/background.gif);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat; 
@@ -11,17 +11,6 @@ body {
     color: #fff; 
     margin: 0;
     padding: 0;
-    /* &:before { /*in-dev notice
-        position: relative;
-        text-align: center;
-        content: 'This website is in early development. Things may break!';
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 36px;;
-        flex-grow: 0;
-        flex-shrink: 0;
-        color: #fff;
-    }         */
 }
 #navbar {
     list-style: none;
@@ -256,6 +245,6 @@ header {
         transition: ease-in-out .2s;
         color: rgb(209, 160, 255)!important;
         transform: scale(120%);
-        filter: drop-shadow(0 0 5px blueviolet);
+        filter: drop-shadow(0 0 2px blueviolet);
     }
 }
