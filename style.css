@@ -163,7 +163,7 @@ header {
     margin-bottom: 0px;
 }
 .link-text a {
-    color: #fff;
+    color: #fff!important;
     text-decoration: none!important;
 }
 .discord {
