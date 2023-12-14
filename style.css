@@ -189,18 +189,25 @@ header {
 }
 
 .blog-post {
-    padding: 0px;
+    padding-bottom: 20px;
     padding-top: 0px;
     text-size-adjust: 100%;
     width: 90%;
+    margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
     border: blueviolet solid 1px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.666);
+    &:after{
+        padding: 20px!important
+    }
 }
 
 #footer {
+    background-color: black;
+    border-top: rgb(21, 7, 34) solid 1px;
+    padding-top: 200px;
     transition: ease-in-out .2s;
     width: 100%;
     text-align: center;
@@ -208,11 +215,16 @@ header {
     position: fixed; 
     bottom: 0;
     color: #fff; 
+    opacity: 5%;
     &:hover {
         transition: ease-in-out .2s;
         color: rgb(209, 160, 255)!important;
         transform: scale(120%);
         filter: drop-shadow(0 0 5px blueviolet);
+        opacity: 100%;
+    }
+    &::before{
+        margin-top: 200px!important;
     }
 }
 
@@ -226,6 +238,7 @@ header {
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.666);
 }
+
 .error-container{
     padding-top: 20%;
     height: 500px!important;
@@ -249,3 +262,16 @@ header {
     }
 }
 
+
+@media only screen and (max-width: 600px) {
+    #discordstatus{
+        position: inherit!important;
+        margin-top: 20px;
+    }
+    .icon, .discord{
+        width: 50px!important;
+    }
+    .page-content, .blog-post{
+        height: fit-content!important;
+    }
+}
