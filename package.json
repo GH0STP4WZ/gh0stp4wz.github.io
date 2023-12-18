@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "marked": "^11.1.0"
+  },
+  "devDependencies": {
+    "prettier": "3.1.1"
+  }
+}
