@@ -1,6 +1,6 @@
 .clockcontainer {
   transition: ease-in-out 0.2s;
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.666);
   width: 100px;

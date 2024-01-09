@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Mina&display=swap");
+
+:root{
+  --accent: red;
+}
 body {
   font-family: "Mina", sans-serif;
   text-align: center;
@@ -35,7 +39,7 @@ body {
   text-decoration: underline !important;
 }
 .navbar-wrapper {
-  border-bottom: blueviolet solid 1px;
+  border-bottom: var(--accent) solid 1px;
   margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.666);
 }
@@ -47,13 +51,13 @@ body {
   font-weight: bold;
   &:hover {
     transition: ease-in-out 0.2s;
-    color: blueviolet;
+    color: var(--accent);
     margin-top: 20px;
     margin-bottom: 35px;
     text-decoration: underline;
-    text-shadow: blueviolet 0 0 5px;
+    text-shadow: var(--accent) 0 0 5px;
     transform: scale(120%) !important;
-    filter: drop-shadow(0 0 5px blueviolet);
+    filter: drop-shadow(0 0 5px var(--accent));
   }
 }
 
@@ -65,7 +69,7 @@ header {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.666);
 }
@@ -76,29 +80,29 @@ header {
   max-width: 150px;
   height: auto;
   margin: 20px;
-  filter: drop-shadow(0 0 5px blueviolet);
+  filter: drop-shadow(0 0 5px var(--accent));
 }
 #discordstatus {
   position: absolute;
   transition: ease-in-out 0.2s;
   right: 45px;
   top: 100px;
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   border-radius: 20px;
   &:hover {
     transition: ease-in-out 0.2s;
-    color: blueviolet;
+    color: var(--accent);
     margin-top: 20px;
     margin-bottom: 35px;
-    text-shadow: blueviolet 0 0 5px;
+    text-shadow: var(--accent) 0 0 5px;
     transform: scale(115%);
-    filter: drop-shadow(0 0 5px blueviolet);
+    filter: drop-shadow(0 0 5px var(--accent));
     pointer-events: visible;
   }
 }
 #page-content,
 #themes {
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   border-radius: 20px;
   margin: 15px;
   background-color: rgba(0, 0, 0, 0.651);
@@ -120,12 +124,12 @@ header {
   margin-right: auto;
   &:hover {
     transition: ease-in-out 0.2s;
-    color: blueviolet;
+    color: var(--accent);
     margin-top: 20px;
     margin-bottom: 20px;
-    text-shadow: blueviolet 0 0 5px;
+    text-shadow: var(--accent) 0 0 5px;
     transform: scale(110%);
-    filter: drop-shadow(0 0 5px blueviolet);
+    filter: drop-shadow(0 0 5px var(--accent));
   }
 }
 #ghostchatter,
@@ -153,8 +157,8 @@ header {
   margin: 20px;
   &:hover .link-text {
     transition: ease-in-out 0.2s;
-    color: blueviolet;
-    text-shadow: blueviolet 0 0 2px;
+    color: var(--accent);
+    text-shadow: var(--accent) 0 0 2px;
   }
 }
 
@@ -174,9 +178,8 @@ header {
 #link {
   &:hover {
     transition: ease-in-out 0.2s;
-    color: rgb(209, 160, 255) !important;
     transform: scale(120%);
-    filter: drop-shadow(0 0 5px blueviolet);
+    filter: drop-shadow(0 0 5px var(--accent));
   }
 }
 .blog-header {
@@ -186,7 +189,7 @@ header {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.666);
 }
@@ -196,7 +199,7 @@ header {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
-  border-bottom: blueviolet 1px solid;
+  border-bottom: var(--accent) 1px solid;
 }
 
 .blog-post {
@@ -207,7 +210,7 @@ header {
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.666);
   &:after {
@@ -229,9 +232,8 @@ header {
   opacity: 5%;
   &:hover {
     transition: ease-in-out 0.2s;
-    color: rgb(209, 160, 255) !important;
     transform: scale(120%);
-    filter: drop-shadow(0 0 5px blueviolet);
+    filter: drop-shadow(0 0 5px var(--accent));
     opacity: 100%;
   }
   &::before {
@@ -244,7 +246,7 @@ header {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.666);
 }
@@ -258,7 +260,7 @@ header {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.666);
 }
@@ -276,7 +278,7 @@ header {
   padding-top: 8px;
   justify-content: center;
   text-align: center;
-  border: blueviolet solid 1px;
+  border: var(--accent) solid 1px;
   width: 200px;
   height: 35px;
   border-radius: 20px;
@@ -284,9 +286,8 @@ header {
   margin-right: auto;
   &:hover {
     transition: ease-in-out 0.2s;
-    color: rgb(209, 160, 255) !important;
     transform: scale(120%);
-    filter: drop-shadow(0 0 2px blueviolet);
+    filter: drop-shadow(0 0 2px var(--accent));
   }
 }
 
