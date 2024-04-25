@@ -304,4 +304,27 @@ header {
   .blog-post {
     height: fit-content !important;
   }
+  #links {
+    scale: 0.6;
+  }
+}
+
+#badges {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#top-badges {
+  position: absolute;
+  left: 15px;
+  top: 60px;
+}
+
+.xenia-badge {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: ease-in-out 0.2s;
+  &:hover {
+    scale: 1.1;
+  }
 }
