@@ -50,18 +50,18 @@ body {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  &:hover {
-    transition: ease-in-out 0.2s;
-    color: var(--accent);
-    margin-top: 20px;
-    margin-bottom: 35px;
-    text-decoration: underline;
-    text-shadow: var(--accent) 0 0 5px;
-    transform: scale(120%) !important;
-    filter: drop-shadow(0 0 5px var(--accent));
-  }
 }
-
+.navigation-bar a:hover,
+.button a:hover {
+  transition: ease-in-out 0.2s;
+  color: var(--accent);
+  margin-top: 20px;
+  margin-bottom: 35px;
+  text-decoration: underline;
+  text-shadow: var(--accent) 0 0 5px;
+  transform: scale(120%) !important;
+  filter: drop-shadow(0 0 5px var(--accent));
+}
 header {
   transition: ease-in-out 0.2s;
   padding: 30px;
@@ -90,16 +90,16 @@ header {
   top: 100px;
   border: var(--accent) solid 1px;
   border-radius: 20px;
-  &:hover {
-    transition: ease-in-out 0.2s;
-    color: var(--accent);
-    margin-top: 20px;
-    margin-bottom: 35px;
-    text-shadow: var(--accent) 0 0 5px;
-    transform: scale(115%);
-    filter: drop-shadow(0 0 5px var(--accent));
-    pointer-events: visible;
-  }
+}
+#discordstatus:hover {
+  transition: ease-in-out 0.2s;
+  color: var(--accent);
+  margin-top: 20px;
+  margin-bottom: 35px;
+  text-shadow: var(--accent) 0 0 5px;
+  transform: scale(115%);
+  filter: drop-shadow(0 0 5px var(--accent));
+  pointer-events: visible;
 }
 #page-content,
 #themes {
@@ -123,15 +123,16 @@ header {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  &:hover {
-    transition: ease-in-out 0.2s;
-    color: var(--accent);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-shadow: var(--accent) 0 0 5px;
-    transform: scale(110%);
-    filter: drop-shadow(0 0 5px var(--accent));
-  }
+}
+#virtual-boy:hover,
+#ghostchatter:hover {
+  transition: ease-in-out 0.2s;
+  color: var(--accent);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-shadow: var(--accent) 0 0 5px;
+  transform: scale(110%);
+  filter: drop-shadow(0 0 5px var(--accent));
 }
 #ghostchatter,
 #virtual-boy {
@@ -156,13 +157,12 @@ header {
   text-align: center;
   align-self: baseline;
   margin: 20px;
-  &:hover .link-text {
-    transition: ease-in-out 0.2s;
-    color: var(--accent);
-    text-shadow: var(--accent) 0 0 2px;
-  }
 }
-
+.link-container:hover .link-text {
+  transition: ease-in-out 0.2s;
+  color: var(--accent);
+  text-shadow: var(--accent) 0 0 2px;
+}
 .icon {
   width: 130px;
   margin-bottom: 0px;
@@ -176,12 +176,10 @@ header {
   margin-top: 23px;
 }
 
-#link {
-  &:hover {
-    transition: ease-in-out 0.2s;
-    transform: scale(120%);
-    filter: drop-shadow(0 0 5px var(--accent));
-  }
+#link:hover {
+  transition: ease-in-out 0.2s;
+  transform: scale(120%);
+  filter: drop-shadow(0 0 5px var(--accent));
 }
 .blog-header {
   padding: 30px;
@@ -214,11 +212,10 @@ header {
   border: var(--accent) solid 1px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.666);
-  &:after {
-    padding: 20px !important;
-  }
 }
-
+.blog-post:after {
+  padding: 20px !important;
+}
 #footer {
   background-color: black;
   border-top: rgb(21, 7, 34) solid 1px;
@@ -231,17 +228,16 @@ header {
   bottom: 0;
   color: #fff;
   opacity: 5%;
-  &:hover {
-    transition: ease-in-out 0.2s;
-    transform: scale(120%);
-    filter: drop-shadow(0 0 5px var(--accent));
-    opacity: 100%;
-  }
-  &::before {
-    margin-top: 200px !important;
-  }
 }
-
+#footer:hover {
+  transition: ease-in-out 0.2s;
+  transform: scale(120%);
+  filter: drop-shadow(0 0 5px var(--accent));
+  opacity: 100%;
+}
+#footer::before {
+  margin-top: 200px !important;
+}
 .page-content {
   padding-bottom: 20px;
   width: 90%;
@@ -285,13 +281,12 @@ header {
   border-radius: 20px;
   margin-left: auto;
   margin-right: auto;
-  &:hover {
-    transition: ease-in-out 0.2s;
-    transform: scale(120%);
-    filter: drop-shadow(0 0 2px var(--accent));
-  }
 }
-
+.button:hover {
+  transition: ease-in-out 0.2s;
+  transform: scale(120%);
+  filter: drop-shadow(0 0 2px var(--accent));
+}
 @media only screen and (max-width: 600px) {
   #discordstatus {
     position: inherit !important;
@@ -325,7 +320,7 @@ header {
   margin-left: auto;
   margin-right: auto;
   transition: ease-in-out 0.2s;
-  &:hover {
-    scale: 1.1;
-  }
+}
+.xenia-badge:hover {
+  scale: 1.1;
 }
