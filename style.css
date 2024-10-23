@@ -212,7 +212,7 @@ header {
 }
 
 .blog-post {
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   padding-top: 0px;
   text-size-adjust: 100%;
   width: 90%;
@@ -222,6 +222,7 @@ header {
   border: var(--accent) solid 1px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.666);
+  margin-bottom: 70px;
 }
 .blog-post:after {
   padding: 20px !important;
