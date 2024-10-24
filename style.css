@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Mina&display=swap");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 :root{
   --accent: red;
+  --bg: rgba(0, 0, 0, 0.650);
+  --bg-darker: rgba(0, 0, 0, 0.950);
 }
 body {
   font-family: "Mina", sans-serif;
@@ -116,7 +119,7 @@ header {
   border: var(--accent) solid 1px;
   border-radius: 20px;
   margin: 15px;
-  background-color: rgba(0, 0, 0, 0.651);
+  background-color: var(--bg);
 }
 
 #about-me,
@@ -293,10 +296,31 @@ header {
   margin-left: auto;
   margin-right: auto;
 }
+.button-disabled {
+  transition: ease-in-out 0.2s;
+  text-decoration: none !important;
+  align-content: center;
+  text-align: center;
+  padding-top: 5px;
+  border: var(--accent) solid 1px;
+  width: 200px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: rgba(60, 0, 0, 0.5);
+  margin-left: auto;
+  margin-right: auto;
+}
+.button-disabled .link-text {
+  color: grey!important;
+}
 .button:hover {
   transition: ease-in-out 0.2s;
   transform: scale(120%);
   filter: drop-shadow(0 0 2px var(--accent));
+}
+.button-disabled:hover {
+  animation: shake 0.35s;
+  cursor: url('data:image/x-icon;base64,AAACAAEAICACAAAAAAAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAABgAAAAwAAAAMAAAAGAAAARgAAAGwAAAB8AAAAf4AAAH8AAAB+AAAAfAAAAHgAAABwAAAAYAAAAEAAAAAAAAAAAAAAAAAAAA/////////////////////////////////////////////////////////////////+f////D////w////4f///eH///zD///8Q////Af///wAf//8AP///AH///wD///8B////A////wf///8P////H////z////9/////////8='), default;
 }
 
 .dualbutton-container {
@@ -335,7 +359,6 @@ header {
 .dualbutton-disabled:hover {
   animation: shake 0.35s;
   cursor: url('data:image/x-icon;base64,AAACAAEAICACAAAAAAAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAABgAAAAwAAAAMAAAAGAAAARgAAAGwAAAB8AAAAf4AAAH8AAAB+AAAAfAAAAHgAAABwAAAAYAAAAEAAAAAAAAAAAAAAAAAAAA/////////////////////////////////////////////////////////////////+f////D////w////4f///eH///zD///8Q////Af///wAf//8AP///AH///wD///8B////A////wf///8P////H////z////9/////////8='), default;
-
 }
 
 
@@ -427,4 +450,96 @@ header {
   50% { transform: translateX(10px); }
   75% { transform: translateX(-10px); }
   100% { transform: translateX(0); }
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: var(--bg-darker);
+  color: #fff;
+  text-align: center;
+  border: solid 1px var(--accent);
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 110%; 
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.tooltip:hover .tooltiptext {
+  transition-delay: 0.4s;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  border: var(--accent) solid 1px;
+  margin: 15px;
+  background-color: var(--bg);
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  /* border-bottom: var(--accent) dotted 1px; */
+}
+
+th {
+  background-color: var(--bg-darker);
+  color: var(--accent);
+  border-bottom: var(--accent) dotted 1px; 
+}
+
+tr:nth-child(4n) {
+  background-color: var(--bg-darker);
+  border-bottom: var(--accent) dotted 1px; 
+}
+
+tr:hover {
+  background-color: var(--accent);
+  color: white;
+}
+th, td {
+  padding: 10px;
+  /* text-align: left; */
+  /* border-bottom: var(--accent) solid 1px; */
+  border-right: var(--accent) solid 1px;
+}
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+
+td a[href*="youtube.com"], td a[href*="youtu.be"] {
+  position: relative;
+  padding-left: 40px; 
+  padding-top: 3px;
+}
+
+td a[href*="youtube.com"]::before, td a[href*="youtu.be"]::before {
+  content: "▶";
+  font-size: small;
+  padding-bottom: 12px;
+  color: white;
+  background-color: red!important;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 30px; 
+  height: 8px!important;
+  border-radius: 7px;
 }
