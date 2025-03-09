@@ -1,85 +1,350 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <link
-      rel="icon"
-      href="https://api.lanyard.rest/801089753038061669.png"
-      type="image/x-icon"
-    />
-    <title>Links | Riddim-GLiTCH's Site</title>
-    <meta content="Riddim-GLiTCH's Site" property="og:title" />
-    <meta
-      content="These are Riddim-GLiTCH's Social Links."
-      property="og:description"
-    />
-    <meta content="https://riddim-glitch.github.io/links" property="og:url" />
-    <meta
-      content="https://api.lanyard.rest/801089753038061669.png"
-      property="og:image"
-    />
-    <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
-  </head>
-  <body>
-    <section class="navbar-wrapper">
-      <section id="navbar">
-        <nav class="navigation-bar">
-          <a href="/">Home</a> | <a href="/links">Links</a> |
-          <a href="/blog">Blog</a> |
-          <a href="/downloads-pages/">Downloads</a>
-        </nav>
-      </section>
-    </section>
-    <header>
-      <img
-        id="profile-picture"
-        src="https://api.lanyard.rest/801089753038061669.png"
-        alt="Profile Picture"
-      />
-      <h1>Raven's Socials</h1>
-    </header>
-    <section id="page-content">
-      <h2>
-        These are my Socials. I'm not very social, but follow them anyway if you
-        care. I do occasionally post something interesting.
-      </h2>
-      <section id="links">
-        <div class="link-container" id="link">
-          <a href="https://bsky.app/profile/riddim-glitch.is-a.dev">
-            <img
-              class="icon"
-              src="https://raw.githubusercontent.com/bluesky-social/social-app/main/assets/icon.png"
-              alt="BlueSky Social Icon"
-            />
-            <div class="link-text"><br />BlueSky Social</div>
-          </a>
-        </div>
-      </section>
-      <h2>And these are some other important links.</h2>
-      <section id="links">
-        <div class="link-container" id="link">
-          <a href="https://github.com/Riddim-GLiTCH">
-            <img
-              class="icon"
-              src="/assets/socials/github-mark-white.png"
-              alt="Github Icon"
-            />
-            <div class="link-text"><br />Github</div>
-          </a>
-        </div>
-        <div class="link-container" id="link">
-          <a href="https://discord.gg/aYxpgkvdvR">
-            <img
-              class="discord"
-              src="/assets/socials/discord-mark-blue.png"
-              alt="Discord"
-            />
-            <div class="link-text"><br />Discord Support Server</div>
-          </a>
-        </div>
-      </section>
-    </section>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
+  <title>Links | Riddim-GLiTCH's Site</title>
+  <meta content="Riddim-GLiTCH's Site" property="og:title" />
+  <meta content="These are Riddim-GLiTCH's Social Links." property="og:description" />
+  <meta content="https://riddim-glitch.github.io/links" property="og:url" />
+  <meta content="https://api.lanyard.rest/801089753038061669.png" property="og:image" />
+  <meta content="#f38ba8" data-react-helmet="true" name="theme-color" />
+  <style>
+    :root {
+      --ctp-base: #1e1e2e;
+      --ctp-mantle: #181825;
+      --ctp-crust: #11111b;
+      --ctp-text: #cdd6f4;
+      --ctp-subtext0: #a6adc8;
+      --ctp-subtext1: #bac2de;
+      --ctp-surface0: #313244;
+      --ctp-surface1: #45475a;
+      --ctp-surface2: #585b70;
+      --ctp-overlay0: #6c7086;
+      --ctp-overlay1: #7f849c;
+      --ctp-overlay2: #9399b2;
+      --ctp-blue: #89b4fa;
+      --ctp-lavender: #b4befe;
+      --ctp-sapphire: #74c7ec;
+      --ctp-sky: #89dceb;
+      --ctp-teal: #94e2d5;
+      --ctp-green: #a6e3a1;
+      --ctp-yellow: #f9e2af;
+      --ctp-peach: #fab387;
+      --ctp-maroon: #eba0ac;
+      --ctp-red: #f38ba8;
+      --ctp-mauve: #cba6f7;
+      --ctp-pink: #f5c2e7;
+      --ctp-flamingo: #f2cdcd;
+      --ctp-rosewater: #f5e0dc;
+      
+      /* Main accent color */
+      --accent: var(--ctp-red);
+      --bg-opacity: 0.7;
+      --card-bg: rgba(30, 30, 46, 0.85);
+      --card-border: var(--ctp-red);
+      --card-hover-shadow: var(--ctp-red);
+      --text-glow: var(--ctp-red);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: var(--ctp-base);
+      background: var(--ctp-crust);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--ctp-text);
+      line-height: 1.6;
+    }
+    
+    *:link {
+      text-decoration: none;
+      color: var(--ctp-text);
+    }
+    
+    /* Navigation */
+    .navbar {
+      background-color: var(--ctp-mantle);
+      border-bottom: 1px solid var(--accent);
+      padding: 0.5rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      padding: 0 2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: var(--ctp-text);
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background-color: var(--accent);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+      opacity: 1;
+    }
+    
+    /* Main container */
+    .container {
+      max-width: 900px;
+      margin: 6rem auto 2rem;
+      padding: 0 1rem;
+    }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 15px var(--card-hover-shadow);
+      transition: all 0.3s ease;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+    }
+    
+    .profile-picture:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px var(--card-hover-shadow);
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    /* Card and sections */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 8px var(--card-hover-shadow);
+    }
+    
+    .section-title {
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent);
+      box-shadow: 0 0 5px var(--card-hover-shadow);
+    }
+    
+    .section-description {
+      margin-bottom: 1.5rem;
+      color: var(--ctp-subtext0);
+    }
+    
+    /* Links grid */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .link-card {
+      background-color: var(--ctp-surface0);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    
+    .link-card:hover {
+      transform: translateY(-3px);
+      background-color: var(--ctp-surface1);
+      box-shadow: 0 0 10px var(--card-hover-shadow);
+    }
+    
+    .link-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 1rem;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    
+    .link-text {
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    
+    .link-card:hover .link-text {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--text-glow);
+    }
+    
+    /* Footer */
+    .footer {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+      background-color: var(--ctp-mantle);
+      border-top: 1px solid var(--accent);
+      bottom: 0;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .links-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/links">Links</a>
+        <a href="/blog">Blog</a>
+        <a href="/downloads-pages/">Downloads</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <img class="profile-picture" src="https://api.lanyard.rest/801089753038061669.png" alt="Profile Picture" />
+      <h1>Aurora's Socials</h1>
+    </div>
+    
+    <!-- Social Links Section -->
+    <div class="card">
+      <h2 class="section-title">Social Media</h2>
+      <p class="section-description">
+        I'm not very social, but follow them anyway if you care. I do occasionally post something interesting.
+      </p>
+      <div class="links-grid">
+        <a href="https://bsky.app/profile/riddim-glitch.is-a.dev" class="link-card">
+          <img class="link-icon" src="/assets/Icons/bluesky_logo.svg" alt="BlueSky Social Icon" />
+          <div class="link-text">BlueSky Social (Personal account)</div>
+        </a>
+        <a href="https://www.youtube.com/@FKWPodcast" class="link-card">
+          <img class="link-icon" src="/assets/Icons/YouTube_Catppuccin.svg" alt="YouTube Icon" />
+          <div class="link-text">YouTube (The FKW Podcast)</div>
+        </a>
+        <a href="https://www.twitch.tv/Riddim_GLiTCH" class="link-card">
+          <img class="link-icon" src="/assets/Icons/twitch.png" alt="YouTube Icon" />
+          <div class="link-text">Twitch (Personal and Podcast)</div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Important Links Section -->
+    <div class="card">
+      <h2 class="section-title">Important Links</h2>
+      <p class="section-description">
+        Other important places where you can find my work and get support.
+      </p>
+      <div class="links-grid">
+        <a href="https://github.com/Riddim-GLiTCH" class="link-card">
+          <img class="link-icon" src="/assets/socials/github-mark-white.png" alt="Github Icon" />
+          <div class="link-text">Github</div>
+        </a>
+        
+        <a href="https://discord.gg/aYxpgkvdvR" class="link-card">
+          <img class="link-icon" src="/assets/socials/discord-mark-blue.png" alt="Discord" />
+          <div class="link-text">Discord Support Server</div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- You could add more sections here, such as:
+    <div class="card">
+      <h2 class="section-title">Project Links</h2>
+      <p class="section-description">
+        Links to my various projects and creations.
+      </p>
+      <div class="links-grid">
+        <!-- Project links here -->
+    <!--
+      </div>
+    </div>
+    -->
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
+  </div>
+</body>
 </html>
