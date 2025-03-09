@@ -1,183 +1,761 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="clock.css" />
-    <link
-      rel="icon"
-      href="https://api.lanyard.rest/801089753038061669.png"
-      type="image/x-icon"
-    />
-    <title>Home | Riddim-GLiTCH's Site</title>
-    <meta content="Riddim-GLiTCH's Site" property="og:title" />
-    <meta
-      content="This is Riddim-GLiTCH's personal website."
-      property="og:description"
-    />
-    <meta content="https://Riddim-GLiTCH.github.io/" property="og:url" />
-    <meta
-      content="https://api.lanyard.rest/801089753038061669.png"
-      property="og:image"
-    />
-    <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
-  </head>
-  <body>
-    <section class="navbar-wrapper">
-      <section id="navbar">
-        <nav class="navigation-bar">
-          <a href="/">Home</a> | <a href="/links">Links</a> |
-          <a href="/blog">Blog</a> |
-          <a href="/downloads-pages/">Downloads</a>
-        </nav>
-      </section>
-    </section>
-    <section id="top-badges">
-      <div class="xenia-badge">
-        <a href="https://xenia-linux-site.glitch.me/">
-          <img src="assets/badges/xeniaS.png">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
+  <title>Home | Riddim-GLiTCH's Site</title>
+  <meta content="Riddim-GLiTCH's Site" property="og:title" />
+  <meta content="This is Riddim-GLiTCH's personal website." property="og:description" />
+  <meta content="https://Riddim-GLiTCH.github.io/" property="og:url" />
+  <meta content="https://api.lanyard.rest/801089753038061669.png" property="og:image" />
+  <meta content="#f38ba8" data-react-helmet="true" name="theme-color" />
+  <style>
+    :root {
+      --ctp-base: #1e1e2e;
+      --ctp-mantle: #181825;
+      --ctp-crust: #11111b;
+      --ctp-text: #cdd6f4;
+      --ctp-subtext0: #a6adc8;
+      --ctp-subtext1: #bac2de;
+      --ctp-surface0: #313244;
+      --ctp-surface1: #45475a;
+      --ctp-surface2: #585b70;
+      --ctp-overlay0: #6c7086;
+      --ctp-overlay1: #7f849c;
+      --ctp-overlay2: #9399b2;
+      --ctp-blue: #89b4fa;
+      --ctp-lavender: #b4befe;
+      --ctp-sapphire: #74c7ec;
+      --ctp-sky: #89dceb;
+      --ctp-teal: #94e2d5;
+      --ctp-green: #a6e3a1;
+      --ctp-yellow: #f9e2af;
+      --ctp-peach: #fab387;
+      --ctp-maroon: #eba0ac;
+      --ctp-red: #f38ba8;
+      --ctp-mauve: #cba6f7;
+      --ctp-pink: #f5c2e7;
+      --ctp-flamingo: #f2cdcd;
+      --ctp-rosewater: #f5e0dc;
+      
+      /* Main accent color */
+      --accent: var(--ctp-red);
+      --bg-opacity: 0.7;
+      --card-bg: rgba(30, 30, 46, 0.85);
+      --card-border: var(--ctp-red);
+      --card-hover-shadow: var(--ctp-red);
+      --text-glow: var(--ctp-red);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: var(--ctp-base);
+      background: var(--ctp-crust);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--ctp-text);
+      line-height: 1.6;
+      /* cursor: url('data:image/x-icon;base64,AAACAAEAICACAAAAAAAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAABgAAAAwAAAAMAAAAGAAAARgAAAGwAAAB8AAAAf4AAAH8AAAB+AAAAfAAAAHgAAABwAAAAYAAAAEAAAAAAAAAAAAAAAAAAAA/////////////////////////////////////////////////////////////////+f////D////w////4f///eH///zD///8Q////Af///wAf//8AP///AH///wD///8B////A////wf///8P////H////z////9/////////8='), default; */
+    }
+    
+    *:link {
+      /* cursor: url('data:image/x-icon;base64,AAACAAEAICAAAAAAAACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAABQAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAFAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAATAAAAHAAAABwAAAAcAAAAHAAAABwAAAAcAAAAHAAAABMAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAACYAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAJgAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAcAAAANQAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAAA1AAAAHAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAUwAAAEEAAAAlAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAD//////////////////////////////////////wAAAP8AAABVAAAASwAAAC8AAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAP//////////////////////////////////////AAAA/wAAAFUAAABSAAAAOAAAABwAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAD/////////////////////////////////////////////////AAAA/wAAAFQAAABBAAAAJQAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAP////////////////////////////////////////////////8AAAD/AAAAVQAAAEsAAAAvAAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAD//////////////////////////////////////////////////////wAAAP8AAABVAAAAUgAAADYAAAAZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAADAAAAP///////////////////////////////////////////////////////////wAAAP8AAABUAAAAOAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAD/////////////////////////////////////////////////////////////////AAAA/wAAAFUAAAA5AAAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAP////////////////////////////////////////////////////////////////8AAAD/AAAAVQAAADkAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////////////////////////////////////////////////////////////////wAAAP8AAABUAAAAOAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////////////////////////////////////////////////////////////AAAA/wAAAFEAAAA1AAAAGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////8AAAD///////////////////////////////////////////////////////////8AAAD/AAAASAAAACwAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAD/AAAA/wAAAP///////////////////////////////////////////wAAAP///////////wAAAP8AAAA1AAAAHAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA////////////AAAA////////////AAAA////////////AAAA////////////AAAA/wAAAB8AAAAMAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////8AAAD///////////8AAAD///////////8AAAD//////wAAAP8AAAAVAAAADAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////wAAAP///////////wAAAP///////////wAAAP8AAAD/AAAADwAAAAYAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////AAAA////////////AAAA/wAAAP8AAAD/AAAACAAAAAYAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////8AAAD/AAAA/wAAAP8AAAAhAAAABgAAAAMAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////wAAAP8AAABRAAAANQAAABoAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////AAAA/wAAAEUAAAAsAAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////8AAAD/AAAALwAAABwAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////wAAAP8AAAAVAAAADAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAD/AAAABgAAAAYAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////////////////////////////////////gD///4A///+AP///AB///wAf//4AH//+AA///AAP//wAD//4AA//8AAP//AAD//wAA///gAP//4AH//+AD///gD///4H///+H////h////4f///+H////z/////////////8='), auto; */
+    }
+    
+    /* Navigation */
+    .navbar {
+      background-color: var(--ctp-mantle);
+      border-bottom: 1px solid var(--accent);
+      padding: 0.5rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      padding: 0 2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: var(--ctp-text);
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background-color: var(--accent);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+      opacity: 1;
+    }
+    
+    /* Main container */
+    .container {
+      max-width: 1300px;
+      margin: 6rem auto 2rem;
+      padding: 0 1rem;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr 3fr;
+    }
+    
+    /* Cards and sections */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 8px var(--card-hover-shadow);
+    }
+    
+    /* Profile section */
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
+      grid-row: span 2;
+      width: 400px;
+    }
+    
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 15px var(--card-hover-shadow);
+      transition: all 0.3s ease;
+      object-fit: cover;
+    }
+    
+    .profile-picture:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px var(--card-hover-shadow);
+    }
+    
+    .profile-name {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    
+    .profile-pronouns {
+      color: var(--ctp-subtext0);
+      margin-bottom: 1rem;
+    }
+    
+    /* Discord Live Status Styles */
+    .discord-status-card {
+      background-color: var(--ctp-surface0);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 0.5rem;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .discord-status-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 10px var(--card-hover-shadow);
+    }
+
+    .status-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .status-message {
+      font-style: italic;
+      color: var(--ctp-subtext0);
+      margin-bottom: 0.5rem;
+      transition: all ease 0.2s;
+    }
+    .custom-status-emoji {
+      height: 1.2em;
+      width: auto;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    .activity {
+      border-top: 1px solid var(--ctp-surface1);
+      padding-top: 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    .activity-header {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .activity-content {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .activity-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .activity-details {
+      flex: 1;
+    }
+
+    .spotify {
+      color: var(--ctp-green);
+    }
+
+    .game {
+      color: var(--ctp-sapphire);
+    }
+
+    .watching {
+      color: var(--ctp-red);
+    }
+
+    .rich-presence {
+      color: var(--ctp-lavender);
+    }
+
+    .song-title, .game-name, .media-name, .app-name {
+      font-weight: bold;
+    }
+
+    .song-artist, .song-album, .game-details, .game-state, .media-details, .media-state, .app-details, .app-state {
+      font-size: 0.9rem;
+      color: var(--ctp-subtext0);
+    }
+
+    .activity-none {
+      color: var(--ctp-subtext0);
+      font-style: italic;
+    }
+
+    /* About me section */
+    .about-section {
+      grid-column: 2;
+    }
+    
+    .section-title {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent);
+      box-shadow: 0 0 5px var(--card-hover-shadow);
+    }
+    
+    .about-content p {
+      margin-bottom: 1rem;
+    }
+    
+    /* Friends section */
+    .friends-section {
+      grid-column: 2;
+    }
+    
+    .friends-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .friend-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .friend-card:hover {
+      transform: scale(1.1);
+    }
+    
+    .friend-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+    
+    .friend-name {
+      font-size: 0.9rem;
+      color: var(--ctp-text);
+      transition: all 0.3s ease;
+    }
+    
+    .friend-card:hover .friend-name {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--text-glow);
+    }
+    
+    /* Badges */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .badge {
+      transition: all 0.3s ease;
+    }
+    
+    .badge:hover {
+      transform: scale(1.1);
+    }
+    
+    .badge img {
+      max-width: 150px;
+      height: auto;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+      background-color: var(--ctp-mantle);
+      border-top: 1px solid var(--accent);
+    }
+    
+    .visitor-counter {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .clock {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+    
+    /* Glowing text effect */
+    .glow-text {
+      transition: all 0.3s ease;
+    }
+    
+    .glow-text:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      
+      .profile-section, .about-section, .friends-section {
+        grid-column: 1;
+      }
+      
+      .friends-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/links">Links</a>
+        <a href="/blog">Blog</a>
+        <a href="/downloads-pages/">Downloads</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Profile Card -->
+    <div class="profile-section card">
+      <img id="profile-picture" class="profile-picture" src="https://api.lanyard.rest/801089753038061669.png" alt="Profile Picture" />
+      <h1 class="profile-name glow-text">Aurora</h1>
+      <p class="profile-pronouns">Pronouns: It/Its</p>
+      <!-- Discord Status -->
+      <div class="discord-status">
+        <div class="discord-status-card">
+          <div id="discord-status-container" class="status-content">
+            Loading Discord status...
+          </div>
+        </div>
+      </div>
+      
+      <!-- Badges -->
+      <div class="badges">
+        <a href="https://xenia-linux-site.glitch.me/" class="badge">
+          <img src="assets/badges/xeniaS.png" alt="Xenia Badge">
+        </a>
+        <a href="https://www.dictionary.com/browse/porn" class="badge">
+          <img src="assets/badges/not_intended_for_children_03.jpg" alt="Not For Children">
         </a>
       </div>
-    </section>
-    <header>
-      <img
-        id="profile-picture"
-        src="https://api.lanyard.rest/801089753038061669.png"
-        alt="Profile Picture"
-      />
-      <h1>Raven</h1>
-      <p>Pronouns: It/Its</p>
-    </header>
-    <section id="discordstatus">
-      <h2>My Discord Profile</h2>
-      <a href="https://discord.com/users/801089753038061669">
-        <img
-          src="https://lanyard.cnrad.dev/api/801089753038061669?hideBadges=true&hideTimestamp=true&bg=00000033"
-          alt="Discord Presence"
-        />
-      </a>
-    </section>
-    <section id="page-content">
-      <section id="about-me">
-        <h2>Welcome to my Website</h2>
+    </div>
+    
+    <!-- About Me Section -->
+    <div class="about-section card">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
         <p>
-          <h1>Hi there, My name is Raven Yuuki "Riddim_GLiTCH" or "RDG" Hartman.</h1>
-          I'm a 23 year old non-binary transfem. I'm Goth, and a computer nerd.<br />
-          I like to see myself as bit of an edgy person, but also kind and caring.<br />
-          I'm Neurodivergent. I was diagnosed with ADHD and PDDNoS.<br />
-          I don't have very good mental health, sadly. I regularly battle with depression and anxiety.<br /> 
-          I like to listen to Riddim/Dubstep, Metal, Drum and Bass, and Phonk music.<br />
-          I'm a gamer, my favorite games include Mario Kart Wii, Minecraft, and Terraria.<br />
-          I'm a CSS developer, and a Mario Kart Wii mod Developer.<br />
-          My work primarily consists of Discord Themes, and Texture hacked courses for Mario Kart Wii.<br />
-          I do not do commisions. At least, not right now.<br />
-          For help with my themes, please visit my support server.<br />
-          Please visit the links page for all my links.
+          <span class="glow-text">Hi there, My name is Aurora Yuuki "Riddim_GLiTCH" or "RDG" Hartman.</span>
         </p>
-        <br />
-      </section>
-      <h2>These are the websites of my friends.</h2>
-      <section id="links">
-        <div class="link-container" id="link">
-          <a href="https://faey.net/">
-            <img
-              class="icon"
-              src="assets/placeholder.png"
-              alt="Faey"
-            />
-            <div class="link-text"><br />Faey.net</div>
-          </a>
-        </div>
-        <div class="link-container" id="link">
-          <a href="https://enkdev.xyz/">
-            <img
-              class="icon"
-              src="https://enkdev.xyz/img/enkdev_logoDefault.png"
-              alt="EnKdev"
-            />
-            <div class="link-text"><br />EnKdev.xyz</div>
-          </a>
-        </div>
-        <div class="link-container" id="link">
-          <a href="https://luxploit.net/">
-            <img
-              class="icon"
-              src="https://luxploit.net/assets/lu.png"
-              alt="luxploit"
-            />
-            <div class="link-text"><br />luxploit.net</div>
-          </a>
-        </div>
-        <div class="link-container" id="link">
-          <a href="https://neoumbreon.com/">
-            <img
-              class="icon"
-              src="https://neoumbreon.com/media/neoumbreon.png"
-              alt="NeoUmbreon"
-            />
-            <div class="link-text"><br />neoumbreon.com</div>
-          </a>
-        </div>
-        <div class="link-container" id="link">
-          <a href="https://github.com/Notiphiliac">
-            <img
-              class="icon"
-              src="https://avatars.githubusercontent.com/u/59151989"
-              alt="Notiphiliac"
-            />
-            <div class="link-text"><br />github.com/notiphiliac</div>
-          </a>
-        </div>
-        <div class="link-container" id="link">
-          <a href="https://github.com/zrodevkaan">
-            <img
-              class="icon"
-              src="https://avatars.githubusercontent.com/u/90235641"
-              alt="zrodevkaan"
-            />
-            <div class="link-text"><br />github.com/zrodevkaan</div>
-          </a>
-        </div>
-        <div class="link-container" id="link">
-          <a href="https://inkstray.neocities.org">
-            <img
-              class="icon"
-              src="https://avatars.githubusercontent.com/u/80412260"
-              alt="Inkstray"
-            />
-            <div class="link-text"><br />inkstray.neocities.org</div>
-          </a>
-        </div>
-      </section>
-    </section>
-    <div align='center'>
+        <p>I'm a 23 year old transfem Demi-Girl. I'm Goth, and a computer nerd.</p>
+        <p>I like to see myself as bit of an edgy person, but also kind and caring.</p>
+        <p>I'm Neurodivergent. I was diagnosed with ADHD and PDDNoS.</p>
+        <p>I don't have very good mental health, sadly. I regularly battle with depression and anxiety.</p>
+        <p>I like to listen to Riddim/Dubstep, Metal, Drum and Bass, and Phonk music.</p>
+        <p>I'm a gamer, my favorite games include Mario Kart Wii, Minecraft, and Terraria.</p>
+        <p>I mostly work in CSS, and a Mario Kart Wii modding.</p>
+        <p>My work primarily consists of Discord Themes, and Texture hacked courses for Mario Kart Wii.</p>
+        <p>I do not do commisions. At least, not right now.</p>
+        <p>For help with my themes, please visit my support server.</p>
+        <p>Please visit the links page for all my links.</p>
+      </div>
+    </div>
+    
+    <!-- Friends Section -->
+    <div class="friends-section card">
+      <h2 class="section-title">Friends' Websites</h2>
+      <div class="friends-grid">
+        <a href="https://faey.net/" class="friend-card">
+          <img class="friend-icon" src="assets/placeholder.png" alt="Faey" />
+          <div class="friend-name">Faey.net</div>
+        </a>
+        
+        <a href="https://enkdev.xyz/" class="friend-card">
+          <img class="friend-icon" src="https://enkdev.xyz/img/enkdev_logoDefault.png" alt="EnKdev" />
+          <div class="friend-name">EnKdev.xyz</div>
+        </a>
+        
+        <a href="https://luxploit.net/" class="friend-card">
+          <img class="friend-icon" src="https://luxploit.net/assets/lu.png" alt="luxploit" />
+          <div class="friend-name">luxploit.net</div>
+        </a>
+        
+        <a href="https://neoumbreon.com/" class="friend-card">
+          <img class="friend-icon" src="https://neoumbreon.com/media/neoumbreon.png" alt="NeoUmbreon" />
+          <div class="friend-name">neoumbreon.com</div>
+        </a>
+        
+        <a href="https://github.com/Notiphiliac" class="friend-card">
+          <img class="friend-icon" src="https://avatars.githubusercontent.com/u/59151989" alt="Notiphiliac" />
+          <div class="friend-name">github.com/notiphiliac</div>
+        </a>
+        
+        <a href="https://github.com/zrodevkaan" class="friend-card">
+          <img class="friend-icon" src="https://avatars.githubusercontent.com/u/90235641" alt="zrodevkaan" />
+          <div class="friend-name">github.com/zrodevkaan</div>
+        </a>
+        
+        <a href="https://inkstray.neocities.org" class="friend-card">
+          <img class="friend-icon" src="https://avatars.githubusercontent.com/u/80412260" alt="Inkstray" />
+          <div class="friend-name">inkstray.neocities.org</div>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    <div class="visitor-counter">
       <small>
         <a href='https://www.websitecounterfree.com' title="Free Website Counter">Total amount of visitors, powered by Free Website Counter</a>
       </small>
-      <br / >
+      <br/>
       <a href='https://www.websitecounterfree.com'>
         <img src='https://www.websitecounterfree.com/c.php?d=9&id=53535&s=27' border='0' alt='Free Website Counter'>
       </a>
     </div>
-    <section class="clockcontainer">
-      <div id="clock">
-        <script src="/js/clock.js"></script>
-      </div>
-    </section>
-    <section id="badges">
-      <!-- <center> -->
-      <div class="xenia-badge">
-        <a href="https://en.wikipedia.org/wiki/Linux">
-          <img src="assets/badges/xeniaLG.png">
-        </a>
-      </div>
-      <div class="nfc">
-        <a href="https://www.dictionary.com/browse/porn">
-          <img src="assets/badges/not_intended_for_children_03.jpg">
-        </a>
-      </div>
-    <!-- </center> -->
-    </section>
-  </body>
+    
+    <div class="clock" id="clock">
+      <script src="/js/clock.js"></script>
+    </div>
+    
+    <a href="https://en.wikipedia.org/wiki/Linux" class="badge">
+      <img src="assets/badges/xeniaLG.png" alt="Xenia Linux">
+    </a>
+  </div>
+</body>
+<script>
+  function fetchDiscordStatus() {
+    fetch('https://api.lanyard.rest/v1/users/801089753038061669') // DO NOT CHANGE -- This is what tells the API whos data to return!
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          updateDiscordStatus(data.data);
+        }
+      })
+      .catch(error => console.error('Error fetching Discord status:', error));
+  }
+
+  function updateDiscordStatus(data) {
+    const statusElement = document.getElementById('discord-status-container');
+    
+    let statusHTML = '';
+    if (data.discord_status) {
+      let statusIcon = '';
+      switch(data.discord_status) {
+        case 'online':
+          statusIcon = '<span style="color: var(--ctp-green);">●</span>';
+          break;
+        case 'idle':
+          statusIcon = '<span style="color: var(--ctp-yellow);">●</span>';
+          break;
+        case 'dnd':
+          statusIcon = '<span style="color: var(--ctp-red);">●</span>';
+          break;
+        default:
+          statusIcon = '<span style="color: var(--ctp-surface0);">●</span>';
+      }
+      statusHTML += `<div class="status-line">${statusIcon} ${data.discord_status}</div>`;
+    }
+    
+    const customStatusActivity = data.activities.find(activity => 
+      activity.name === "Custom Status" && activity.type === 4
+    );
+
+    if (customStatusActivity && customStatusActivity.state) {
+      let emojiHTML = '';
+      if (customStatusActivity.emoji) {
+        if (customStatusActivity.emoji.id) {
+          const animated = customStatusActivity.emoji.animated ? 'a' : '';
+          emojiHTML = `<img class="custom-status-emoji" src="https://cdn.discordapp.com/emojis/${customStatusActivity.emoji.id}.${animated ? 'gif' : 'png'}" alt="${customStatusActivity.emoji.name}" /> `;
+        } else if (customStatusActivity.emoji.name) {
+          emojiHTML = `${customStatusActivity.emoji.name} `;
+        }
+      }
+      
+      statusHTML += `<div class="status-message">${emojiHTML}"${customStatusActivity.state}"</div>`;
+    } else if (data.discord_status !== 'offline') {
+      statusHTML += `<div class="status-message">No custom status</div>`;
+    }
+    
+    if (data.activities && data.activities.length > 0) {
+      const sortedActivities = [...data.activities].sort((a, b) => {
+        if (a.type === 2 && a.name === "Spotify") return -1;
+        if (b.type === 2 && b.name === "Spotify") return 1;
+        if (a.type === 0) return -1;
+        if (b.type === 0) return 1;
+        return 0;
+      });
+      
+      sortedActivities.forEach(activity => {
+        if (activity.name === "Custom Status" && activity.type === 4) return;
+        
+        if (activity.type === 2 && activity.name === "Spotify") {
+          let spotifyImage = '';
+          if (activity.assets && activity.assets.large_image) {
+            const spotifyImgId = activity.assets.large_image.startsWith('spotify:') 
+              ? activity.assets.large_image.substring(8) 
+              : activity.assets.large_image;
+            spotifyImage = `https://i.scdn.co/image/${spotifyImgId}`;
+          }
+          
+          statusHTML += `
+            <div class="activity spotify">
+              <div class="activity-header">
+                <i class="fab fa-spotify"></i> Listening to Spotify
+              </div>
+              <div class="activity-content">
+                ${spotifyImage ? `<img src="${spotifyImage}" class="activity-img" alt="Album cover">` : ''}
+                <div class="activity-details">
+                  <div class="song-title">${activity.details || 'Unknown song'}</div>
+                  <div class="song-artist">by ${activity.state || 'Unknown artist'}</div>
+                  <div class="song-album">on ${activity.assets?.large_text || 'Unknown Album'}</div>
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (activity.type === 0) {
+          let gameImage = '';
+          if (activity.assets && activity.assets.large_image) {
+            if (activity.assets.large_image.startsWith('mp:')) {
+              gameImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
+            } else {
+              gameImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
+            }
+          }
+          
+          statusHTML += `
+            <div class="activity game">
+              <div class="activity-header">
+                <i class="fas fa-gamepad"></i> Playing
+              </div>
+              <div class="activity-content">
+                ${gameImage ? `<img src="${gameImage}" class="activity-img" alt="${activity.name}">` : ''}
+                <div class="activity-details">
+                  <div class="game-name">${activity.name}</div>
+                  ${activity.details ? `<div class="game-details">${activity.details}</div>` : ''}
+                  ${activity.state ? `<div class="game-state">${activity.state}</div>` : ''}
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (activity.type === 3) {
+          let activityImage = '';
+          if (activity.assets && activity.assets.large_image) {
+            if (activity.assets.large_image.startsWith('mp:')) {
+              activityImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
+            } else if (activity.assets.large_image.startsWith('external:')) {
+              activityImage = activity.assets.large_image.substring(9);
+            } else {
+              activityImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
+            }
+          }
+          
+          statusHTML += `
+            <div class="activity watching">
+              <div class="activity-header">
+                <i class="fas fa-tv"></i> Watching
+              </div>
+              <div class="activity-content">
+                ${activityImage ? `<img src="${activityImage}" class="activity-img" alt="${activity.name}">` : ''}
+                <div class="activity-details">
+                  <div class="media-name">${activity.name}</div>
+                  ${activity.details ? `<div class="media-details">${activity.details}</div>` : ''}
+                  ${activity.state ? `<div class="media-state">${activity.state}</div>` : ''}
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+
+          let activityIcon = 'fas fa-desktop';
+          let activityType = 'Using';
+          
+          if (activity.type === 1) {
+            activityIcon = 'fas fa-video';
+            activityType = 'Streaming';
+          } else if (activity.type === 4) {
+            activityIcon = 'fas fa-broadcast-tower';
+            activityType = 'Broadcasting';
+          } else if (activity.type === 5) {
+            activityIcon = 'fas fa-music';
+            activityType = 'Listening to';
+          }
+          
+          let activityImage = '';
+          if (activity.assets && activity.assets.large_image) {
+            if (activity.assets.large_image.startsWith('mp:')) {
+              activityImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
+            } else if (activity.assets.large_image.startsWith('external:')) {
+              activityImage = activity.assets.large_image.substring(9);
+            } else {
+              activityImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
+            }
+          }
+          
+          statusHTML += `
+            <div class="activity rich-presence">
+              <div class="activity-header">
+                <i class="${activityIcon}"></i> ${activityType}
+              </div>
+              <div class="activity-content">
+                ${activityImage ? `<img src="${activityImage}" class="activity-img" alt="${activity.name}">` : ''}
+                <div class="activity-details">
+                  <div class="app-name">${activity.name}</div>
+                  ${activity.details ? `<div class="app-details">${activity.details}</div>` : ''}
+                  ${activity.state ? `<div class="app-state">${activity.state}</div>` : ''}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      });
+    } else if (data.discord_status !== 'offline') {
+      statusHTML += `<div class="activity-none">Not doing anything</div>`;
+    }
+    
+    statusElement.innerHTML = statusHTML || 'Offline';
+    
+    setTimeout(fetchDiscordStatus, 5000); // I hope lanyard wont yell at me for checking every 5 seconds. May need to set this timeout to like
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchDiscordStatus);
+</script>
 </html>
