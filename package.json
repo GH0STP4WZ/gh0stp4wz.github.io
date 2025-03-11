@@ -1,8 +1,12 @@
 {
-  "dependencies": {
-    "marked": "^11.1.0"
+  "name": "Auroras-blog",
+  "version": "1.0.0",
+  "description": "A static blog generator for Auroras website",
+  "main": "blog-generator.js",
+  "scripts": {
+    "build": "node blog-generator.js"
   },
-  "devDependencies": {
-    "prettier": "3.1.1"
+  "dependencies": {
+    "marked": "^4.3.0"
   }
 }

@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
-  <title>Blog | Auroras website</title>
+  <link rel="icon" href="{{profilePicture}}" type="image/x-icon" />
+  <title>Blog | {{siteTitle}}</title>
   <meta content="Riddim-GLiTCH's Site" property="og:title" />
   <meta content="This is Riddim-GLiTCH's blog." property="og:description" />
   <meta content="https://riddim-glitch.github.io/blog" property="og:url" />
-  <meta content="https://api.lanyard.rest/801089753038061669.png" property="og:image" />
-  <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
+  <meta content="{{profilePicture}}" property="og:image" />
+  <meta content="{{themeColor}}" data-react-helmet="true" name="theme-color" />
   <style>
     :root {
       --ctp-base: #1e1e2e;
@@ -243,7 +243,7 @@
       <div class="blog-header">
         <img
           id="profile-picture"
-          src="https://api.lanyard.rest/801089753038061669.png"
+          src="{{profilePicture}}"
           alt="Profile Picture"
         />
         <h1>Raven's Blog</h1>
@@ -255,13 +255,7 @@
         </div>
         <section id="blog-posts">
           <!-- Blog posts will be inserted here -->
-          <a class="blog-post" href="/blog/blog-posts/blog-post-1.html">My New Blog System</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-2.html">Changes</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-3.html">I am Sorry</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-4.html">What the Fuck is happening!?</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-5.html">🎂It Muh Cake Day🎂</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-6.html">Dealing with Stuff.</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-7.html">First Blogpost!</a><br />
+          {{posts}}
         </section>
       </div>
     </div>

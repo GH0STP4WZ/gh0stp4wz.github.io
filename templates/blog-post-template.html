@@ -3,47 +3,308 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <title>Blog Entry | Raven's website</title>
-    <link
-      rel="icon"
-      href="https://api.lanyard.rest/801089753038061669.png"
-      type="image/x-icon"
-    />
-    <meta content="Riddim-GLiTCH's Site" property="og:title" />
-    <meta
-      content="Itsa-me! A template! wait...how did you get here?"
-      property="og:description"
-    />
-    <meta
-      content="https://riddim-glitch.github.io/blog.html"
-      property="og:url"
-    />
-    <meta
-      content="https://api.lanyard.rest/801089753038061669.png"
-      property="og:image"
-    />
-    <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="icon" href="{{profilePicture}}" type="image/x-icon" />
+    <title>{{title}} | {{siteTitle}}</title>
+    <meta content="Riddim-GLiTCH's Blog" property="og:title" />
+    <meta content="{{title}}" property="og:description" />
+    <meta content="https://riddim-glitch.github.io/blog/blog-posts/{{filename}}" property="og:url" />
+    <meta content="{{profilePicture}}" property="og:image" />
+    <meta content="{{themeColor}}" data-react-helmet="true" name="theme-color" />
+    <style>
+      :root {
+        --ctp-base: #1e1e2e;
+        --ctp-mantle: #181825;
+        --ctp-crust: #11111b;
+        --ctp-text: #cdd6f4;
+        --ctp-subtext0: #a6adc8;
+        --ctp-subtext1: #bac2de;
+        --ctp-surface0: #313244;
+        --ctp-surface1: #45475a;
+        --ctp-surface2: #585b70;
+        --ctp-overlay0: #6c7086;
+        --ctp-overlay1: #7f849c;
+        --ctp-overlay2: #9399b2;
+        --ctp-blue: #89b4fa;
+        --ctp-lavender: #b4befe;
+        --ctp-sapphire: #74c7ec;
+        --ctp-sky: #89dceb;
+        --ctp-teal: #94e2d5;
+        --ctp-green: #a6e3a1;
+        --ctp-yellow: #f9e2af;
+        --ctp-peach: #fab387;
+        --ctp-maroon: #eba0ac;
+        --ctp-red: #f38ba8;
+        --ctp-mauve: #cba6f7;
+        --ctp-pink: #f5c2e7;
+        --ctp-flamingo: #f2cdcd;
+        --ctp-rosewater: #f5e0dc;
+        
+        /* Main accent color */
+        --accent: var(--ctp-red);
+        --bg-opacity: 0.7;
+        --card-bg: rgba(30, 30, 46, 0.85);
+        --card-border: var(--ctp-red);
+        --card-hover-shadow: var(--ctp-red);
+        --text-glow: var(--ctp-red);
+      }
+
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: 'JetBrains Mono', monospace;
+        background-color: var(--ctp-base);
+        background: var(--ctp-crust);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: var(--ctp-text);
+        line-height: 1.6;
+        padding-bottom: 100px; /* Ugly fix for the footer overlapping the page content I guess */
+      }
+
+      /* Navigation */
+      .navbar-wrapper {
+        background-color: var(--ctp-mantle);
+        border-bottom: 1px solid var(--accent);
+        padding: 0.5rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+      }
+      
+      .navigation-bar {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        padding: 0 2rem;
+        gap: 1.5rem;
+      }
+      
+      .navigation-bar a {
+        color: var(--ctp-text);
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      
+      .navigation-bar a:hover {
+        color: var(--accent);
+        text-shadow: 0 0 8px var(--text-glow);
+      }
+      
+      .navigation-bar a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: var(--accent);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        opacity: 0;
+      }
+      
+      .navigation-bar a:hover::after {
+        width: 100%;
+        opacity: 1;
+      }
+      
+      /* Blog Header */
+      .blog-header {
+        margin-top: 6rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      
+      .blog-header h1 {
+        font-size: 2rem;
+        margin: 0.5rem 0;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        color: var(--accent);
+      }
+      
+      .blog-header h1:hover {
+        text-shadow: 0 0 8px var(--text-glow);
+      }
+      
+      .blog-header p {
+        color: var(--ctp-subtext0);
+        font-size: 0.9rem;
+      }
+      
+      .blog-seperator {
+        height: 2px;
+        background-color: var(--accent);
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+        box-shadow: 0 0 5px var(--card-hover-shadow);
+      }
+      
+      /* Blog Post Content */
+      .blog-post {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .blog-post p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .blog-post h2, .blog-post h3, .blog-post h4 {
+        color: var(--accent);
+        margin: 1.5rem 0 1rem;
+        position: relative;
+      }
+      
+      .blog-post h2::after, .blog-post h3::after, .blog-post h4::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--accent);
+        box-shadow: 0 0 5px var(--card-hover-shadow);
+      }
+      
+      .blog-post img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 1rem 0;
+        border: 1px solid var(--card-border);
+      }
+      
+      .blog-post a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      
+      .blog-post a:hover {
+        text-shadow: 0 0 5px var(--text-glow);
+      }
+      
+      .blog-post code {
+        background-color: var(--ctp-surface0);
+        color: var(--ctp-text);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'JetBrains Mono', monospace;
+      }
+      
+      .blog-post pre {
+        background-color: var(--ctp-surface0);
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        border: 1px solid var(--ctp-surface2);
+      }
+      
+      .blog-post pre code {
+        background-color: transparent;
+        padding: 0;
+      }
+      
+      .blog-post blockquote {
+        border-left: 4px solid var(--accent);
+        padding-left: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        font-style: italic;
+        color: var(--ctp-subtext0);
+      }
+      
+      /* Footer */
+      #footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding: 2rem 0;
+      }
+      
+      #footer a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+      }
+      
+      #footer a:hover {
+        text-shadow: 0 0 5px var(--text-glow);
+        box-shadow: 0 0 10px var(--card-hover-shadow);
+        background-color: rgba(243, 139, 168, 0.1);
+      }
+      .footer {
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        margin-top: 3rem;
+        padding: 1rem;
+        background-color: var(--ctp-mantle);
+        border-top: 1px solid var(--accent);
+      }
+      /* Responsive */
+      @media (max-width: 768px) {
+        .blog-post {
+          padding: 1.5rem;
+        }
+      }
+    </style>
   </head>
-  <section class="navbar-wrapper">
-    <nav class="navigation-bar">
-      <a href="/">Home</a> | <a href="/links">Links</a> |
-      <a href="/blog">Blog</a> |
-      <a href="/downloads-pages/">Downloads</a>
-    </nav>
-  </section>
   <body>
+    <section class="navbar-wrapper">
+      <nav class="navigation-bar">
+        <a href="/">Home</a>
+        <a href="/links">Links</a>
+        <a href="/blog">Blog</a>
+        <a href="/downloads-pages/">Downloads</a>
+      </nav>
+    </section>
+    
     <div class="blog-header">
-      <h1>blog entry</h1>
-      <p>date | Raven</p>
+      <h1>{{title}}</h1>
+      <p>{{date}} | {{author}}</p>
     </div>
     <div class="blog-seperator"></div>
     <div class="blog-post">
-      <p>Content of the Blog Post</p>
+      {{content}}
     </div>
-
     <section id="footer">
-      <a href="/blog.html">Back to post browser</a>
+      <a href="/blog/">Back to post browser</a>
     </section>
+    
+    <!-- Footer -->
+    <div class="footer" style="margin-top: 3rem;">
+      <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
+      <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
+    </div>
   </body>
 </html>
