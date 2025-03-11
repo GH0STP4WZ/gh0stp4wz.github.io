@@ -1,81 +1,351 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <link
-      rel="icon"
-      href="https://api.lanyard.rest/801089753038061669.png"
-      type="image/x-icon"
-    />
-    <title>Downloads - Discord | Riddim-GLiTCH's Site</title>
-    <meta content="Riddim-GLiTCH's Site" property="og:title" />
-    <meta
-      content="Riddim's Downloads page - Discord Stuff."
-      property="og:description"
-    />
-    <meta
-      content="https://Riddim-GLiTCH.github.io/downloads-pages/discord"
-      property="og:url"
-    />
-    <meta
-      content="https://api.lanyard.rest/801089753038061669.png"
-      property="og:image"
-    />
-    <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
-  </head>
-  <body>
-    <section class="navbar-wrapper">
-      <section id="navbar">
-        <nav class="navigation-bar">
-          <a href="/">Home</a> | <a href="/links">Links</a> |
-          <a href="/blog">Blog</a> |
-          <a href="/downloads-pages/">Downloads</a>
-        </nav>
-      </section>
-    </section>
-    <div class="page-content">
-      <h1>- DOWNLOADS -</h1>
-      BetterDiscord Addons. <br />
-      While I make my Discord addons With BD in mind, theres a good chance the themes work just fine on any other client mod.<br />
-      Plugins will likely not, however.<br />
-      <h3>Themes:</h3>
-      <section id="links">
-        <div class="link-container" id="link">
-          <a href="/downloads-pages/discord/themes/Virtual-Boy">
-            <img
-              class="icon"
-              src="https://raw.githubusercontent.com/Riddim-GLiTCH/Virtual-Boy/main/src/assets/vbsplash.png"
-              alt="Virtual Boy Logo"
-            />
-            <div class="link-text"><br />Virtual Boy</div>
-          </a>
-        </div>
-        <div class="link-container" id="link">
-          <a href="/downloads-pages/discord/themes/GhostChatter">
-            <img
-              class="icon"
-              src="https://github.com/Riddim-GLiTCH/GH0STCH4TT3R/blob/master/assets/Titlebar-icon.png?raw=true"
-              alt="GH0STCH4TT3R Logo"
-            />
-            <div class="link-text"><br />GH0STCH4TT3R</div>
-          </a>
-        </div>
-      </section>
-      <h3>Plugins:</h3>
-      <section id="links">
-        <div class="link-container" id="link">
-          <a href="/downloads-pages/discord/plugins/BetterDiscordExperiments">
-            <img
-              class="icon"
-              src="/assets/Icons/BDE.png"
-              alt="BetterDiscordExperiments logo"
-            />
-            <div class="link-text"><br />BetterDiscord Experiments</div>
-          </a>
-        </div>
-      </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
+  <title>Downloads - Discord | Riddim-GLiTCH's Site</title>
+  <meta content="Riddim-GLiTCH's Site" property="og:title" />
+  <meta content="Riddim's Downloads page - Discord Stuff." property="og:description" />
+  <meta content="https://Riddim-GLiTCH.github.io/downloads-pages/discord" property="og:url" />
+  <meta content="https://api.lanyard.rest/801089753038061669.png" property="og:image" />
+  <meta content="#f38ba8" data-react-helmet="true" name="theme-color" />
+  <style>
+    :root {
+      --ctp-base: #1e1e2e;
+      --ctp-mantle: #181825;
+      --ctp-crust: #11111b;
+      --ctp-text: #cdd6f4;
+      --ctp-subtext0: #a6adc8;
+      --ctp-subtext1: #bac2de;
+      --ctp-surface0: #313244;
+      --ctp-surface1: #45475a;
+      --ctp-surface2: #585b70;
+      --ctp-overlay0: #6c7086;
+      --ctp-overlay1: #7f849c;
+      --ctp-overlay2: #9399b2;
+      --ctp-blue: #89b4fa;
+      --ctp-lavender: #b4befe;
+      --ctp-sapphire: #74c7ec;
+      --ctp-sky: #89dceb;
+      --ctp-teal: #94e2d5;
+      --ctp-green: #a6e3a1;
+      --ctp-yellow: #f9e2af;
+      --ctp-peach: #fab387;
+      --ctp-maroon: #eba0ac;
+      --ctp-red: #f38ba8;
+      --ctp-mauve: #cba6f7;
+      --ctp-pink: #f5c2e7;
+      --ctp-flamingo: #f2cdcd;
+      --ctp-rosewater: #f5e0dc;
+      
+      /* Main accent color */
+      --accent: var(--ctp-red);
+      --bg-opacity: 0.7;
+      --card-bg: rgba(30, 30, 46, 0.85);
+      --card-border: var(--ctp-red);
+      --card-hover-shadow: var(--ctp-red);
+      --text-glow: var(--ctp-red);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: var(--ctp-base);
+      background: var(--ctp-crust);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--ctp-text);
+      line-height: 1.6;
+      padding-bottom: 100px; /* Ugly fix for the footer overlapping the page content I guess */
+    }
+
+    /* Navigation */
+    .navbar {
+      background-color: var(--ctp-mantle);
+      border-bottom: 1px solid var(--accent);
+      padding: 0.5rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      padding: 0 2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: var(--ctp-text);
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background-color: var(--accent);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+      opacity: 1;
+    }
+    
+    /* Main container */
+    .container {
+      max-width: 1200px;
+      margin: 6rem auto 2rem;
+      padding: 0 1rem;
+    }
+    
+    /* Page Title */
+    .page-title {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent);
+      box-shadow: 0 0 5px var(--card-hover-shadow);
+    }
+    
+    .page-subtitle {
+      /* text-align: center; */
+      margin-bottom: 1rem;
+      color: var(--ctp-subtext0);
+      font-size: 1.1rem;
+    }
+    
+    /* Cards */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .card h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .card h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent);
+      box-shadow: 0 0 5px var(--card-hover-shadow);
+    }
+    
+    /* Category Grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .category-card {
+      background-color: var(--ctp-surface0);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .category-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px var(--card-hover-shadow);
+    }
+    
+    .category-card a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+      color: var(--ctp-text);
+      text-decoration: none;
+      height: 100%;
+    }
+    
+    .category-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      object-fit: contain;
+      background-color: var(--ctp-mantle);
+      padding: 1rem;
+      border: 2px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+    
+    .category-card:hover .category-icon {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px var(--card-hover-shadow);
+    }
+    
+    .category-title {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .category-card:hover .category-title {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--text-glow);
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem;
+      background-color: var(--ctp-mantle);
+      border-top: 1px solid var(--accent);
+    }
+    
+    /* Glow text */
+    .glow-text {
+      transition: all 0.3s ease;
+    }
+    
+    .glow-text:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      
+      .category-icon {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/links">Links</a>
+        <a href="/blog">Blog</a>
+        <a href="/downloads-pages/">Downloads</a>
+      </div>
     </div>
-  </body>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="container">
+    <div class="card">
+      <h1 class="page-title">Discord Mod Downloads</h1>
+      <p class="page-subtitle">BetterDiscord Addons. <br />
+        While I make my Discord addons With BD in mind, theres a good chance the themes work just fine on any other client mod.<br />
+        Plugins will likely not, however.<br /></p>
+    
+
+      <h2>Themes</h2>
+      <div class="category-grid">
+        <div class="category-card">
+          <a href="/downloads-pages/discord/themes/Virtual-Boy">
+            <img class="category-icon" src="https://raw.githubusercontent.com/Riddim-GLiTCH/Virtual-Boy/main/src/assets/vbsplash.png" alt="Virtual Boy Logo">
+            <div class="category-title">Virtual Boy</div>
+          </a>
+        </div>
+        <div class="category-card">
+          <a href="/downloads-pages/discord/themes/GhostChatter">
+            <img class="category-icon" src="https://github.com/Riddim-GLiTCH/GH0STCH4TT3R/blob/master/assets/Titlebar-icon.png?raw=true" alt="GhostChatter Logo">
+            <div class="category-title">GhostChatter (Unmaintained)</div>
+          </a>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h2>BetterDiscord Plugins</h2>
+      <div class="category-grid">
+        <div class="category-card">
+          <a href="/downloads-pages/discord/plugins/BetterDiscordExperiments">
+            <img class="category-icon" src="/assets/Icons/BDE.png" alt="BetterDiscordExperiments logo">
+            <div class="category-title">BetterDiscord Experiments</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
+    <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
+  </div>
+</body>
 </html>
+

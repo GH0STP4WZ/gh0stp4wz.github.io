@@ -1,87 +1,522 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <link
-      rel="icon"
-      href="https://api.lanyard.rest/801089753038061669.png"
-      type="image/x-icon"
-    />
-    <title>Mario Kart Midnight 2 | Riddim-GLiTCH's Site</title>
-    <meta content="Riddim-GLiTCH's Site" property="og:title" />
-    <meta
-      content="Riddim's Downloads page - Mario Kart Wii CT-packs."
-      property="og:description"
-    />
-    <meta
-      content="https://Riddim-GLiTCH.github.io/downloads-pages/mkw/track-packs/MKM2"
-      property="og:url"
-    />
-    <meta
-      content="https://api.lanyard.rest/801089753038061669.png"
-      property="og:image"
-    />
-    <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
-  </head>
-  <body style="padding-bottom: 35px;">
-    <section class="navbar-wrapper">
-      <section id="navbar">
-        <nav class="navigation-bar">
-          <a href="/">Home</a> | <a href="/links">Links</a> |
-          <a href="/blog">Blog</a> |
-          <a href="/downloads-pages/">Downloads</a>
-        </nav>
-      </section>
-    </section>
-    <header>
-        <img class="theme-header" src="/assets/mkw/track-packs/MKM2.png" alt="Mario Kart Midnight 2 logo" />
-        <h1>Mario Kart Midnight 2</h1>
-        <a href="https://wiki.tockdom.com/wiki/Pulsar"> POWERED BY<br>
-            <img class="pulsar" src="/assets/mkw/track-packs/Pulsar_Logo.png" alt="Pulsar Logo">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
+  <title>Mario Kart Midnight 2 | Riddim-GLiTCH's Site</title>
+  <meta content="Mario Kart Midnight 2 | Riddim-GLiTCH's Site" property="og:title" />
+  <meta content="Riddim's Downloads page - Mario Kart Wii CT-packs." property="og:description" />
+  <meta content="https://Riddim-GLiTCH.github.io/downloads-pages/mkw/track-packs/MKM2" property="og:url" />
+  <meta content="https://api.lanyard.rest/801089753038061669.png" property="og:image" />
+  <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
+  <script src="/js/md.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    :root {
+      --ctp-base: #1e1e2e;
+      --ctp-mantle: #181825;
+      --ctp-crust: #11111b;
+      --ctp-text: #cdd6f4;
+      --ctp-subtext0: #a6adc8;
+      --ctp-subtext1: #bac2de;
+      --ctp-surface0: #313244;
+      --ctp-surface1: #45475a;
+      --ctp-surface2: #585b70;
+      --ctp-overlay0: #6c7086;
+      --ctp-overlay1: #7f849c;
+      --ctp-overlay2: #9399b2;
+      --ctp-blue: #89b4fa;
+      --ctp-lavender: #b4befe;
+      --ctp-sapphire: #74c7ec;
+      --ctp-sky: #89dceb;
+      --ctp-teal: #94e2d5;
+      --ctp-green: #a6e3a1;
+      --ctp-yellow: #f9e2af;
+      --ctp-peach: #fab387;
+      --ctp-maroon: #eba0ac;
+      --ctp-red: #f38ba8;
+      --ctp-mauve: #cba6f7;
+      --ctp-pink: #f5c2e7;
+      --ctp-flamingo: #f2cdcd;
+      --ctp-rosewater: #f5e0dc;
+      
+      --accent: var(--ctp-mauve);
+      --bg-opacity: 0.7;
+      --card-bg: rgba(30, 30, 46, 0.85);
+      --card-border: var(--ctp-mauve);
+      --card-hover-shadow: var(--ctp-mauve);
+      --text-glow: var(--ctp-mauve);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: var(--ctp-base);
+      background: var(--ctp-crust);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--ctp-text);
+      line-height: 1.6;
+      padding-bottom: 100px; /* Ugly fix for the footer overlapping the page content I guess */
+    }
+    
+
+    .navbar {
+      background-color: var(--ctp-mantle);
+      border-bottom: 1px solid var(--accent);
+      padding: 0.5rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      padding: 0 2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .theme-content a:not(.button) {
+      color: var(--ctp-blue);
+    }
+    .nav-links a, .theme-content a {
+      color: var(--ctp-text);
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover, .theme-content a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    .nav-links a::after, .theme-content a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background-color: var(--accent);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+    
+    .nav-links a:hover::after, .theme-content a:hover::after {
+      width: 100%;
+      opacity: 1;
+    }
+    
+
+    .container {
+      max-width: 1300px;
+      margin: 6rem auto 2rem;
+      padding: 0 1rem;
+    }
+    
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 8px var(--card-hover-shadow);
+    }
+    
+
+    .theme-header-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: center;
+      text-align: center;
+      margin-bottom: 2rem;
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+    
+    .theme-logo {
+      width: 150px;
+      /* height: 150px; */
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 3px var(--accent));
+      /* box-shadow: 0 0 15px var(--card-hover-shadow); */
+      transition: all 0.3s ease;
+      object-fit: contain;
+    }
+    
+    .theme-logo:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 12px var(--accent));
+      /* box-shadow: 0 0 25px var(--card-hover-shadow); */
+    }
+    
+    .theme-name {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    
+
+    .buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .button {
+      background-color: var(--ctp-surface0);
+      color: var(--ctp-text);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .disabled-button {
+      background-color: var(--ctp-mantle);
+      color: var(--ctp-surface2);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+      cursor: not-allowed;
+    }
+    
+    .disabled-button:hover {
+      animation: shake 0.5s ease;
+    }
+    
+    .button:hover {
+      background-color: var(--ctp-surface1);
+      color: var(--accent);
+      box-shadow: 0 0 10px var(--card-hover-shadow);
+      transform: translateY(-3px);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+
+    .theme-content {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+
+    .section-title {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent);
+      box-shadow: 0 0 5px var(--card-hover-shadow);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .gallery-card {
+      background-color: var(--ctp-mantle);
+      border-radius: 12px;
+      border: 1px solid var(--accent);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .gallery-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px var(--card-hover-shadow);
+    }
+    
+    .gallery-video {
+      background-color: var(--ctp-mantle);
+      border-radius: 12px;
+      border: 1px solid var(--accent);
+      width: 610px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .gallery-video iframe {
+      border-radius: 12px 12px 0 0;
+    }
+    
+    .gallery-video:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px var(--card-hover-shadow);
+    }
+    
+    .gallery-comment {
+      padding: 10px;
+      font-size: 1rem;
+      display: block;
+      text-align: center;
+      align-self: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer {
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      margin-top: 3rem;
+      padding: 1rem;
+      background-color: var(--ctp-mantle);
+      border-top: 1px solid var(--accent);
+    }
+    
+
+    .glow-text {
+      transition: all 0.3s ease;
+    }
+    
+    .glow-text:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      
+      .buttons-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .theme-content {
+        padding: 1rem;
+      }
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 300px;
+      background-color: var(--ctp-mantle);
+      color:  var(--ctp-text);
+      text-align: center;
+      border: solid 1px var(--accent);
+      border-radius: 5px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 110%; 
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .tooltip:hover .tooltiptext {
+      transition-delay: 0.4s;
+      visibility: visible;
+      opacity: 1;
+    }
+
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+      100% { transform: translateX(0); }
+    }
+
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      border: var(--accent) solid 1px;
+      margin: 15px;
+      background-color: var(--ctp-base);
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--ctp-mantle);
+      color: var(--accent);
+      border-bottom: var(--accent) dotted 1px; 
+    }
+
+    tr:nth-child(4n) {
+      background-color: var(--ctp-mantle);
+      border-bottom: var(--accent) dotted 1px; 
+    }
+
+    tr:hover {
+      background-color: var(--ctp-overlay0);
+      color: var(--ctp-text);
+    }
+    
+    th, td {
+      padding: 10px;
+      border-right: var(--accent) solid 1px;
+    }
+
+    th:last-child, td:last-child {
+      border-right: none;
+    }
+    
+    .pulsar {
+      max-width: 150px;
+      margin: 10px 0;
+      filter: drop-shadow(0 0 3px var(--accent));
+      transition: all 0.3s ease;
+    }
+    
+    .pulsar:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 12px var(--accent));
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/links">Links</a>
+        <a href="/blog">Blog</a>
+        <a href="/downloads-pages/">Downloads</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="theme-header-section card">
+      <img class="theme-logo" src="/assets/mkw/track-packs/MKM2.png" alt="Mario Kart Midnight 2 logo" />
+      <h1 class="theme-name glow-text">Mario Kart Midnight 2</h1>
+      <p>
+        <h3>Powered by<br></h3>
+        <a href="https://wiki.tockdom.com/wiki/Pulsar">
+          <img class="pulsar" src="/assets/mkw/track-packs/Pulsar_Logo.png" alt="Pulsar Logo">
         </a>
-        <div class="blog-seperator">DOWNLOADS</div>
-        <div class="dualbutton-container">
-        <a href="https://rdg.monarchuploader.de/content/cdn/iAUrXDotJtMo/MarioKartMidnight2_v1.0.2_Normal.zip">
-          <nav class="dualbutton">
-            <div class="link-text">Download With</br > Custom Music</div>
-          </nav>
+      </p>
+      <h3 class="section-title">Downloads</h3>
+      <div class="buttons-container">
+        <a href="https://rdg.monarchuploader.de/content/cdn/iAUrXDotJtMo/MarioKartMidnight2_v1.0.2_Normal.zip" class="button"> 
+          <div class="link-text">Download With<br>Custom Music</div>
         </a>
-        <a href="https://rdg.monarchuploader.de/content/cdn/XTDtIckKnoOA/MarioKartMidnight2v1.0.2NoCustomMusic.zip">
-            <nav class="dualbutton">
-              <div class="link-text">Download Without</br >Custom Music</div>
-            </nav>
+        
+        <a href="https://rdg.monarchuploader.de/content/cdn/XTDtIckKnoOA/MarioKartMidnight2v1.0.2NoCustomMusic.zip" class="button">
+          <div class="link-text">Download Without<br>Custom Music</div>  
         </a>
-        </div>
-        <div class="blog-seperator">EXTERNAL LINKS</div>
-        <div class="dualbutton-container">
-        <a href="https://wiki.tockdom.com/wiki/Mario_Kart_Midnight_2">
-          <nav class="dualbutton">
+      </div>
+        <div class="section-title">External Links</div>
+      
+        <div class="buttons-container">
+          <a href="https://wiki.tockdom.com/wiki/Mario_Kart_Midnight_2" class="button"> 
             <div class="link-text">Wiki Page</div>
-          </nav>
-        </a>
-        <a href="https://discord.gg/PSBBuUa2Qe">
-            <nav class="dualbutton">
-              <div class="link-text">Discord Server</div>
-            </nav>
           </a>
-      </header>
-      <div class="theme-content">
-        <div id="theme-content">
-            <div class="blog-seperator" style="font-size: x-large;font-weight: bold;">OVERVIEW</div>
-            <p>
-              <strong>Mario Kart Midnight 2</strong> is a custom track distribution created by <a href="https://x.com/Mayro2020" style="text-decoration: underline; color: aqua;">Mayro</a>. 
-              This is the sequel to <a href="https://wiki.tockdom.com/wiki/Mario_Kart_Midnight" style="text-decoration: underline; color: aqua;">Mario Kart Midnight</a>. </br> It aims to be a celebration of 
-              <a href="https://wiki.tockdom.com/wiki/Custom_track" style="text-decoration: underline; color: aqua;">custom tracks</a>, featuring the "best" tracks released between December 2022 and December 2023. </br >
-              Every track released during this time period was featured in monthly public polls, which were voted on by custom 
-              track enthusiasts. </br >Every track that averaged a score of four or above out of five was guaranteed a spot in the 
-              distribution.</br >Select tracks that scored 3.5 out of five or higher were also included, with the rest being planned 
-              for future updates.
-            </p>
-            <div class="blog-seperator" style="font-size: x-large;font-weight: bold;">MEDIA</div>
-            <iframe class="YouTube" width="574" height="323" src="https://www.youtube.com/embed/wBc6h0xsENU" title="Mario Kart Midnight 2 - Release Trailer" frameborder="0" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          
+          <a href="https://discord.gg/PSBBuUa2Qe" class="button">
+            <div class="link-text">Discord Server</div>
+          </a>
         </div>
       </div>
-  </body>
+    </div>
+    
+    <div class="theme-content">
+      <h2 class="section-title">Overview</h2>
+      <div id="theme-content">
+        <p>
+          <strong>Mario Kart Midnight 2</strong> is a custom track distribution created by <a href="https://x.com/Mayro2020">Mayro</a>. 
+          This is the sequel to <a href="https://wiki.tockdom.com/wiki/Mario_Kart_Midnight">Mario Kart Midnight</a>.
+        </p>
+        <p>
+          It aims to be a celebration of <a href="https://wiki.tockdom.com/wiki/Custom_track">custom tracks</a>, featuring the "best" tracks released between December 2022 and December 2023.
+        </p>
+        <p>
+          Every track released during this time period was featured in monthly public polls, which were voted on by custom track enthusiasts. Every track that averaged a score of four or above out of five was guaranteed a spot in the distribution.
+        </p>
+        <p>
+          Select tracks that scored 3.5 out of five or higher were also included, with the rest being planned for future updates.
+        </p>
+      </br>
+        <h2 class="section-title">Media</h2>
+        <div class="gallery-grid">
+          <figure class="gallery-video">
+            <iframe width="608" height="315" src="https://www.youtube.com/embed/wBc6h0xsENU" title="Mario Kart Midnight 2 - Release Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <figcaption class="gallery-comment">Release Trailer</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
+    <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
+  </div>
+</body>
 </html>
