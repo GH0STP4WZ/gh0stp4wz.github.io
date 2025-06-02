@@ -32,7 +32,13 @@ jobs:
     - name: Commit and push changes
       run: |
         git add -A
+        if ! git diff-index --quiet HEAD; then
         git commit -m "Generate blog"
         git push
+        else
+        echo "No changes detected, skipping commit and push."
+        fi
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
