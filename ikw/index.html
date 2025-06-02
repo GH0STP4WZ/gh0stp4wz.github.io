@@ -941,9 +941,6 @@
         
         // Auto-refresh interval in milliseconds (20000 = 20 seconds)
         const REFRESH_INTERVAL = 20000;
-        
-        // Timeout for loading (5 seconds)
-        const LOADING_TIMEOUT = 5000;
 
         // CORS proxy options (you can change this if needed)
         const CORS_PROXIES = [
@@ -976,7 +973,6 @@
         let miiCache = new Map(); // Cache for Mii images
         let currentCorsProxyIndex = 0;
         let allRooms = []; // Store all rooms for filtering
-        let loadingTimeout; // Timeout reference
 
         function updateStatus(status, text) {
             const statusElement = document.getElementById('status');
@@ -1403,28 +1399,11 @@
         }
 
         async function fetchRooms() {
-            // Clear any existing timeout
-            if (loadingTimeout) {
-                clearTimeout(loadingTimeout);
-            }
-            
-            // Set a new timeout
-            loadingTimeout = setTimeout(() => {
-                // If this executes, it means the fetch took too long
-                updateStatus('error', 'Loading timed out');
-                document.getElementById('roomsContainer').innerHTML = 
-                    '<div class="no-rooms">No one is online right now. How Lonely...</div>';
-            }, LOADING_TIMEOUT);
-            
             try {
                 updateStatus('connecting', 'Fetching rooms...');
                 
                 const proxy = CORS_PROXIES[currentCorsProxyIndex];
                 const response = await fetch(proxy + encodeURIComponent(API_ENDPOINT));
-                
-                // Clear the timeout since we got a response
-                clearTimeout(loadingTimeout);
-                loadingTimeout = null;
                 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -1442,16 +1421,20 @@
                 // Store all rooms for filtering
                 allRooms = vsRooms;
                 
+                // If API returns data but no VS rooms found, assume no one is online
+                if (vsRooms.length === 0) {
+                    updateStatus('connected', 'API OK! Found 0 VS rooms.');
+                    document.getElementById('roomsContainer').innerHTML = 
+                        '<div class="no-rooms">No one is online right now. How Lonely...</div>';
+                    return;
+                }
+                
                 // Apply current filter
                 filterRooms();
                 
                 updateStatus('connected', `API OK! Found ${vsRooms.length} VS rooms`);
                 
             } catch (error) {
-                // Clear the timeout since we got an error
-                clearTimeout(loadingTimeout);
-                loadingTimeout = null;
-                
                 console.error('API ERROR:', error, 'If you think this is incorrect, Please reach out to Riddim-glitch!');
                 updateStatus('error', `Error: ${error.message}`);
                 document.getElementById('roomsContainer').innerHTML = 
