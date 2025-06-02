@@ -637,7 +637,7 @@
         // ========================
 
         const GAMEMODE_MAP = {
-            "69": "Retro VS",
+            "69": "Regular VS",
             "70": "Ultras VS", 
             "71": "Crazy Items",
             "72": "Bob-omb Blast",
@@ -891,7 +891,9 @@
             try {
                 updateStatus('connecting', 'Fetching rooms...');
                 
-                const response = await fetch(API_ENDPOINT);
+                const proxy = CORS_PROXIES[currentCorsProxyIndex];
+                const response = await fetch(proxy + encodeURIComponent(API_ENDPOINT));
+
                 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
