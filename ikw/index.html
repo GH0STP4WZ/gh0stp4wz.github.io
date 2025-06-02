@@ -1423,7 +1423,7 @@
                 
                 // If API returns data but no VS rooms found, assume no one is online
                 if (vsRooms.length === 0) {
-                    updateStatus('connected', 'API OK! Found 0 VS rooms.');
+                    updateStatus('connected', 'API OK! Found 0 VS rooms');
                     document.getElementById('roomsContainer').innerHTML = 
                         '<div class="no-rooms">No one is online right now. How Lonely...</div>';
                     return;
