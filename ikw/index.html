@@ -41,6 +41,9 @@
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
             --shadow-glow: 0 0 20px var(--primary-glow);
+            --conn-good: #00ff88;
+            --conn-unstable: #ffa726;
+            --conn-dropped: #ff4757;
         }
 
         body {
@@ -154,6 +157,52 @@
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
+        }
+
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .filter-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .filter-select {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            min-width: 200px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d351b0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1em;
+            padding-right: 2.5rem;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-glow);
+        }
+
+        .filter-select:hover {
+            border-color: var(--primary-light);
         }
 
         .status {
@@ -484,6 +533,203 @@
             color: var(--text-secondary);
         }
 
+        /* Connection Map Button */
+        .connection-map-btn {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-quaternary);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .connection-map-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+        }
+
+        /* Connection Map Modal */
+        .connection-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .connection-modal.active {
+            display: flex;
+        }
+
+        .connection-modal-content {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .connection-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .connection-modal-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .connection-modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .connection-modal-close:hover {
+            background: var(--bg-quaternary);
+            color: var(--text-primary);
+        }
+
+        .connection-map-container {
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            background: var(--bg-quaternary);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            padding: 1rem;
+        }
+
+        .connection-map {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 400px;
+            font-size: 0.9rem;
+        }
+
+        .connection-map th,
+        .connection-map td {
+            padding: 0.5rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .connection-map th {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .connection-map tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .connection-map .player-row {
+            text-align: left;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .connection-map .player-id {
+            color: var(--primary);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .connection-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .connection-dot.good {
+            background-color: var(--conn-good);
+            box-shadow: 0 0 8px var(--conn-good);
+        }
+
+        .connection-dot.unstable {
+            background-color: var(--conn-unstable);
+            box-shadow: 0 0 8px var(--conn-unstable);
+        }
+
+        .connection-dot.dropped {
+            background-color: var(--conn-dropped);
+            box-shadow: 0 0 8px var(--conn-dropped);
+        }
+
+        .connection-dot.self {
+            background-color: var(--text-muted);
+            position: relative;
+        }
+
+        .connection-dot.self::before {
+            content: '/';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .connection-legend {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
         .no-rooms {
             text-align: center;
             color: var(--text-muted);
@@ -493,6 +739,32 @@
             border-radius: 20px;
             border: 2px dashed var(--border);
             box-shadow: var(--shadow-sm);
+        }
+
+        .filter-suggestion {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            padding: 3rem 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            border: 2px dashed var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-suggestion .suggestion-text {
+            margin-bottom: 1rem;
+        }
+
+        .filter-suggestion .suggestion-link {
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .filter-suggestion .suggestion-link:hover {
+            color: var(--primary-light);
         }
 
         /* Responsive Design */
@@ -549,6 +821,20 @@
             .player-scores {
                 justify-content: center;
                 gap: 2rem;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .connection-modal-content {
+                padding: 1rem;
+                margin: 1rem;
             }
         }
 
@@ -615,14 +901,37 @@
             <span class="last-update" id="lastUpdate"></span>
         </div>
 
+        <div class="filter-controls">
+            <label for="gamemode-filter" class="filter-label">Filter by Gamemode:</label>
+            <select id="gamemode-filter" class="filter-select" onchange="filterRooms()">
+                <option value="all">All Gamemodes</option>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+
         <div class="rooms-container" id="roomsContainer">
             <div class="no-rooms">Loading rooms...</div>
         </div>
     </main>
 
+    <!-- Connection Map Modal -->
+    <div class="connection-modal" id="connectionModal">
+        <div class="connection-modal-content">
+            <div class="connection-modal-header">
+                <div class="connection-modal-title">
+                    🔌 Connection Map
+                </div>
+                <button class="connection-modal-close" onclick="closeConnectionModal()">×</button>
+            </div>
+            <div id="connectionMapContent">
+                <!-- Connection map content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
     <script>
         // ===== CONFIGURATION =====
-        // Easily configurable API endpoint - change this URL as needed
+        // Easily configurable API endpoint - Currently using RetroWFC
         const API_ENDPOINT = 'http://rwfc.net/api/groups';
         
         // Auto-refresh interval in milliseconds (20000 = 20 seconds)
@@ -658,6 +967,7 @@
         let isRefreshing = false;
         let miiCache = new Map(); // Cache for Mii images
         let currentCorsProxyIndex = 0;
+        let allRooms = []; // Store all rooms for filtering
 
         function updateStatus(status, text) {
             const statusElement = document.getElementById('status');
@@ -780,6 +1090,187 @@
             }
         }
 
+        // Generate connection map HTML
+        function generateConnectionMap(room) {
+            const players = Object.values(room.players);
+            const playerKeys = Object.keys(room.players);
+            
+            if (players.length <= 1) {
+                return '<p style="color: var(--text-muted); text-align: center;">Connection map not available for rooms with only one player.</p>';
+            }
+            
+            let tableHTML = `
+                <div class="connection-map-container">
+                    <table class="connection-map">
+                        <thead>
+                            <tr>
+                                <th></th>
+            `;
+            
+            // Add column headers (player IDs)
+            for (let i = 0; i < players.length; i++) {
+                tableHTML += `<th>${i + 1}</th>`;
+            }
+            
+            tableHTML += `
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            // Add rows for each player
+            for (let i = 0; i < players.length; i++) {
+                const player = players[i];
+                const playerKey = playerKeys[i];
+                const playerName = player.name || 'Unknown';
+                
+                tableHTML += `
+                    <tr>
+                        <td class="player-row"><span class="player-id">${i + 1}</span>${playerName}</td>
+                `;
+                
+                // Add connection status for each player
+                for (let j = 0; j < players.length; j++) {
+                    if (i === j) {
+                        // Self connection
+                        tableHTML += `<td><span class="connection-dot self"></span></td>`;
+                    } else {
+                        // Get connection status from conn_map
+                        let connectionStatus = 0; // Default to dropped
+                        
+                        if (player.conn_map) {
+                            // Parse connection map
+                            // The conn_map string contains connection status to other players
+                            // Each digit represents connection to a player, skipping self
+                            let connIndex = j;
+                            if (j > i) connIndex--; // Skip self in the map
+                            
+                            if (connIndex >= 0 && connIndex < player.conn_map.length) {
+                                connectionStatus = parseInt(player.conn_map[connIndex], 10);
+                            }
+                        }
+                        
+                        let dotClass = 'dropped';
+                        if (connectionStatus === 2) dotClass = 'good';
+                        else if (connectionStatus === 1) dotClass = 'unstable';
+                        
+                        tableHTML += `<td><span class="connection-dot ${dotClass}"></span></td>`;
+                    }
+                }
+                
+                tableHTML += `</tr>`;
+            }
+            
+            tableHTML += `
+                        </tbody>
+                    </table>
+                </div>
+                <div class="connection-legend">
+                    <div class="legend-item">
+                        <span class="connection-dot good"></span>
+                        <span>Good</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="connection-dot unstable"></span>
+                        <span>Unstable</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="connection-dot dropped"></span>
+                        <span>Dropped</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="connection-dot self"></span>
+                        <span>Self</span>
+                    </div>
+                </div>
+            `;
+            
+            return tableHTML;
+        }
+
+        // Show connection map modal
+        function showConnectionMap(room) {
+            const modal = document.getElementById('connectionModal');
+            const content = document.getElementById('connectionMapContent');
+            
+            content.innerHTML = generateConnectionMap(room);
+            modal.classList.add('active');
+            
+            // Close modal when clicking outside
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    closeConnectionModal();
+                }
+            };
+        }
+
+        // Close connection map modal
+        function closeConnectionModal() {
+            const modal = document.getElementById('connectionModal');
+            modal.classList.remove('active');
+        }
+
+        // Populate gamemode filter dropdown from GAMEMODE_MAP
+        function populateGamemodeFilter() {
+            const filterSelect = document.getElementById('gamemode-filter');
+            const currentValue = filterSelect.value;
+            
+            // Clear existing options except "All Gamemodes"
+            while (filterSelect.options.length > 1) {
+                filterSelect.remove(1);
+            }
+            
+            // Add options for each gamemode in GAMEMODE_MAP
+            Object.entries(GAMEMODE_MAP).forEach(([gamemodeId, gamemodeName]) => {
+                const option = document.createElement('option');
+                option.value = gamemodeId;
+                option.textContent = gamemodeName;
+                filterSelect.appendChild(option);
+            });
+            
+            // Restore selected value if it exists
+            if (currentValue && [...filterSelect.options].some(opt => opt.value === currentValue)) {
+                filterSelect.value = currentValue;
+            }
+        }
+
+        // Filter rooms by gamemode
+        function filterRooms() {
+            const filterValue = document.getElementById('gamemode-filter').value;
+            
+            if (!allRooms || allRooms.length === 0) {
+                return;
+            }
+            
+            let filteredRooms = allRooms;
+            
+            if (filterValue !== 'all') {
+                filteredRooms = allRooms.filter(room => {
+                    const gamemodeId = room.rk ? room.rk.split('_')[1] : '';
+                    return gamemodeId === filterValue;
+                });
+                
+                // If no rooms found for selected gamemode, show suggestion
+                if (filteredRooms.length === 0) {
+                    const container = document.getElementById('roomsContainer');
+                    const gamemodeName = GAMEMODE_MAP[filterValue] || 'Unknown';
+                    container.innerHTML = `
+                        <div class="filter-suggestion">
+                            <div class="suggestion-text">No rooms found for "${gamemodeName}"</div>
+                            <div class="suggestion-text">
+                                <span class="suggestion-link" onclick="document.getElementById('gamemode-filter').value='all'; filterRooms();">
+                                    Try changing your filter to see all available rooms
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+            }
+            
+            renderRooms(filteredRooms);
+        }
+
         function renderRooms(rooms) {
             const container = document.getElementById('roomsContainer');
             
@@ -880,6 +1371,11 @@
                                 ${playersHTML}
                             </div>
                         </div>
+                        ${players.length > 1 ? `
+                            <div class="connection-map-btn" onclick="showConnectionMap(${JSON.stringify(room).replace(/"/g, '&quot;')})">
+                                ⚡
+                            </div>
+                        ` : ''}
                     </div>
                 `;
             }).join('');
@@ -908,7 +1404,12 @@
                            GAMEMODE_MAP[room.rk.split('_')[1]];
                 });
                 
-                renderRooms(vsRooms);
+                // Store all rooms for filtering
+                allRooms = vsRooms;
+                
+                // Apply current filter
+                filterRooms();
+                
                 updateStatus('connected', `API OK! Found ${vsRooms.length} VS rooms`);
                 
             } catch (error) {
@@ -941,8 +1442,16 @@
         }
 
         // Initialize
+        populateGamemodeFilter(); // Populate filter from GAMEMODE_MAP
         fetchRooms();
         startAutoUpdate();
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeConnectionModal();
+            }
+        });
     </script>
 </body>
 </html>
