@@ -333,6 +333,11 @@
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
+        .room-gamemode:hover {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            transform: scale(1.05);
+        }
+
         .room-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -936,6 +941,9 @@
         
         // Auto-refresh interval in milliseconds (20000 = 20 seconds)
         const REFRESH_INTERVAL = 20000;
+        
+        // Timeout for loading (5 seconds)
+        const LOADING_TIMEOUT = 5000;
 
         // CORS proxy options (you can change this if needed)
         const CORS_PROXIES = [
@@ -946,7 +954,7 @@
         // ========================
 
         const GAMEMODE_MAP = {
-            "10": "Retros VS",
+            "69": "Regular VS",
             "70": "Ultras VS", 
             "71": "Crazy Items",
             "72": "Bob-omb Blast",
@@ -968,6 +976,7 @@
         let miiCache = new Map(); // Cache for Mii images
         let currentCorsProxyIndex = 0;
         let allRooms = []; // Store all rooms for filtering
+        let loadingTimeout; // Timeout reference
 
         function updateStatus(status, text) {
             const statusElement = document.getElementById('status');
@@ -1271,6 +1280,16 @@
             renderRooms(filteredRooms);
         }
 
+        // Filter by specific gamemode when clicking on gamemode badge
+        function filterByGamemode(gamemodeId) {
+            const filterSelect = document.getElementById('gamemode-filter');
+            filterSelect.value = gamemodeId;
+            filterRooms();
+            
+            // Scroll to top to show the filter change
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function renderRooms(rooms) {
             const container = document.getElementById('roomsContainer');
             
@@ -1345,7 +1364,7 @@
                     <div class="room-card">
                         <div class="room-header">
                             <div class="room-id">Room ${room.id}</div>
-                            <div class="room-gamemode">${gamemodeName}</div>
+                            <div class="room-gamemode" onclick="filterByGamemode('${gamemodeId}')" style="cursor: pointer;" title="Click to filter by this gamemode">${gamemodeName}</div>
                         </div>
                         <div class="room-info">
                             <div class="info-item">
@@ -1384,12 +1403,28 @@
         }
 
         async function fetchRooms() {
+            // Clear any existing timeout
+            if (loadingTimeout) {
+                clearTimeout(loadingTimeout);
+            }
+            
+            // Set a new timeout
+            loadingTimeout = setTimeout(() => {
+                // If this executes, it means the fetch took too long
+                updateStatus('error', 'Loading timed out');
+                document.getElementById('roomsContainer').innerHTML = 
+                    '<div class="no-rooms">No one is online right now. How Lonely...</div>';
+            }, LOADING_TIMEOUT);
+            
             try {
                 updateStatus('connecting', 'Fetching rooms...');
                 
                 const proxy = CORS_PROXIES[currentCorsProxyIndex];
                 const response = await fetch(proxy + encodeURIComponent(API_ENDPOINT));
-
+                
+                // Clear the timeout since we got a response
+                clearTimeout(loadingTimeout);
+                loadingTimeout = null;
                 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -1413,6 +1448,10 @@
                 updateStatus('connected', `API OK! Found ${vsRooms.length} VS rooms`);
                 
             } catch (error) {
+                // Clear the timeout since we got an error
+                clearTimeout(loadingTimeout);
+                loadingTimeout = null;
+                
                 console.error('API ERROR:', error, 'If you think this is incorrect, Please reach out to Riddim-glitch!');
                 updateStatus('error', `Error: ${error.message}`);
                 document.getElementById('roomsContainer').innerHTML = 
