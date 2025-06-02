@@ -51,6 +51,8 @@
             color: var(--text-primary);
             min-height: 100vh;
             padding-top: 100px; /* Space for fixed header */
+            display: flex;
+            flex-direction: column;
         }
 
         /* Frosted Glass Header */
@@ -260,6 +262,7 @@
 
         .main-content {
             padding: 0 2rem 2rem;
+            flex: 1;
         }
 
         .rooms-container {
@@ -884,6 +887,112 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--primary-light);
         }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-made-by {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .footer-made-by a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .footer-made-by a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .footer-link {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid transparent;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            background: var(--bg-quaternary);
+            border-color: var(--border-light);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Footer */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 1.5rem 1rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 0;
+            }
+            
+            .footer-right {
+                display: none;
+            }
+            
+            .footer-made-by {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer {
+                padding: 1rem;
+            }
+            
+            .footer-made-by {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -934,10 +1043,39 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span class="footer-made-by">
+                    Made with 🖤 by <a href="https://riddim-glitch.is-a.dev" target="_blank" rel="noopener noreferrer">Riddim-GLiTCH</a>, 
+                    Designed by <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a>
+                </span>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="https://wiki.tockdom.com/wiki/CTMKF" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        🎨 Chadderz' Terrible Mario Kart Font
+                    </a>
+                    <a href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        ⌨️ JetBrains Mono Font
+                    </a>
+                    <a href="http://rwfc.net/api/groups" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        🔗 API Endpoint
+                    </a>
+                    <a href="https://github.com/Riddim-GLiTCH/riddim-glitch.github.io/blob/main/ikw/index.html" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        📄 Page Source
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         // ===== CONFIGURATION =====
         // Easily configurable API endpoint - Currently using RetroWFC
-        const API_ENDPOINT = 'http://rwfc.net/api/groups';
+        const API_ENDPOINT = 'http://rwfc.net/api/groups'; // RetroWFC main endpoint
+        // const API_ENDPOINT = 'http://mk.acidpaws.cam/api/groups'; // IKWFC Stage 1 server
         
         // Auto-refresh interval in milliseconds (20000 = 20 seconds)
         const REFRESH_INTERVAL = 20000;
@@ -1423,7 +1561,7 @@
                 
                 // If API returns data but no VS rooms found, assume no one is online
                 if (vsRooms.length === 0) {
-                    updateStatus('connected', 'API OK! Found 0 VS rooms');
+                    updateStatus('connected', 'No rooms available');
                     document.getElementById('roomsContainer').innerHTML = 
                         '<div class="no-rooms">No one is online right now. How Lonely...</div>';
                     return;
