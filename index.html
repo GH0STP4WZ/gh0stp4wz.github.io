@@ -200,6 +200,7 @@
       width: 100%;
       transition: all 0.3s ease;
       border: 1px solid var(--accent);
+      max-width: 350px;
     }
 
     .discord-status-card:hover {
@@ -245,6 +246,8 @@
       display: flex;
       gap: 0.8rem;
       align-items: center;
+      width: 100%;
+      max-width: 100%;
     }
 
     .activity-img {
@@ -252,10 +255,27 @@
       height: 64px;
       border-radius: 8px;
       object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .placeholder-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      background: var(--ctp-surface1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--ctp-overlay0);
+      font-weight: bold;
     }
 
     .activity-details {
       flex: 1;
+      min-width: 0;
+      overflow: hidden;
     }
 
     .spotify {
@@ -276,11 +296,17 @@
 
     .song-title, .game-name, .media-name, .app-name {
       font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .song-artist, .song-album, .game-details, .game-state, .media-details, .media-state, .app-details, .app-state {
       font-size: 0.9rem;
       color: var(--ctp-subtext0);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .activity-none {
@@ -592,9 +618,48 @@
         .catch(error => console.error('Error fetching Discord status:', error));
     }
 
+    function getAssetUrl(activity, assetKey) {
+      const asset = activity.assets?.[assetKey];
+      if (!asset) return null;
+
+      // Log the raw asset for debugging
+      console.log(`Raw asset for ${activity.name} (${assetKey}):`, asset);
+
+      // Handle mp:external URLs
+      if (asset.startsWith('mp:external/')) {
+        const externalUrl = asset.split('/').slice(2).join('/');
+        return decodeURIComponent(externalUrl);
+      }
+
+      // Handle direct URLs
+      if (asset.startsWith('http://') || asset.startsWith('https://')) {
+        return asset;
+      }
+
+      // Handle Spotify assets
+      if (asset.startsWith('spotify:')) {
+        return `https://i.scdn.co/image/${asset.substring(8)}`;
+      }
+
+      // Default to Discord CDN for application assets
+      if (activity.application_id) {
+        return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${asset}`;
+      }
+
+      return asset;
+    }
+
     function updateDiscordStatus(data) {
       const statusElement = document.getElementById('discord-status-container');
       
+      // Debug log all activities
+      console.log('Activities data:', data.activities.map(a => ({
+        name: a.name,
+        type: a.type,
+        assets: a.assets,
+        application_id: a.application_id
+      })));
+
       let statusHTML = '';
       
       // Status indicator
@@ -645,53 +710,19 @@
           let activityHTML = '';
           
           switch(activity.type) {
-            case 2: // Listening to Spotify
-              if (activity.name === "Spotify") {
-                let spotifyImage = '';
-                if (activity.assets?.large_image) {
-                  const spotifyImgId = activity.assets.large_image.startsWith('spotify:') 
-                    ? activity.assets.large_image.substring(8) 
-                    : activity.assets.large_image;
-                  spotifyImage = `https://i.scdn.co/image/${spotifyImgId}`;
-                }
-                
-                activityHTML = `
-                  <div class="activity spotify">
-                    <div class="activity-header">
-                      <i class="fab fa-spotify"></i> Listening to Spotify
-                    </div>
-                    <div class="activity-content">
-                      ${spotifyImage ? `<img src="${spotifyImage}" class="activity-img" alt="Album cover" />` : ''}
-                      <div class="activity-details">
-                        <div class="song-title">${activity.details || 'Unknown song'}</div>
-                        <div class="song-artist">by ${activity.state || 'Unknown artist'}</div>
-                        ${activity.assets?.large_text ? `<div class="song-album">on ${activity.assets.large_text}</div>` : ''}
-                      </div>
-                    </div>
-                  </div>
-                `;
-              }
-              break;
-              
             case 0: // Playing a game
-              let gameImage = '';
-              if (activity.assets?.large_image) {
-                if (activity.assets.large_image.startsWith('mp:')) {
-                  gameImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
-                } else {
-                  gameImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
-                }
-              }
+              const gameImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
               
               activityHTML = `
                 <div class="activity game">
                   <div class="activity-header">
-                    <i class="fas fa-gamepad"></i> Playing
+                    <i class="fas fa-gamepad"></i> Playing ${activity.name}
                   </div>
                   <div class="activity-content">
-                    ${gameImage ? `<img src="${gameImage}" class="activity-img" alt="${activity.name}" />` : ''}
+                    ${gameImage ? 
+                      `<img src="${gameImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>??</div>';" />` : 
+                      `<div class="placeholder-img">??</div>`}
                     <div class="activity-details">
-                      <div class="game-name">${activity.name}</div>
                       ${activity.details ? `<div class="game-details">${activity.details}</div>` : ''}
                       ${activity.state ? `<div class="game-state">${activity.state}</div>` : ''}
                     </div>
@@ -700,27 +731,42 @@
               `;
               break;
               
+            case 2: // Listening (including LastFM)
+              const musicImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
+              console.log('Music activity image URL:', musicImage);
+              
+              activityHTML = `
+                <div class="activity spotify">
+                  <div class="activity-header">
+                    <i class="fas fa-music"></i> Listening to ${activity.name}
+                  </div>
+                  <div class="activity-content">
+                    ${musicImage ? 
+                      `<img src="${musicImage}" class="activity-img" alt="Album cover" onerror="console.log('Failed to load image:', this.src); this.outerHTML='<div class=\\'placeholder-img\\'>??</div>';" />` : 
+                      `<div class="placeholder-img">??</div>`}
+                    <div class="activity-details">
+                      <div class="song-title">${activity.details || 'Unknown song'}</div>
+                      <div class="song-artist">${activity.state || 'Unknown artist'}</div>
+                      ${activity.assets?.large_text ? `<div class="song-album">${activity.assets.large_text}</div>` : ''}
+                    </div>
+                  </div>
+                </div>
+              `;
+              break;
+              
             case 3: // Watching
-              let watchImage = '';
-              if (activity.assets?.large_image) {
-                if (activity.assets.large_image.startsWith('mp:')) {
-                  watchImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
-                } else if (activity.assets.large_image.startsWith('external:')) {
-                  watchImage = activity.assets.large_image.substring(9);
-                } else {
-                  watchImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
-                }
-              }
+              const watchImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
               
               activityHTML = `
                 <div class="activity watching">
                   <div class="activity-header">
-                    <i class="fas fa-tv"></i> Watching
+                    <i class="fas fa-tv"></i> Watching ${activity.name}
                   </div>
                   <div class="activity-content">
-                    ${watchImage ? `<img src="${watchImage}" class="activity-img" alt="${activity.name}" />` : ''}
+                    ${watchImage ? 
+                      `<img src="${watchImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>??</div>';" />` : 
+                      `<div class="placeholder-img">??</div>`}
                     <div class="activity-details">
-                      <div class="media-name">${activity.name}</div>
                       ${activity.details ? `<div class="media-details">${activity.details}</div>` : ''}
                       ${activity.state ? `<div class="media-state">${activity.state}</div>` : ''}
                     </div>
@@ -730,16 +776,7 @@
               break;
               
             default: // Other activities
-              let activityImage = '';
-              if (activity.assets?.large_image) {
-                if (activity.assets.large_image.startsWith('mp:')) {
-                  activityImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
-                } else if (activity.assets.large_image.startsWith('external:')) {
-                  activityImage = activity.assets.large_image.substring(9);
-                } else {
-                  activityImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
-                }
-              }
+              const activityImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
               
               let activityIcon = 'fas fa-desktop';
               let activityType = 'Using';
@@ -752,12 +789,13 @@
               activityHTML = `
                 <div class="activity rich-presence">
                   <div class="activity-header">
-                    <i class="${activityIcon}"></i> ${activityType}
+                    <i class="${activityIcon}"></i> ${activityType} ${activity.name}
                   </div>
                   <div class="activity-content">
-                    ${activityImage ? `<img src="${activityImage}" class="activity-img" alt="${activity.name}" />` : ''}
+                    ${activityImage ? 
+                      `<img src="${activityImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>??</div>';" />` : 
+                      `<div class="placeholder-img">??</div>`}
                     <div class="activity-details">
-                      <div class="app-name">${activity.name}</div>
                       ${activity.details ? `<div class="app-details">${activity.details}</div>` : ''}
                       ${activity.state ? `<div class="app-state">${activity.state}</div>` : ''}
                     </div>
@@ -781,5 +819,3 @@
   </script>
 </body>
 </html>
-</b
-oltAction>
