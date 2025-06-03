@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKW Room Browser</title>
+    <link rel="stylesheet" href="https://www.chadsoft.co.uk/css/ctmkf.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'CTMKF', "JetBrains Mono", monospace;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Enhanced Dark/Black with Hot Pink Accents */
+            --primary: #d351b0;
+            --primary-dark: #b8439a;
+            --primary-light: #e578c4;
+            --primary-glow: rgba(211, 81, 176, 0.3);
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-quaternary: #252525;
+            --bg-glass: rgba(10, 10, 10, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-tertiary: #b0b0b0;
+            --text-muted: #808080;
+            --border: #333333;
+            --border-light: #444444;
+            --border-glow: rgba(211, 81, 176, 0.5);
+            --success: #00ff88;
+            --error: #ff4757;
+            --warning: #ffa726;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 20px var(--primary-glow);
+            --conn-good: #00ff88;
+            --conn-unstable: #ffa726;
+            --conn-dropped: #ff4757;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-top: 100px; /* Space for fixed header */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Frosted Glass Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: var(--shadow-glow);
+            margin: 0;
+        }
+
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .refresh-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+        }
+
+        .refresh-btn:hover::before {
+            left: 100%;
+        }
+
+        .refresh-btn:active {
+            transform: translateY(0);
+        }
+
+        .refresh-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .filter-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .filter-select {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            min-width: 200px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d351b0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1em;
+            padding-right: 2.5rem;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-glow);
+        }
+
+        .filter-select:hover {
+            border-color: var(--primary-light);
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            max-width: 600px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--error);
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .status.connected .status-indicator {
+            background: var(--success);
+        }
+
+        .status.error .status-indicator {
+            background: var(--error);
+            animation: flash 1s ease-in-out infinite;
+        }
+
+        .status-text {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .last-update {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .main-content {
+            padding: 0 2rem 2rem;
+            flex: 1;
+        }
+
+        .rooms-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .room-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .room-card:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        .room-card:hover::before {
+            opacity: 1;
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .room-id {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--bg-quaternary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .room-gamemode {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .room-gamemode:hover {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            transform: scale(1.05);
+        }
+
+        .room-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-quaternary);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s ease;
+        }
+
+        .info-item:hover {
+            background: var(--bg-secondary);
+            border-color: var(--border-glow);
+        }
+
+        .info-label {
+            color: var(--text-tertiary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .players-section {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        .players-header {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .player-card {
+            background: var(--bg-quaternary);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 80px; /* Fixed minimum height */
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .player-card:hover {
+            border-color: var(--border-glow);
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .player-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mii-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .mii-avatar:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md), 0 0 15px var(--primary-glow);
+        }
+
+        .mii-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .mii-avatar.loading {
+            background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .player-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .player-name {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            word-break: break-word;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .crown-icon {
+            color: var(--warning);
+            font-size: 1.1rem;
+            filter: drop-shadow(0 0 5px rgba(255, 167, 38, 0.6));
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(255, 167, 38, 0.6)); }
+            to { filter: drop-shadow(0 0 10px rgba(255, 167, 38, 0.8)); }
+        }
+
+        .player-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.25rem;
+        }
+
+        .player-fc {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .player-scores {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .score-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .score-label {
+            font-weight: 600;
+            color: var(--text-tertiary);
+        }
+
+        .score-value {
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        /* Connection Map Button */
+        .connection-map-btn {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-quaternary);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .connection-map-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+        }
+
+        /* Connection Map Modal */
+        .connection-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .connection-modal.active {
+            display: flex;
+        }
+
+        .connection-modal-content {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .connection-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .connection-modal-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .connection-modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .connection-modal-close:hover {
+            background: var(--bg-quaternary);
+            color: var(--text-primary);
+        }
+
+        .connection-map-container {
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            background: var(--bg-quaternary);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            padding: 1rem;
+        }
+
+        .connection-map {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 400px;
+            font-size: 0.9rem;
+        }
+
+        .connection-map th,
+        .connection-map td {
+            padding: 0.5rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .connection-map th {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .connection-map tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .connection-map .player-row {
+            text-align: left;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .connection-map .player-id {
+            color: var(--primary);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .connection-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .connection-dot.good {
+            background-color: var(--conn-good);
+            box-shadow: 0 0 8px var(--conn-good);
+        }
+
+        .connection-dot.unstable {
+            background-color: var(--conn-unstable);
+            box-shadow: 0 0 8px var(--conn-unstable);
+        }
+
+        .connection-dot.dropped {
+            background-color: var(--conn-dropped);
+            box-shadow: 0 0 8px var(--conn-dropped);
+        }
+
+        .connection-dot.self {
+            background-color: var(--text-muted);
+            position: relative;
+        }
+
+        .connection-dot.self::before {
+            content: '/';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .connection-legend {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .no-rooms {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            padding: 4rem 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            border: 2px dashed var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-suggestion {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            padding: 3rem 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            border: 2px dashed var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-suggestion .suggestion-text {
+            margin-bottom: 1rem;
+        }
+
+        .filter-suggestion .suggestion-link {
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .filter-suggestion .suggestion-link:hover {
+            color: var(--primary-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .header-left,
+            .header-right {
+                justify-content: center;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            body {
+                padding-top: 120px;
+            }
+
+            .main-content {
+                padding: 0 1rem 2rem;
+            }
+
+            .room-card {
+                padding: 1.5rem;
+            }
+
+            .room-header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .player-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                min-height: auto;
+            }
+
+            .mii-avatar {
+                align-self: center;
+            }
+
+            .player-scores {
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .connection-modal-content {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+
+            .refresh-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .room-card {
+                padding: 1rem;
+            }
+
+            .info-item {
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-made-by {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .footer-made-by a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .footer-made-by a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .footer-link {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid transparent;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            background: var(--bg-quaternary);
+            border-color: var(--border-light);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Footer */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 1.5rem 1rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 0;
+            }
+            
+            .footer-right {
+                display: none;
+            }
+            
+            .footer-made-by {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer {
+                padding: 1rem;
+            }
+            
+            .footer-made-by {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <h1>IKW Room Browser</h1>
+            <span class="header-subtitle">View all active Insane Kart Wii rooms</span>
+        </div>
+        <div class="header-right">
+            <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()">
+                Refetch Room Data
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="status" id="status">
+            <div class="status-indicator"></div>
+            <span class="status-text" id="statusText">Connecting...</span>
+            <span class="last-update" id="lastUpdate"></span>
+        </div>
+
+        <div class="filter-controls">
+            <label for="gamemode-filter" class="filter-label">Filter by Gamemode:</label>
+            <select id="gamemode-filter" class="filter-select" onchange="filterRooms()">
+                <option value="all">All Gamemodes</option>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+
+        <div class="rooms-container" id="roomsContainer">
+            <div class="no-rooms">Loading rooms...</div>
+        </div>
+    </main>
+
+    <!-- Connection Map Modal -->
+    <div class="connection-modal" id="connectionModal">
+        <div class="connection-modal-content">
+            <div class="connection-modal-header">
+                <div class="connection-modal-title">
+                    🔌 Connection Map
+                </div>
+                <button class="connection-modal-close" onclick="closeConnectionModal()">×</button>
+            </div>
+            <div id="connectionMapContent">
+                <!-- Connection map content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span class="footer-made-by">
+                    Made with 🖤 by <a href="https://riddim-glitch.is-a.dev" target="_blank" rel="noopener noreferrer">Riddim-GLiTCH</a>, 
+                    Designed by <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a>
+                </span>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="https://wiki.tockdom.com/wiki/CTMKF" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        🎨 Chadderz' Terrible Mario Kart Font
+                    </a>
+                    <a href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        ⌨️ JetBrains Mono Font
+                    </a>
+                    <a href="http://rwfc.net/api/groups" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        🔗 API Endpoint
+                    </a>
+                    <a href="https://github.com/Riddim-GLiTCH/riddim-glitch.github.io/blob/main/ikw/index.html" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        📄 Page Source
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== CONFIGURATION =====
+        // Easily configurable API endpoint - Currently using IKWFC Stage 1 Server
+        // const API_ENDPOINT = 'http://rwfc.net/api/groups'; // RetroWFC main endpoint
+        const API_ENDPOINT = 'http://mk.acidpaws.cam/api/groups'; // IKWFC Stage 1 server
+        
+        // Auto-refresh interval in milliseconds (20000 = 20 seconds)
+        const REFRESH_INTERVAL = 20000;
+
+        // CORS proxy options (you can change this if needed)
+        const CORS_PROXIES = [
+            'https://api.allorigins.win/raw?url=',
+            'https://corsproxy.io/?',
+            'https://cors-anywhere.herokuapp.com/'
+        ];
+        // ========================
+
+        const GAMEMODE_MAP = {
+            "69": "Regular VS",
+            "70": "Ultras VS", 
+            "71": "Crazy Items",
+            "72": "Bob-omb Blast",
+            "73": "Infinite Acceleration",
+            "74": "Banana Slip",
+            "75": "Random Items",
+            "76": "Unfair Items",
+            "77": "Blue Shell Madness",
+            "78": "Mushroom Dash",
+            "79": "Bumper Karts",
+            "80": "Item Rampage",
+            "81": "Item Rain",
+            "82": "Shell Break",
+            "83": "Riibalanced Stats"
+        };
+
+        let updateInterval;
+        let isRefreshing = false;
+        let miiCache = new Map(); // Cache for Mii images
+        let currentCorsProxyIndex = 0;
+        let allRooms = []; // Store all rooms for filtering
+
+        function updateStatus(status, text) {
+            const statusElement = document.getElementById('status');
+            const statusText = document.getElementById('statusText');
+            const lastUpdate = document.getElementById('lastUpdate');
+            
+            statusElement.className = `status ${status}`;
+            statusText.textContent = text;
+            
+            if (status === 'connected') {
+                lastUpdate.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+            }
+        }
+
+        function formatTimeAgo(dateString) {
+            const now = new Date();
+            const created = new Date(dateString);
+            const diffMs = now - created;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+            
+            if (diffMins < 1) return 'Just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            return created.toLocaleDateString();
+        }
+
+        // Convert base64 to blob
+        function base64toBlob(data) {
+            const bytes = atob(data);
+            let length = bytes.length;
+            let out = new Uint8Array(length);
+
+            while (length--) {
+                out[length] = bytes.charCodeAt(length);
+            }
+
+            return new Blob([out]);
+        }
+
+        // Fetch image through CORS proxy and convert to data URL
+        async function fetchImageAsDataUrl(url) {
+            for (let i = 0; i < CORS_PROXIES.length; i++) {
+                const proxyIndex = (currentCorsProxyIndex + i) % CORS_PROXIES.length;
+                const proxy = CORS_PROXIES[proxyIndex];
+                
+                try {
+                    const response = await fetch(proxy + encodeURIComponent(url));
+                    
+                    if (response.ok) {
+                        const blob = await response.blob();
+                        return new Promise((resolve) => {
+                            const reader = new FileReader();
+                            reader.onloadend = () => resolve(reader.result);
+                            reader.readAsDataURL(blob);
+                        });
+                    }
+                } catch (error) {
+                    console.warn(`CORS proxy ${proxy} failed:`, error);
+                    continue;
+                }
+            }
+            
+            throw new Error('All CORS proxies failed');
+        }
+
+        // Generate Mii avatar using RC24 and Nintendo services
+        async function getMiiAvatarUrl(player) {
+            if (!player.fc || player.fc === 'N/A' || !player.mii || !player.mii[0] || !player.mii[0].data) {
+                return null;
+            }
+
+            const fc = player.fc.replace(/[-\s]/g, '');
+            
+            // Check cache first
+            if (miiCache.has(fc)) {
+                return miiCache.get(fc);
+            }
+
+            try {
+                // Use the same process as your server
+                const miiData = player.mii[0].data;
+                
+                // Create FormData for the Mii conversion service
+                const formData = new FormData();
+                formData.append("data", base64toBlob(miiData), "mii.dat");
+                formData.append("platform", "wii");
+
+                // Send to RC24's Mii studio service
+                const response = await fetch("https://miicontestp.wii.rc24.xyz/cgi-bin/studio.cgi", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    console.error("Bad response from RC24 Mii service, status code: " + response.status);
+                    return null;
+                }
+
+                const json = await response.json();
+
+                if (!json || !json.mii) {
+                    console.error("Malformed JSON response from RC24 Mii service");
+                    return null;
+                }
+
+                // Generate the Nintendo Mii Studio URL
+                const miiImageUrl = `https://studio.mii.nintendo.com/miis/image.png?data=${json.mii}&type=face&expression=normal&width=270&bgColor=FFFFFF00&clothesColor=default&cameraXRotate=0&cameraYRotate=0&cameraZRotate=0&characterXRotate=0&characterYRotate=0&characterZRotate=0&lightDirectionMode=none&instanceCount=1`;
+
+                // Fetch the image through CORS proxy and convert to data URL
+                const dataUrl = await fetchImageAsDataUrl(miiImageUrl);
+
+                // Cache and return the data URL
+                miiCache.set(fc, dataUrl);
+                return dataUrl;
+
+            } catch (error) {
+                console.error("Error generating Mii avatar:", error);
+                return null;
+            }
+        }
+
+        // Generate connection map HTML
+        function generateConnectionMap(room) {
+            const players = Object.values(room.players);
+            const playerKeys = Object.keys(room.players);
+            
+            if (players.length <= 1) {
+                return '<p style="color: var(--text-muted); text-align: center;">Connection map not available for rooms with only one player.</p>';
+            }
+            
+            let tableHTML = `
+                <div class="connection-map-container">
+                    <table class="connection-map">
+                        <thead>
+                            <tr>
+                                <th></th>
+            `;
+            
+            // Add column headers (player IDs)
+            for (let i = 0; i < players.length; i++) {
+                tableHTML += `<th>${i + 1}</th>`;
+            }
+            
+            tableHTML += `
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            // Add rows for each player
+            for (let i = 0; i < players.length; i++) {
+                const player = players[i];
+                const playerKey = playerKeys[i];
+                const playerName = player.name || 'Unknown';
+                
+                tableHTML += `
+                    <tr>
+                        <td class="player-row"><span class="player-id">${i + 1}</span>${playerName}</td>
+                `;
+                
+                // Add connection status for each player
+                for (let j = 0; j < players.length; j++) {
+                    if (i === j) {
+                        // Self connection
+                        tableHTML += `<td><span class="connection-dot self"></span></td>`;
+                    } else {
+                        // Get connection status from conn_map
+                        let connectionStatus = 0; // Default to dropped
+                        
+                        if (player.conn_map) {
+                            // Parse connection map
+                            // The conn_map string contains connection status to other players
+                            // Each digit represents connection to a player, skipping self
+                            let connIndex = j;
+                            if (j > i) connIndex--; // Skip self in the map
+                            
+                            if (connIndex >= 0 && connIndex < player.conn_map.length) {
+                                connectionStatus = parseInt(player.conn_map[connIndex], 10);
+                            }
+                        }
+                        
+                        let dotClass = 'dropped';
+                        if (connectionStatus === 2) dotClass = 'good';
+                        else if (connectionStatus === 1) dotClass = 'unstable';
+                        
+                        tableHTML += `<td><span class="connection-dot ${dotClass}"></span></td>`;
+                    }
+                }
+                
+                tableHTML += `</tr>`;
+            }
+            
+            tableHTML += `
+                        </tbody>
+                    </table>
+                </div>
+                <div class="connection-legend">
+                    <div class="legend-item">
+                        <span class="connection-dot good"></span>
+                        <span>Good</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="connection-dot unstable"></span>
+                        <span>Unstable</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="connection-dot dropped"></span>
+                        <span>Dropped</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="connection-dot self"></span>
+                        <span>Self</span>
+                    </div>
+                </div>
+            `;
+            
+            return tableHTML;
+        }
+
+        // Show connection map modal
+        function showConnectionMap(room) {
+            const modal = document.getElementById('connectionModal');
+            const content = document.getElementById('connectionMapContent');
+            
+            content.innerHTML = generateConnectionMap(room);
+            modal.classList.add('active');
+            
+            // Close modal when clicking outside
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    closeConnectionModal();
+                }
+            };
+        }
+
+        // Close connection map modal
+        function closeConnectionModal() {
+            const modal = document.getElementById('connectionModal');
+            modal.classList.remove('active');
+        }
+
+        // Populate gamemode filter dropdown from GAMEMODE_MAP
+        function populateGamemodeFilter() {
+            const filterSelect = document.getElementById('gamemode-filter');
+            const currentValue = filterSelect.value;
+            
+            // Clear existing options except "All Gamemodes"
+            while (filterSelect.options.length > 1) {
+                filterSelect.remove(1);
+            }
+            
+            // Add options for each gamemode in GAMEMODE_MAP
+            Object.entries(GAMEMODE_MAP).forEach(([gamemodeId, gamemodeName]) => {
+                const option = document.createElement('option');
+                option.value = gamemodeId;
+                option.textContent = gamemodeName;
+                filterSelect.appendChild(option);
+            });
+            
+            // Restore selected value if it exists
+            if (currentValue && [...filterSelect.options].some(opt => opt.value === currentValue)) {
+                filterSelect.value = currentValue;
+            }
+        }
+
+        // Filter rooms by gamemode
+        function filterRooms() {
+            const filterValue = document.getElementById('gamemode-filter').value;
+            
+            if (!allRooms || allRooms.length === 0) {
+                return;
+            }
+            
+            let filteredRooms = allRooms;
+            
+            if (filterValue !== 'all') {
+                filteredRooms = allRooms.filter(room => {
+                    const gamemodeId = room.rk ? room.rk.split('_')[1] : '';
+                    return gamemodeId === filterValue;
+                });
+                
+                // If no rooms found for selected gamemode, show suggestion
+                if (filteredRooms.length === 0) {
+                    const container = document.getElementById('roomsContainer');
+                    const gamemodeName = GAMEMODE_MAP[filterValue] || 'Unknown';
+                    container.innerHTML = `
+                        <div class="filter-suggestion">
+                            <div class="suggestion-text">No rooms found for "${gamemodeName}"</div>
+                            <div class="suggestion-text">
+                                <span class="suggestion-link" onclick="document.getElementById('gamemode-filter').value='all'; filterRooms();">
+                                    Try changing your filter to see all available rooms
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+            }
+            
+            renderRooms(filteredRooms);
+        }
+
+        // Filter by specific gamemode when clicking on gamemode badge
+        function filterByGamemode(gamemodeId) {
+            const filterSelect = document.getElementById('gamemode-filter');
+            filterSelect.value = gamemodeId;
+            filterRooms();
+            
+            // Scroll to top to show the filter change
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderRooms(rooms) {
+            const container = document.getElementById('roomsContainer');
+            
+            if (!rooms || rooms.length === 0) {
+                container.innerHTML = '<div class="no-rooms">No one is online right now. How Lonely...</div>';
+                return;
+            }
+
+            const roomsHTML = rooms.map(room => {
+                const players = Object.values(room.players);
+                const hostPlayer = players.find(p => room.host === Object.keys(room.players).find(key => room.players[key] === p));
+                const gamemodeId = room.rk ? room.rk.split('_')[1] : '';
+                const gamemodeName = GAMEMODE_MAP[gamemodeId] || `Unknown (${gamemodeId})`;
+                
+                const playersHTML = players.map(player => {
+                    const isHost = player === hostPlayer;
+                    const avatarId = `avatar-${player.fc || Math.random()}`;
+                    
+                    // Set up avatar loading
+                    setTimeout(async () => {
+                        const avatarElement = document.getElementById(avatarId);
+                        if (!avatarElement) return;
+                        
+                        avatarElement.classList.add('loading');
+                        
+                        try {
+                            const avatarUrl = await getMiiAvatarUrl(player);
+                            
+                            if (avatarUrl) {
+                                avatarElement.innerHTML = `<img src="${avatarUrl}" alt="Mii Avatar" onerror="this.parentElement.innerHTML='👤'; this.parentElement.classList.remove('loading');">`;
+                                avatarElement.classList.remove('loading');
+                            } else {
+                                avatarElement.innerHTML = '👤';
+                                avatarElement.classList.remove('loading');
+                            }
+                        } catch (error) {
+                            console.error('Error loading avatar:', error);
+                            avatarElement.innerHTML = '👤';
+                            avatarElement.classList.remove('loading');
+                        }
+                    }, 100);
+
+                    // Build scores section
+                    const scoresHTML = [];
+                    if (player.ev) {
+                        scoresHTML.push(`<div class="score-item"><span class="score-label">VR:</span><span class="score-value">${player.ev}</span></div>`);
+                    }
+                    if (player.eb) {
+                        scoresHTML.push(`<div class="score-item"><span class="score-label">BR:</span><span class="score-value">${player.eb}</span></div>`);
+                    }
+                    
+                    return `
+                        <div class="player-card">
+                            <div class="mii-avatar" id="${avatarId}">
+                                👤
+                            </div>
+                            <div class="player-info">
+                                <div class="player-name">
+                                    ${isHost ? '<span class="crown-icon">👑</span>' : ''}
+                                    ${player.name || 'Unknown'}
+                                </div>
+                                <div class="player-details">
+                                    <div class="player-fc">FC: ${player.fc || 'N/A'}</div>
+                                    ${scoresHTML.length > 0 ? `<div class="player-scores">${scoresHTML.join('')}</div>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="room-card">
+                        <div class="room-header">
+                            <div class="room-id">Room ${room.id}</div>
+                            <div class="room-gamemode" onclick="filterByGamemode('${gamemodeId}')" style="cursor: pointer;" title="Click to filter by this gamemode">${gamemodeName}</div>
+                        </div>
+                        <div class="room-info">
+                            <div class="info-item">
+                                <span class="info-label">Players</span>
+                                <span class="info-value">${players.length}/12</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Type</span>
+                                <span class="info-value">${room.type === 'anybody' ? 'Public' : 'Private'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Created</span>
+                                <span class="info-value">${formatTimeAgo(room.created)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Status</span>
+                                <span class="info-value">${room.suspend ? 'Suspended' : 'Active'}</span>
+                            </div>
+                        </div>
+                        <div class="players-section">
+                            <div class="players-header">👥 Players (${players.length})</div>
+                            <div class="players-grid">
+                                ${playersHTML}
+                            </div>
+                        </div>
+                        ${players.length > 1 ? `
+                            <div class="connection-map-btn" onclick="showConnectionMap(${JSON.stringify(room).replace(/"/g, '&quot;')})">
+                                ⚡
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = roomsHTML;
+        }
+
+        async function fetchRooms() {
+            try {
+                updateStatus('connecting', 'Fetching rooms...');
+                
+                const proxy = CORS_PROXIES[currentCorsProxyIndex];
+                const response = await fetch(proxy + encodeURIComponent(API_ENDPOINT));
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                // Filter for VS rooms only
+                const vsRooms = data.filter(room => {
+                    return room.rk && room.rk.startsWith('vs_') && 
+                           room.game === 'mariokartwii' &&
+                           GAMEMODE_MAP[room.rk.split('_')[1]];
+                });
+                
+                // Store all rooms for filtering
+                allRooms = vsRooms;
+                
+                // If API returns data but no VS rooms found, assume no one is online
+                if (vsRooms.length === 0) {
+                    updateStatus('connected', 'No rooms available');
+                    document.getElementById('roomsContainer').innerHTML = 
+                        '<div class="no-rooms">No one is online right now. How Lonely...</div>';
+                    return;
+                }
+                
+                // Apply current filter
+                filterRooms();
+                
+                updateStatus('connected', `API OK! Found ${vsRooms.length} VS rooms`);
+                
+            } catch (error) {
+                console.error('API ERROR:', error, 'If you think this is incorrect, Please reach out to Riddim-glitch!');
+                updateStatus('error', `Error: ${error.message}`);
+                document.getElementById('roomsContainer').innerHTML = 
+                    `<div class="no-rooms">Failed to load rooms: ${error.message}</div>`;
+            }
+        }
+
+        async function manualRefresh() {
+            if (isRefreshing) return;
+            
+            const refreshBtn = document.getElementById('refreshBtn');
+            isRefreshing = true;
+            refreshBtn.disabled = true;
+            refreshBtn.innerHTML = '⟳ Refreshing...';
+            
+            try {
+                await fetchRooms();
+            } finally {
+                isRefreshing = false;
+                refreshBtn.disabled = false;
+                refreshBtn.innerHTML = 'Refetch Room Data';
+            }
+        }
+
+        function startAutoUpdate() {
+            updateInterval = setInterval(fetchRooms, REFRESH_INTERVAL);
+        }
+
+        // Initialize
+        populateGamemodeFilter(); // Populate filter from GAMEMODE_MAP
+        fetchRooms();
+        startAutoUpdate();
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeConnectionModal();
+            }
+        });
+    </script>
+</body>
+</html>
