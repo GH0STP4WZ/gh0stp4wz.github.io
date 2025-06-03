@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://www.chadsoft.co.uk/css/ctmkf.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
-            font-family: 'CTMKF', "JetBrains Mono", monospace;
+            font-family: 'Rubik', 'CTMKF'!important;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -44,6 +44,8 @@
             --conn-good: #00ff88;
             --conn-unstable: #ffa726;
             --conn-dropped: #ff4757;
+            /* Add transition for opacity */
+            --transition-speed: 200ms;
         }
 
         body {
@@ -97,6 +99,7 @@
             font-weight: 700;
             text-shadow: var(--shadow-glow);
             margin: 0;
+            font-family: 'CTMKF', system-ui;
         }
 
         .header-subtitle {
@@ -323,6 +326,7 @@
             border-radius: 12px;
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
+            font-family: 'CTMKF', system-ui;
         }
 
         .room-gamemode {
@@ -445,10 +449,51 @@
             justify-content: center;
             font-size: 1.5rem;
             flex-shrink: 0;
-            overflow: hidden;
             position: relative;
             box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
+        }
+
+        .openhost-badge {
+            position: absolute;
+            bottom: -6px;
+            left: -6px;
+            background: #ff69b4;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 8px;
+            border: 2px solid var(--bg-quaternary);
+            box-shadow: var(--shadow-sm);
+            z-index: 1;
+            user-select: none;
+            cursor: help;
+        }
+
+        .guest-avatar {
+            position: absolute;
+            bottom: -6px;
+            right: -6px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--bg-quaternary);
+            box-shadow: var(--shadow-sm);
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: help;
+        }
+
+        .guest-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .mii-avatar:hover {
@@ -491,6 +536,7 @@
             align-items: center;
             gap: 0.5rem;
             line-height: 1.2;
+            font-family: 'Rubik', system-ui;
         }
 
         .crown-icon {
@@ -515,6 +561,18 @@
             font-size: 0.85rem;
             color: var(--text-tertiary);
             font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .guest-player {
+            font-size: 0.85rem;
+            color: var(--primary-light);
+            font-weight: 500;
+            padding: 2px 6px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 2px;
         }
 
         .player-scores {
@@ -539,6 +597,7 @@
         .score-value {
             font-weight: 700;
             color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
         }
 
         /* Connection Map Button */
@@ -993,9 +1052,91 @@
                 font-size: 0.8rem;
             }
         }
+
+        /* Custom Tooltip */
+        .tooltip-container {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+            padding: 6px 10px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            box-shadow: var(--shadow-sm);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tooltip-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip-container::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--border);
+        }
+
+        .tooltip-container::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid var(--bg-primary);
+            z-index: 1;
+        }
+
+        /* Add a wrapper for the rooms container to maintain height */
+        .rooms-wrapper {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .rooms-container {
+            opacity: 1;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .rooms-container.updating {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .player-fc, .score-value {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .room-id, .room-gamemode, .header h1 {
+            font-family: 'CTMKF', system-ui;
+        }
+
+        .player-name {
+            font-family: 'Rubik', system-ui;
+        }
     </style>
 </head>
 <body>
+    <!-- Add tooltip container to the body -->
+    <div id="tooltip" class="tooltip-container"></div>
+
     <header class="header">
         <div class="header-left">
             <h1>IKW Room Browser</h1>
@@ -1023,8 +1164,10 @@
             </select>
         </div>
 
-        <div class="rooms-container" id="roomsContainer">
-            <div class="no-rooms">Loading rooms...</div>
+        <div class="rooms-wrapper">
+            <div class="rooms-container" id="roomsContainer">
+                <div class="no-rooms">Loading rooms...</div>
+            </div>
         </div>
     </main>
 
@@ -1054,11 +1197,14 @@
             </div>
             <div class="footer-right">
                 <div class="footer-links">
-                    <a href="https://wiki.tockdom.com/wiki/CTMKF" target="_blank" rel="noopener noreferrer" class="footer-link">
-                        🎨 Chadderz' Terrible Mario Kart Font
+                    <a href="https://www.chadsoft.co.uk/css/ctmkf.css" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        🎨 CTMKF (Chadderz' Mario Kart Font)
+                    </a>
+                    <a href="https://fonts.google.com/specimen/Rubik" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        ⌨️ Rubik Font
                     </a>
                     <a href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener noreferrer" class="footer-link">
-                        ⌨️ JetBrains Mono Font
+                        📝 JetBrains Mono
                     </a>
                     <a href="http://rwfc.net/api/groups" target="_blank" rel="noopener noreferrer" class="footer-link">
                         🔗 API Endpoint
@@ -1073,7 +1219,7 @@
 
     <script>
         // ===== CONFIGURATION =====
-        // Easily configurable API endpoint - Currently using IKWFC Stage 1 Server
+        // Easily configurable API endpoint - Currently using RetroWFC
         // const API_ENDPOINT = 'http://rwfc.net/api/groups'; // RetroWFC main endpoint
         const API_ENDPOINT = 'http://mk.acidpaws.cam/api/groups'; // IKWFC Stage 1 server
         
@@ -1452,16 +1598,50 @@
                         try {
                             const avatarUrl = await getMiiAvatarUrl(player);
                             
+                            // Check if there's a guest player and get their Mii
+                            let guestAvatarHtml = '';
+                            if (player.mii && player.mii.length > 1) {
+                                // Create a temporary player object for the guest to use with getMiiAvatarUrl
+                                const guestPlayer = {
+                                    mii: [{
+                                        data: player.mii[1].data,
+                                        name: player.mii[1].name
+                                    }],
+                                    fc: `guest-${player.fc}` // Use different FC to avoid cache collision
+                                };
+                                const guestAvatarUrl = await getMiiAvatarUrl(guestPlayer);
+                                guestAvatarHtml = `
+                                    <div class="guest-avatar" data-tooltip="Guest: ${player.mii[1].name}">
+                                        ${guestAvatarUrl ? 
+                                            `<img src="${guestAvatarUrl}" alt="Guest Mii" onerror="this.parentElement.innerHTML='👤';">` : 
+                                            '👤'
+                                        }
+                                    </div>
+                                `;
+                            }
+                            
                             if (avatarUrl) {
-                                avatarElement.innerHTML = `<img src="${avatarUrl}" alt="Mii Avatar" onerror="this.parentElement.innerHTML='👤'; this.parentElement.classList.remove('loading');">`;
+                                avatarElement.innerHTML = `
+                                    <img src="${avatarUrl}" alt="Mii Avatar" onerror="this.parentElement.innerHTML='👤'; this.parentElement.classList.remove('loading');">
+                                    ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Opehost enabled">OH</div>' : ''}
+                                    ${guestAvatarHtml}
+                                `;
                                 avatarElement.classList.remove('loading');
                             } else {
-                                avatarElement.innerHTML = '👤';
+                                avatarElement.innerHTML = `
+                                    👤
+                                    ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Open hosting enabled">OH</div>' : ''}
+                                    ${guestAvatarHtml}
+                                `;
                                 avatarElement.classList.remove('loading');
                             }
                         } catch (error) {
                             console.error('Error loading avatar:', error);
-                            avatarElement.innerHTML = '👤';
+                            avatarElement.innerHTML = `
+                                👤
+                                ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Open hosting enabled">OH</div>' : ''}
+                                ${player.mii && player.mii.length > 1 ? `<div class="guest-avatar" data-guest-name="${player.mii[1].name}">👤</div>` : ''}
+                            `;
                             avatarElement.classList.remove('loading');
                         }
                     }, 100);
@@ -1538,8 +1718,13 @@
 
         async function fetchRooms() {
             try {
+                // Add updating class to container
+                const container = document.getElementById('roomsContainer');
+                container.classList.add('updating');
+
                 updateStatus('connecting', 'Fetching rooms...');
                 
+                // Use real API
                 const proxy = CORS_PROXIES[currentCorsProxyIndex];
                 const response = await fetch(proxy + encodeURIComponent(API_ENDPOINT));
                 
@@ -1577,6 +1762,12 @@
                 updateStatus('error', `Error: ${error.message}`);
                 document.getElementById('roomsContainer').innerHTML = 
                     `<div class="no-rooms">Failed to load rooms: ${error.message}</div>`;
+            } finally {
+                // Remove updating class after a short delay to ensure smooth transition
+                setTimeout(() => {
+                    const container = document.getElementById('roomsContainer');
+                    container.classList.remove('updating');
+                }, 200);
             }
         }
 
@@ -1612,6 +1803,46 @@
                 closeConnectionModal();
             }
         });
+
+        // Initialize tooltip functionality
+        function initTooltip() {
+            const tooltip = document.getElementById('tooltip');
+            let tooltipTimeout;
+            
+            document.addEventListener('mouseover', (e) => {
+                const target = e.target.closest('[data-tooltip]');
+                if (!target) return;
+                
+                clearTimeout(tooltipTimeout);
+                const text = target.getAttribute('data-tooltip');
+                tooltip.textContent = text;
+                tooltip.style.display = 'block';
+                
+                // Force a reflow to enable the transition
+                tooltip.offsetHeight;
+                tooltip.classList.add('visible');
+                
+                // Position the tooltip above the element
+                const rect = target.getBoundingClientRect();
+                const tooltipRect = tooltip.getBoundingClientRect();
+                
+                tooltip.style.left = rect.left + (rect.width / 2) - (tooltipRect.width / 2) + 'px';
+                tooltip.style.top = rect.top - tooltipRect.height - 10 + 'px';
+            });
+            
+            document.addEventListener('mouseout', (e) => {
+                const target = e.target.closest('[data-tooltip]');
+                if (!target) return;
+                
+                tooltip.classList.remove('visible');
+                tooltipTimeout = setTimeout(() => {
+                    tooltip.style.display = 'none';
+                }, 200); // Match the transition duration
+            });
+        }
+
+        // Call initTooltip after DOM is loaded
+        document.addEventListener('DOMContentLoaded', initTooltip);
     </script>
 </body>
 </html>
