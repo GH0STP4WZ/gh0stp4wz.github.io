@@ -1,12 +1,20 @@
 {
-  "name": "Auroras-blog",
+  "name": "aurora-website",
   "version": "1.0.0",
-  "description": "A static blog generator for Auroras website",
-  "main": "blog-generator.js",
+  "description": "Aurora's personal website",
   "scripts": {
-    "build": "node blog-generator.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "marked": "^4.3.0"
+    "@vitejs/plugin-react": "^4.2.1",
+    "marked": "^4.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
+  },
+  "devDependencies": {
+    "vite": "^5.1.4"
   }
 }

@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
-  <title>Home | Riddim-GLiTCH's Site</title>
-  <meta content="Riddim-GLiTCH's Site" property="og:title" />
-  <meta content="This is Riddim-GLiTCH's personal website." property="og:description" />
-  <meta content="https://Riddim-GLiTCH.github.io/" property="og:url" />
+  <title>Home | Aurora's Site</title>
+  <meta content="Aurora's Site" property="og:title" />
+  <meta content="This is Aurora's personal website." property="og:description" />
+  <meta content="https://aurora.is-a.dev/" property="og:url" />
   <meta content="https://api.lanyard.rest/801089753038061669.png" property="og:image" />
   <meta content="#f38ba8" data-react-helmet="true" name="theme-color" />
   <style>
@@ -40,7 +40,6 @@
       --ctp-flamingo: #f2cdcd;
       --ctp-rosewater: #f5e0dc;
       
-      /* Main accent color */
       --accent: var(--ctp-red);
       --bg-opacity: 0.7;
       --card-bg: rgba(30, 30, 46, 0.85);
@@ -66,11 +65,9 @@
       background-attachment: fixed;
       color: var(--ctp-text);
       line-height: 1.6;
-      padding-bottom: 100px; /* Ugly fix for the footer overlapping the page content I guess */
+      padding-bottom: 100px;
     }
 
-    
-    /* Navigation */
     .navbar {
       background-color: var(--ctp-mantle);
       border-bottom: 1px solid var(--accent);
@@ -80,6 +77,7 @@
       top: 0;
       z-index: 100;
       backdrop-filter: blur(10px);
+      animation: slideDown 0.5s ease;
     }
     
     .nav-container {
@@ -100,7 +98,7 @@
       text-decoration: none;
       font-weight: bold;
       position: relative;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
     }
     
     .nav-links a:hover {
@@ -126,7 +124,6 @@
       opacity: 1;
     }
     
-    /* Main container */
     .container {
       max-width: 1300px;
       margin: 6rem auto 2rem;
@@ -134,9 +131,9 @@
       display: grid;
       gap: 2rem;
       grid-template-columns: 1fr 3fr;
+      animation: fadeIn 0.5s ease;
     }
     
-    /* Cards and sections */
     .card {
       background-color: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -152,7 +149,6 @@
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 8px var(--card-hover-shadow);
     }
     
-    /* Profile section */
     .profile-section {
       display: flex;
       flex-direction: column;
@@ -171,10 +167,11 @@
       box-shadow: 0 0 15px var(--card-hover-shadow);
       transition: all 0.3s ease;
       object-fit: cover;
+      animation: pulse 2s infinite;
     }
     
     .profile-picture:hover {
-      transform: scale(1.05);
+      transform: scale(1.05) rotate(5deg);
       box-shadow: 0 0 25px var(--card-hover-shadow);
     }
     
@@ -183,14 +180,18 @@
       margin: 0.5rem 0;
       font-weight: bold;
       letter-spacing: 1px;
+      background: linear-gradient(45deg, var(--ctp-red), var(--ctp-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 3s ease infinite;
     }
     
     .profile-pronouns {
       color: var(--ctp-subtext0);
       margin-bottom: 1rem;
+      font-style: italic;
     }
-    
-    /* Discord Live Status Styles */
+
     .discord-status-card {
       background-color: var(--ctp-surface0);
       border-radius: 8px;
@@ -198,6 +199,7 @@
       margin-top: 0.5rem;
       width: 100%;
       transition: all 0.3s ease;
+      border: 1px solid var(--accent);
     }
 
     .discord-status-card:hover {
@@ -223,14 +225,8 @@
       font-style: italic;
       color: var(--ctp-subtext0);
       margin-bottom: 0.5rem;
-      transition: all ease 0.2s;
     }
-    .custom-status-emoji {
-      height: 1.2em;
-      width: auto;
-      vertical-align: middle;
-      margin-right: 4px;
-    }
+
     .activity {
       border-top: 1px solid var(--ctp-surface1);
       padding-top: 0.8rem;
@@ -292,7 +288,28 @@
       font-style: italic;
     }
 
-    /* About me section */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .badge {
+      transition: all 0.3s ease;
+    }
+    
+    .badge:hover {
+      transform: scale(1.1) rotate(-5deg);
+    }
+    
+    .badge img {
+      max-width: 150px;
+      height: auto;
+      filter: drop-shadow(0 0 5px var(--card-hover-shadow));
+    }
+    
     .about-section {
       grid-column: 2;
     }
@@ -318,9 +335,14 @@
     
     .about-content p {
       margin-bottom: 1rem;
+      transition: all 0.3s ease;
     }
     
-    /* Friends section */
+    .about-content p:hover {
+      color: var(--accent);
+      transform: translateX(10px);
+    }
+    
     .friends-section {
       grid-column: 2;
     }
@@ -338,10 +360,16 @@
       align-items: center;
       text-align: center;
       transition: all 0.3s ease;
+      padding: 1rem;
+      border-radius: 12px;
+      background-color: var(--ctp-surface0);
+      border: 1px solid transparent;
     }
     
     .friend-card:hover {
-      transform: scale(1.1);
+      transform: scale(1.1) translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--card-hover-shadow);
     }
     
     .friend-icon {
@@ -351,6 +379,11 @@
       margin-bottom: 0.5rem;
       object-fit: cover;
       border: 2px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+    
+    .friend-card:hover .friend-icon {
+      transform: rotate(360deg);
     }
     
     .friend-name {
@@ -364,81 +397,88 @@
       text-shadow: 0 0 5px var(--text-glow);
     }
     
-    /* Badges */
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .badge {
-      transition: all 0.3s ease;
-    }
-    
-    .badge:hover {
-      transform: scale(1.1);
-    }
-    
-    .badge img {
-      max-width: 150px;
-      height: auto;
-    }
-    
-    /* Footer */
     .footer {
       text-align: center;
       position: fixed;
       bottom: 0;
       width: 100%;
-      margin-top: 3rem;
       padding: 1rem;
       background-color: var(--ctp-mantle);
       border-top: 1px solid var(--accent);
+      backdrop-filter: blur(10px);
     }
-    
-    .visitor-counter {
-      margin: 1rem 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
-    
-    .clock {
-      margin: 1rem 0;
-      font-size: 1.2rem;
-      color: var(--accent);
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
-    /* Glowing text effect */
-    .glow-text {
-      transition: all 0.3s ease;
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(243, 139, 168, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(243, 139, 168, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(243, 139, 168, 0);
+      }
     }
-    
-    .glow-text:hover {
-      color: var(--accent);
-      text-shadow: 0 0 8px var(--text-glow);
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
-    
-    /* Responsive */
+
     @media (max-width: 768px) {
       .container {
         grid-template-columns: 1fr;
       }
       
-      .profile-section, .about-section, .friends-section {
-        grid-column: 1;
+      .profile-section {
+        width: 100%;
       }
       
       .friends-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+      
+      .friend-card {
+        padding: 0.8rem;
+      }
+      
+      .friend-icon {
+        width: 50px;
+        height: 50px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <div class="navbar">
     <div class="nav-container">
       <div class="nav-links">
@@ -450,14 +490,12 @@
     </div>
   </div>
   
-  <!-- Main Content -->
   <div class="container">
-    <!-- Profile Card -->
     <div class="profile-section card">
       <img id="profile-picture" class="profile-picture" src="https://api.lanyard.rest/801089753038061669.png" alt="Profile Picture" />
-      <h1 class="profile-name glow-text">Aurora</h1>
+      <h1 class="profile-name">Aurora</h1>
       <p class="profile-pronouns">Pronouns: It/Its</p>
-      <!-- Discord Status -->
+      
       <div class="discord-status">
         <div class="discord-status-card">
           <div id="discord-status-container" class="status-content">
@@ -466,7 +504,6 @@
         </div>
       </div>
       
-      <!-- Badges -->
       <div class="badges">
         <a href="https://xenia-linux-site.glitch.me/" class="badge">
           <img src="assets/badges/xeniaS.png" alt="Xenia Badge">
@@ -477,7 +514,6 @@
       </div>
     </div>
     
-    <!-- About Me Section -->
     <div class="about-section card">
       <h2 class="section-title">About Me</h2>
       <div class="about-content">
@@ -498,7 +534,6 @@
       </div>
     </div>
     
-    <!-- Friends Section -->
     <div class="friends-section card">
       <h2 class="section-title">Friends' Websites</h2>
       <div class="friends-grid">
@@ -540,207 +575,211 @@
     </div>
   </div>
   
-  <!-- Footer -->
   <div class="footer">
     <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
-    <p>Made with ❤️ and 🏳️‍⚧️ rights</p>  <!-- Commit theft from laura >:3c -->
+    <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
   </div>
-</body>
-<script>
-  function fetchDiscordStatus() {
-    fetch('https://api.lanyard.rest/v1/users/801089753038061669') // DO NOT CHANGE -- This is what tells the API whos data to return!
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          updateDiscordStatus(data.data);
-        }
-      })
-      .catch(error => console.error('Error fetching Discord status:', error));
-  }
 
-  function updateDiscordStatus(data) {
-    const statusElement = document.getElementById('discord-status-container');
-    
-    let statusHTML = '';
-    if (data.discord_status) {
-      let statusIcon = '';
-      switch(data.discord_status) {
-        case 'online':
-          statusIcon = '<span style="color: var(--ctp-green);">●</span>';
-          break;
-        case 'idle':
-          statusIcon = '<span style="color: var(--ctp-yellow);">●</span>';
-          break;
-        case 'dnd':
-          statusIcon = '<span style="color: var(--ctp-red);">●</span>';
-          break;
-        default:
-          statusIcon = '<span style="color: var(--ctp-surface0);">●</span>';
-      }
-      statusHTML += `<div class="status-line">${statusIcon} ${data.discord_status}</div>`;
+  <script>
+    function fetchDiscordStatus() {
+      fetch('https://api.lanyard.rest/v1/users/801089753038061669')
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            updateDiscordStatus(data.data);
+          }
+        })
+        .catch(error => console.error('Error fetching Discord status:', error));
     }
-    
-    const customStatusActivity = data.activities.find(activity => 
-      activity.name === "Custom Status" && activity.type === 4
-    );
 
-    if (customStatusActivity && customStatusActivity.state) {
-      let emojiHTML = '';
-      if (customStatusActivity.emoji) {
-        if (customStatusActivity.emoji.id) {
-          const animated = customStatusActivity.emoji.animated ? 'a' : '';
-          emojiHTML = `<img class="custom-status-emoji" src="https://cdn.discordapp.com/emojis/${customStatusActivity.emoji.id}.${animated ? 'gif' : 'png'}" alt="${customStatusActivity.emoji.name}" /> `;
-        } else if (customStatusActivity.emoji.name) {
-          emojiHTML = `${customStatusActivity.emoji.name} `;
-        }
-      }
+    function updateDiscordStatus(data) {
+      const statusElement = document.getElementById('discord-status-container');
       
-      statusHTML += `<div class="status-message">${emojiHTML}"${customStatusActivity.state}"</div>`;
-    } else if (data.discord_status !== 'offline') {
-      statusHTML += `<div class="status-message">No custom status</div>`;
-    }
-    
-    if (data.activities && data.activities.length > 0) {
-      const sortedActivities = [...data.activities].sort((a, b) => {
-        if (a.type === 2 && a.name === "Spotify") return -1;
-        if (b.type === 2 && b.name === "Spotify") return 1;
-        if (a.type === 0) return -1;
-        if (b.type === 0) return 1;
-        return 0;
-      });
+      let statusHTML = '';
       
-      sortedActivities.forEach(activity => {
-        if (activity.name === "Custom Status" && activity.type === 4) return;
+      // Status indicator
+      if (data.discord_status) {
+        let statusIcon = '';
+        let statusText = data.discord_status;
         
-        if (activity.type === 2 && activity.name === "Spotify") {
-          let spotifyImage = '';
-          if (activity.assets && activity.assets.large_image) {
-            const spotifyImgId = activity.assets.large_image.startsWith('spotify:') 
-              ? activity.assets.large_image.substring(8) 
-              : activity.assets.large_image;
-            spotifyImage = `https://i.scdn.co/image/${spotifyImgId}`;
-          }
-          
-          statusHTML += `
-            <div class="activity spotify">
-              <div class="activity-header">
-                <i class="fab fa-spotify"></i> Listening to Spotify
-              </div>
-              <div class="activity-content">
-                ${spotifyImage ? `<img src="${spotifyImage}" class="activity-img" alt="Album cover">` : ''}
-                <div class="activity-details">
-                  <div class="song-title">${activity.details || 'Unknown song'}</div>
-                  <div class="song-artist">by ${activity.state || 'Unknown artist'}</div>
-                  <div class="song-album">on ${activity.assets?.large_text || 'Unknown Album'}</div>
-                </div>
-              </div>
-            </div>
-          `;
-        } else if (activity.type === 0) {
-          let gameImage = '';
-          if (activity.assets && activity.assets.large_image) {
-            if (activity.assets.large_image.startsWith('mp:')) {
-              gameImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
-            } else {
-              gameImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
-            }
-          }
-          
-          statusHTML += `
-            <div class="activity game">
-              <div class="activity-header">
-                <i class="fas fa-gamepad"></i> Playing
-              </div>
-              <div class="activity-content">
-                ${gameImage ? `<img src="${gameImage}" class="activity-img" alt="${activity.name}">` : ''}
-                <div class="activity-details">
-                  <div class="game-name">${activity.name}</div>
-                  ${activity.details ? `<div class="game-details">${activity.details}</div>` : ''}
-                  ${activity.state ? `<div class="game-state">${activity.state}</div>` : ''}
-                </div>
-              </div>
-            </div>
-          `;
-        } else if (activity.type === 3) {
-          let activityImage = '';
-          if (activity.assets && activity.assets.large_image) {
-            if (activity.assets.large_image.startsWith('mp:')) {
-              activityImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
-            } else if (activity.assets.large_image.startsWith('external:')) {
-              activityImage = activity.assets.large_image.substring(9);
-            } else {
-              activityImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
-            }
-          }
-          
-          statusHTML += `
-            <div class="activity watching">
-              <div class="activity-header">
-                <i class="fas fa-tv"></i> Watching
-              </div>
-              <div class="activity-content">
-                ${activityImage ? `<img src="${activityImage}" class="activity-img" alt="${activity.name}">` : ''}
-                <div class="activity-details">
-                  <div class="media-name">${activity.name}</div>
-                  ${activity.details ? `<div class="media-details">${activity.details}</div>` : ''}
-                  ${activity.state ? `<div class="media-state">${activity.state}</div>` : ''}
-                </div>
-              </div>
-            </div>
-          `;
-        } else {
-
-          let activityIcon = 'fas fa-desktop';
-          let activityType = 'Using';
-          
-          if (activity.type === 1) {
-            activityIcon = 'fas fa-video';
-            activityType = 'Streaming';
-          } else if (activity.type === 4) {
-            activityIcon = 'fas fa-broadcast-tower';
-            activityType = 'Broadcasting';
-          } else if (activity.type === 5) {
-            activityIcon = 'fas fa-music';
-            activityType = 'Listening to';
-          }
-          
-          let activityImage = '';
-          if (activity.assets && activity.assets.large_image) {
-            if (activity.assets.large_image.startsWith('mp:')) {
-              activityImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
-            } else if (activity.assets.large_image.startsWith('external:')) {
-              activityImage = activity.assets.large_image.substring(9);
-            } else {
-              activityImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
-            }
-          }
-          
-          statusHTML += `
-            <div class="activity rich-presence">
-              <div class="activity-header">
-                <i class="${activityIcon}"></i> ${activityType}
-              </div>
-              <div class="activity-content">
-                ${activityImage ? `<img src="${activityImage}" class="activity-img" alt="${activity.name}">` : ''}
-                <div class="activity-details">
-                  <div class="app-name">${activity.name}</div>
-                  ${activity.details ? `<div class="app-details">${activity.details}</div>` : ''}
-                  ${activity.state ? `<div class="app-state">${activity.state}</div>` : ''}
-                </div>
-              </div>
-            </div>
-          `;
+        switch(data.discord_status) {
+          case 'online':
+            statusIcon = '<span style="color: var(--ctp-green);">●</span>';
+            statusText = 'Online';
+            break;
+          case 'idle':
+            statusIcon = '<span style="color: var(--ctp-yellow);">●</span>';
+            statusText = 'Idle';
+            break;
+          case 'dnd':
+            statusIcon = '<span style="color: var(--ctp-red);">●</span>';
+            statusText = 'Do Not Disturb';
+            break;
+          default:
+            statusIcon = '<span style="color: var(--ctp-surface0);">●</span>';
+            statusText = 'Offline';
         }
-      });
-    } else if (data.discord_status !== 'offline') {
-      statusHTML += `<div class="activity-none">Not doing anything</div>`;
+        
+        statusHTML += `<div class="status-line">${statusIcon} ${statusText}</div>`;
+      }
+      
+      // Custom Status
+      const customStatus = data.activities.find(activity => activity.type === 4);
+      if (customStatus && customStatus.state) {
+        let emojiHTML = '';
+        if (customStatus.emoji) {
+          if (customStatus.emoji.id) {
+            const animated = customStatus.emoji.animated ? 'a' : '';
+            emojiHTML = `<img style="height: 1em; vertical-align: middle; margin-right: 4px;" src="https://cdn.discordapp.com/emojis/${customStatus.emoji.id}.${animated ? 'gif' : 'png'}" alt="${customStatus.emoji.name}" />`;
+          } else {
+            emojiHTML = `${customStatus.emoji.name} `;
+          }
+        }
+        statusHTML += `<div class="status-message">${emojiHTML}${customStatus.state}</div>`;
+      }
+      
+      // Activities
+      const activities = data.activities.filter(activity => activity.type !== 4);
+      if (activities.length > 0) {
+        activities.forEach(activity => {
+          let activityHTML = '';
+          
+          switch(activity.type) {
+            case 2: // Listening to Spotify
+              if (activity.name === "Spotify") {
+                let spotifyImage = '';
+                if (activity.assets?.large_image) {
+                  const spotifyImgId = activity.assets.large_image.startsWith('spotify:') 
+                    ? activity.assets.large_image.substring(8) 
+                    : activity.assets.large_image;
+                  spotifyImage = `https://i.scdn.co/image/${spotifyImgId}`;
+                }
+                
+                activityHTML = `
+                  <div class="activity spotify">
+                    <div class="activity-header">
+                      <i class="fab fa-spotify"></i> Listening to Spotify
+                    </div>
+                    <div class="activity-content">
+                      ${spotifyImage ? `<img src="${spotifyImage}" class="activity-img" alt="Album cover" />` : ''}
+                      <div class="activity-details">
+                        <div class="song-title">${activity.details || 'Unknown song'}</div>
+                        <div class="song-artist">by ${activity.state || 'Unknown artist'}</div>
+                        ${activity.assets?.large_text ? `<div class="song-album">on ${activity.assets.large_text}</div>` : ''}
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }
+              break;
+              
+            case 0: // Playing a game
+              let gameImage = '';
+              if (activity.assets?.large_image) {
+                if (activity.assets.large_image.startsWith('mp:')) {
+                  gameImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
+                } else {
+                  gameImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
+                }
+              }
+              
+              activityHTML = `
+                <div class="activity game">
+                  <div class="activity-header">
+                    <i class="fas fa-gamepad"></i> Playing
+                  </div>
+                  <div class="activity-content">
+                    ${gameImage ? `<img src="${gameImage}" class="activity-img" alt="${activity.name}" />` : ''}
+                    <div class="activity-details">
+                      <div class="game-name">${activity.name}</div>
+                      ${activity.details ? `<div class="game-details">${activity.details}</div>` : ''}
+                      ${activity.state ? `<div class="game-state">${activity.state}</div>` : ''}
+                    </div>
+                  </div>
+                </div>
+              `;
+              break;
+              
+            case 3: // Watching
+              let watchImage = '';
+              if (activity.assets?.large_image) {
+                if (activity.assets.large_image.startsWith('mp:')) {
+                  watchImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
+                } else if (activity.assets.large_image.startsWith('external:')) {
+                  watchImage = activity.assets.large_image.substring(9);
+                } else {
+                  watchImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
+                }
+              }
+              
+              activityHTML = `
+                <div class="activity watching">
+                  <div class="activity-header">
+                    <i class="fas fa-tv"></i> Watching
+                  </div>
+                  <div class="activity-content">
+                    ${watchImage ? `<img src="${watchImage}" class="activity-img" alt="${activity.name}" />` : ''}
+                    <div class="activity-details">
+                      <div class="media-name">${activity.name}</div>
+                      ${activity.details ? `<div class="media-details">${activity.details}</div>` : ''}
+                      ${activity.state ? `<div class="media-state">${activity.state}</div>` : ''}
+                    </div>
+                  </div>
+                </div>
+              `;
+              break;
+              
+            default: // Other activities
+              let activityImage = '';
+              if (activity.assets?.large_image) {
+                if (activity.assets.large_image.startsWith('mp:')) {
+                  activityImage = `https://media.discordapp.net/attachments/${activity.assets.large_image.substring(3)}`;
+                } else if (activity.assets.large_image.startsWith('external:')) {
+                  activityImage = activity.assets.large_image.substring(9);
+                } else {
+                  activityImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
+                }
+              }
+              
+              let activityIcon = 'fas fa-desktop';
+              let activityType = 'Using';
+              
+              if (activity.type === 1) {
+                activityIcon = 'fas fa-video';
+                activityType = 'Streaming';
+              }
+              
+              activityHTML = `
+                <div class="activity rich-presence">
+                  <div class="activity-header">
+                    <i class="${activityIcon}"></i> ${activityType}
+                  </div>
+                  <div class="activity-content">
+                    ${activityImage ? `<img src="${activityImage}" class="activity-img" alt="${activity.name}" />` : ''}
+                    <div class="activity-details">
+                      <div class="app-name">${activity.name}</div>
+                      ${activity.details ? `<div class="app-details">${activity.details}</div>` : ''}
+                      ${activity.state ? `<div class="app-state">${activity.state}</div>` : ''}
+                    </div>
+                  </div>
+                </div>
+              `;
+          }
+          
+          statusHTML += activityHTML;
+        });
+      } else if (data.discord_status !== 'offline') {
+        statusHTML += '<div class="activity-none">Not doing anything</div>';
+      }
+      
+      statusElement.innerHTML = statusHTML || 'Offline';
     }
-    
-    statusElement.innerHTML = statusHTML || 'Offline';
-    
-    setTimeout(fetchDiscordStatus, 5000); // I hope lanyard wont yell at me for checking every 5 seconds. May need to set this timeout to like
-  }
 
-  document.addEventListener('DOMContentLoaded', fetchDiscordStatus);
-</script>
+    // Initial fetch and setup interval
+    fetchDiscordStatus();
+    setInterval(fetchDiscordStatus, 5000);
+  </script>
+</body>
 </html>
+</b
+oltAction>
