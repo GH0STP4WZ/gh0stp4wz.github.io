@@ -30,15 +30,13 @@ jobs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
     - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git add -A
         if ! git diff-index --quiet HEAD; then
-        git commit -m "Generate blog"
-        git push
+          git commit -m "Generate blog"
+          git push
         else
-        echo "No changes detected, skipping commit and push."
+          echo "No changes detected, skipping commit and push."
         fi
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
