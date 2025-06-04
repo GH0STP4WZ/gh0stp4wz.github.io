@@ -1,41 +1,301 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <link
-      rel="icon"
-      href="https://api.lanyard.rest/801089753038061669.png"
-      type="image/x-icon"
-    />
-    <title>404 | Riddim-GLiTCH's Site</title>
-    <meta content="Riddim-GLiTCH's Site" property="og:title" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
+    <title>404 | Aurora's Site</title>
+    <meta content="Aurora's Site" property="og:title" />
     <meta content="THIS PAGE DOES NOT EXIST" property="og:description" />
-    <meta content="https://Riddim-GLiTCH.github.io/" property="og:url" />
-    <meta
-      content="https://api.lanyard.rest/801089753038061669.png"
-      property="og:image"
-    />
-    <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
+    <meta content="https://aurora.is-a.dev/" property="og:url" />
+    <meta content="https://api.lanyard.rest/801089753038061669.png" property="og:image" />
+    <meta content="#f38ba8" data-react-helmet="true" name="theme-color" />
+    <style>
+      :root {
+        --ctp-base: #1e1e2e;
+        --ctp-mantle: #181825;
+        --ctp-crust: #11111b;
+        --ctp-text: #cdd6f4;
+        --ctp-subtext0: #a6adc8;
+        --ctp-subtext1: #bac2de;
+        --ctp-surface0: #313244;
+        --ctp-surface1: #45475a;
+        --ctp-surface2: #585b70;
+        --ctp-overlay0: #6c7086;
+        --ctp-overlay1: #7f849c;
+        --ctp-overlay2: #9399b2;
+        --ctp-blue: #89b4fa;
+        --ctp-lavender: #b4befe;
+        --ctp-sapphire: #74c7ec;
+        --ctp-sky: #89dceb;
+        --ctp-teal: #94e2d5;
+        --ctp-green: #a6e3a1;
+        --ctp-yellow: #f9e2af;
+        --ctp-peach: #fab387;
+        --ctp-maroon: #eba0ac;
+        --ctp-red: #f38ba8;
+        --ctp-mauve: #cba6f7;
+        --ctp-pink: #f5c2e7;
+        --ctp-flamingo: #f2cdcd;
+        --ctp-rosewater: #f5e0dc;
+        
+        --accent: var(--ctp-red);
+        --bg-opacity: 0.7;
+        --card-bg: rgba(30, 30, 46, 0.85);
+        --card-border: var(--ctp-red);
+        --card-hover-shadow: var(--ctp-red);
+        --text-glow: var(--ctp-red);
+      }
+
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: 'JetBrains Mono', monospace;
+        background-color: var(--ctp-base);
+        background: var(--ctp-crust);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: var(--ctp-text);
+        line-height: 1.6;
+        padding-bottom: 100px;
+      }
+
+      .navbar {
+        background-color: var(--ctp-mantle);
+        border-bottom: 1px solid var(--accent);
+        padding: 0.5rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        animation: slideDown 0.5s ease;
+      }
+      
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        padding: 0 2rem;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      
+      .nav-links a {
+        color: var(--ctp-text);
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .nav-links a:hover {
+        color: var(--accent);
+        text-shadow: 0 0 8px var(--text-glow);
+      }
+      
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: var(--accent);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        opacity: 0;
+      }
+      
+      .nav-links a:hover::after {
+        width: 100%;
+        opacity: 1;
+      }
+
+      .error-container {
+        max-width: 800px;
+        margin: 8rem auto 2rem;
+        padding: 2rem;
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .error-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--card-hover-shadow);
+      }
+
+      .error-title {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(45deg, var(--ctp-red), var(--ctp-pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient 3s ease infinite;
+      }
+
+      .error-subtitle {
+        color: var(--ctp-subtext0);
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .meme-container {
+        margin: 2rem 0;
+      }
+
+      .meme-title {
+        color: var(--accent);
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 8px var(--text-glow);
+      }
+
+      .meme-subtitle {
+        color: var(--ctp-subtext0);
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .meme-image {
+        max-width: 100%;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 12px;
+        border: 1px solid var(--accent);
+        box-shadow: 0 0 15px var(--card-hover-shadow);
+        transition: all 0.3s ease;
+      }
+
+      .meme-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 25px var(--card-hover-shadow);
+      }
+
+      .meme-youtube {
+        width: 100%;
+        max-width: 560px;
+        border-radius: 12px;
+        border: 1px solid var(--accent);
+        box-shadow: 0 0 15px var(--card-hover-shadow);
+        transition: all 0.3s ease;
+      }
+
+      .meme-youtube:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 25px var(--card-hover-shadow);
+      }
+
+      .button {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 0.8rem 1.5rem;
+        background-color: transparent;
+        border: 1px solid var(--accent);
+        border-radius: 20px;
+        color: var(--ctp-text);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: bold;
+      }
+
+      .button:hover {
+        background-color: var(--accent);
+        color: var(--ctp-base);
+        transform: scale(1.05);
+        box-shadow: 0 0 15px var(--card-hover-shadow);
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .error-container {
+          margin: 6rem 1rem 2rem;
+        }
+        
+        .meme-youtube {
+          height: 250px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="error-container">
-      <div class="page-content">
-        <h1>You have died!</h1>
-        <h2>User was slain by ERROR [level 404]</h2>
-        it seems you followed a path that lead to nothing. Either the file is
-        missing or typoed.<br />
-        If you are able to, contact Skye about the issue so it can fix it.
-        <nav class="button">
-          <a href="/">Take me to safety</a>
-        </nav>
+    <div class="navbar">
+      <div class="nav-container">
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/links">Links</a>
+          <a href="/blog">Blog</a>
+          <a href="/downloads-pages/">Downloads</a>
+        </div>
       </div>
     </div>
-    <section class="clockcontainer">
-      <div id="clock">
-        <script src="/js/clock.js"></script>
+
+    <div class="error-container">
+      <h1 class="error-title">404</h1>
+      <h2 class="error-subtitle">Page Not Found</h2>
+      
+      <div class="meme-container">
+        <h3 id="meme-title" class="meme-title"></h3>
+        <p id="meme-subtitle" class="meme-subtitle"></p>
+        <div id="meme-content"></div>
       </div>
-    </section>
+
+      <a href="/" class="button">Take me to safety</a>
+    </div>
+
+    <script src="/js/404.js"></script>
   </body>
 </html>

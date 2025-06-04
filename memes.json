@@ -1,0 +1,40 @@
+{
+  "memes": [
+    {
+      "type": "youtube",
+      "title": "Well, It looks like you broke something, Thats not supposed to happen.",
+      "subtitle": "You know what else is not supposed to happen? This dog driving a car.",
+      "content": "https://www.youtube.com/embed/GgSdfHLYfps"
+    },
+    {
+      "type": "youtube",
+      "title": "What? What happened to my website?",
+      "subtitle": "Oh, Koraidon ate it. Sorry... Look at him, he's such a hungry boy.",
+      "content": "https://www.youtube.com/embed/AzrNMYQjcl8"
+    },
+    {
+      "type": "image",
+      "title": "I don't know what you're looking for, but I can tell you this: It's not here.",
+      "subtitle": "Would you like to know what is here? This cat.",
+      "content": "https://RDG.monarchuploader.de/content/cdn/RRNdeaNjGsOS/thiscat.wbp.webp"
+    },
+    {
+      "type": "image",
+      "title": "You managed to find a way to a page that doesnt exist.",
+      "subtitle": " Welcome to the void.",
+      "content": "https://RDG.monarchuploader.de/content/cdn/igiSNbJmBsHM/aKSnzxjqKj4zqkDysbBU.gif"
+    },
+    {
+      "type": "image",
+      "title": "They say that if you find the 404 page,",
+      "subtitle": "one might find a cat, But Some find...",
+      "content": "https://media.discordapp.net/stickers/1327311976405139537.webp?size=4096&quality=lossless"
+    },
+    {
+      "type": "video",
+      "title": "Wait, Let me try to figure out what went wrong.",
+      "subtitle": "uhhh... uhmm... I don't know what went wrong.",
+      "content": "https://media1.tenor.com/m/0i0ZxbRgVyAAAAAC/meonly.gif"
+    }
+  ]
+} 
