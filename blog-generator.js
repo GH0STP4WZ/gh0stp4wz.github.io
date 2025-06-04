@@ -36,50 +36,26 @@ function getAllPosts() {
     const filePath = path.join(config.postsDirectory, file);
     const content = fs.readFileSync(filePath, 'utf8');
     
-    // Extract frontmatter
-    const frontmatterRegex = /^---\n([\s\S]*?)\n---\n/;
-    const match = content.match(frontmatterRegex);
+    // Get lines
+    const lines = content.split('\n');
     
-    let frontmatter = {};
-    let markdownContent = content;
+    // Get title from line 2 (after "title:")
+    const title = lines[1].split('title:')[1].trim();
     
-    if (match) {
-      const frontmatterText = match[1];
-      frontmatterText.split('\n').forEach(line => {
-        const [key, ...value] = line.split(':');
-        if (key && value) {
-          frontmatter[key.trim()] = value.join(':').trim();
-        }
-      });
-      
-      markdownContent = content.replace(match[0], '');
-    }
+    // Get date from line 3 (after "date:")
+    const date = lines[2].split('date:')[1].trim();
     
-    // Default values if not provided
-    if (!frontmatter.title) {
-      frontmatter.title = path.basename(file, '.md');
-    }
+    // Get theme color from line 4 (after "themeColor:")
+    const themeColor = lines[3].split('themeColor:')[1].trim() || config.themeColor;
     
-    if (!frontmatter.date) {
-      frontmatter.date = new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      }).toUpperCase();
-    }
-    
-    if (!frontmatter.slug) {
-      frontmatter.slug = path.basename(file, '.md')
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-');
-    }
+    // Remove frontmatter for content
+    const markdownContent = content.split('---')[2].trim();
     
     return {
-      slug: frontmatter.slug,
-      title: frontmatter.title,
-      date: frontmatter.date,
+      title,
+      date,
       content: marked.parse(markdownContent),
-      themeColor: frontmatter.themeColor || config.themeColor
+      themeColor
     };
   }).sort((a, b) => {
     // Sort by date (newest first)
@@ -121,8 +97,14 @@ function generateIndex(posts) {
   
   // Generate the list of blog posts
   const postsHTML = posts.map((post, index) => {
-    return `<a class="blog-post" href="/blog/blog-posts/blog-post-${index + 1}.html">${post.title}</a><br />`;
-  }).join('\n        ');
+    return `
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-${index + 1}.html">
+            <h3 class="post-title">${post.title}</h3>
+            <p class="post-date">${post.date}</p>
+          </a>
+        </div>`;
+  }).join('\n');
   
   // Replace placeholders in the template
   html = html.replace(/{{posts}}/g, postsHTML);

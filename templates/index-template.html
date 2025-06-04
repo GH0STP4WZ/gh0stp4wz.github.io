@@ -178,26 +178,74 @@
     }
     
     /* Blog Posts */
+    #blog-posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .blog-post-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .blog-post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--card-hover-shadow);
+      border-color: var(--accent);
+    }
     
     .blog-post {
-      /* background-color: var(--card-bg); */
-      /* border: 1px solid var(--card-border); */
-      /* border-radius: 12px; */
-      /* padding: 1px; */
-      transition: all 0.3s ease;
-      /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+      display: block;
+      padding: 1.5rem;
       color: var(--ctp-text);
+      text-decoration: none;
+      height: 100%;
     }
     
     .blog-post:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--card-hover-shadow);
+      text-decoration: none;
     }
-
     
-    .blog-post-link:hover {
-      text-shadow: 0 0 5px var(--text-glow);
-      transform: translateX(5px);
+    .post-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      transition: all 0.3s ease;
+    }
+    
+    .blog-post-card:hover .post-title {
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    .post-date {
+      color: var(--ctp-subtext0);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .blog-post-card {
+      animation: fadeIn 0.5s ease forwards;
+      animation-delay: calc(var(--animation-order) * 0.1s);
+      opacity: 0;
     }
     
     /* Footer */
@@ -254,7 +302,6 @@
           <h2>Welcome to my blog! These are my posts, sorted from newest to oldest:</h2>
         </div>
         <section id="blog-posts">
-          <!-- Blog posts will be inserted here -->
           {{posts}}
         </section>
       </div>
@@ -266,5 +313,12 @@
     <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
     <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
   </div>
+
+  <script>
+    // Add animation order to blog post cards
+    document.querySelectorAll('.blog-post-card').forEach((card, index) => {
+      card.style.setProperty('--animation-order', index);
+    });
+  </script>
 </body>
 </html>

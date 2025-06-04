@@ -178,26 +178,74 @@
     }
     
     /* Blog Posts */
+    #blog-posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .blog-post-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .blog-post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--card-hover-shadow);
+      border-color: var(--accent);
+    }
     
     .blog-post {
-      /* background-color: var(--card-bg); */
-      /* border: 1px solid var(--card-border); */
-      /* border-radius: 12px; */
-      /* padding: 1px; */
-      transition: all 0.3s ease;
-      /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+      display: block;
+      padding: 1.5rem;
       color: var(--ctp-text);
+      text-decoration: none;
+      height: 100%;
     }
     
     .blog-post:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--card-hover-shadow);
+      text-decoration: none;
     }
-
     
-    .blog-post-link:hover {
-      text-shadow: 0 0 5px var(--text-glow);
-      transform: translateX(5px);
+    .post-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      transition: all 0.3s ease;
+    }
+    
+    .blog-post-card:hover .post-title {
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+    
+    .post-date {
+      color: var(--ctp-subtext0);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .blog-post-card {
+      animation: fadeIn 0.5s ease forwards;
+      animation-delay: calc(var(--animation-order) * 0.1s);
+      opacity: 0;
     }
     
     /* Footer */
@@ -254,16 +302,69 @@
           <h2>Welcome to my blog! These are my posts, sorted from newest to oldest:</h2>
         </div>
         <section id="blog-posts">
-          <!-- Blog posts will be inserted here -->
-          <a class="blog-post" href="/blog/blog-posts/blog-post-1.html">My opinion on AI code</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-2.html">My New Blog System</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-3.html">Testing...1...2...3...</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-4.html">Changes</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-5.html">I am Sorry</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-6.html">What the Fuck is happening!?</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-7.html">🎂It Muh Cake Day🎂</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-8.html">Dealing with Stuff.</a><br />
-        <a class="blog-post" href="/blog/blog-posts/blog-post-9.html">First Blogpost!</a><br />
+          
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-1.html">
+            <h3 class="post-title">My opinion on AI code</h3>
+            <p class="post-date">March 17, 2025</p>
+          </a>
+        </div>
+
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-2.html">
+            <h3 class="post-title">My New Blog System</h3>
+            <p class="post-date">March 11, 2025</p>
+          </a>
+        </div>
+
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-3.html">
+            <h3 class="post-title">Testing...1...2...3...</h3>
+            <p class="post-date">March 11, 2025</p>
+          </a>
+        </div>
+
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-4.html">
+            <h3 class="post-title">Changes</h3>
+            <p class="post-date">OCTOBER 23, 2024</p>
+          </a>
+        </div>
+
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-5.html">
+            <h3 class="post-title">I am Sorry</h3>
+            <p class="post-date">OCTOBER 14, 2024</p>
+          </a>
+        </div>
+
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-6.html">
+            <h3 class="post-title">What the Fuck is happening!?</h3>
+            <p class="post-date">JULY 24, 2024</p>
+          </a>
+        </div>
+
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-7.html">
+            <h3 class="post-title">🎂It Muh Cake Day🎂</h3>
+            <p class="post-date">June 20, 2024</p>
+          </a>
+        </div>
+
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-8.html">
+            <h3 class="post-title">Dealing with Stuff.</h3>
+            <p class="post-date">April 17, 2024</p>
+          </a>
+        </div>
+
+        <div class="blog-post-card">
+          <a class="blog-post" href="/blog/blog-posts/blog-post-9.html">
+            <h3 class="post-title">First Blogpost!</h3>
+            <p class="post-date">December 12, 2023</p>
+          </a>
+        </div>
         </section>
       </div>
     </div>
@@ -274,5 +375,12 @@
     <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
     <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
   </div>
+
+  <script>
+    // Add animation order to blog post cards
+    document.querySelectorAll('.blog-post-card').forEach((card, index) => {
+      card.style.setProperty('--animation-order', index);
+    });
+  </script>
 </body>
 </html>
