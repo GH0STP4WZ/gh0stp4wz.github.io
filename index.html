@@ -232,6 +232,7 @@
       border-top: 1px solid var(--ctp-surface1);
       padding-top: 0.8rem;
       margin-top: 0.3rem;
+      width: 100%;
     }
 
     .activity-header {
@@ -272,10 +273,49 @@
       font-weight: bold;
     }
 
+    .activity-img.rotating,
+    .placeholder-img.rotating {
+      border-radius: 50%;
+    }
+
+    .placeholder-img.rotating {
+      background: var(--ctp-surface1) url('assets/cd.png') no-repeat center center;
+      background-size: cover;
+      color: transparent;
+    }
+
     .activity-details {
       flex: 1;
       min-width: 0;
       overflow: hidden;
+    }
+
+    .text-truncate {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      cursor: default;
+    }
+
+    .text-truncate[title] {
+      cursor: help;
+    }
+
+    .text-truncate:hover::before {
+      content: attr(title);
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background: var(--ctp-mantle);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--accent);
+      z-index: 1000;
+      white-space: normal;
+      word-break: break-word;
+      max-width: 300px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     .spotify {
@@ -607,6 +647,38 @@
   </div>
 
   <script>
+    let previousActivities = {};
+    let rotationAngles = {};
+    let lastFrameTime = 0;
+    const ROTATION_SPEED = 30; // degrees per second
+
+    function updateRotations(currentTime) {
+      if (!lastFrameTime) lastFrameTime = currentTime;
+      const deltaTime = (currentTime - lastFrameTime) / 1000; // Convert to seconds
+      lastFrameTime = currentTime;
+
+      document.querySelectorAll('.rotating').forEach(element => {
+        const activityId = element.closest('[data-activity-id]').getAttribute('data-activity-id');
+        if (!rotationAngles[activityId]) {
+          rotationAngles[activityId] = 0;
+        }
+        
+        rotationAngles[activityId] = (rotationAngles[activityId] + ROTATION_SPEED * deltaTime) % 360;
+        element.style.transform = `rotate(${rotationAngles[activityId]}deg)`;
+      });
+
+      requestAnimationFrame(updateRotations);
+    }
+
+    function activityChanged(oldActivity, newActivity) {
+      if (!oldActivity || !newActivity) return true;
+      return JSON.stringify(oldActivity) !== JSON.stringify(newActivity);
+    }
+
+    function createTruncatedElement(text, className) {
+      return `<div class="text-truncate ${className}" title="${text.replace(/"/g, '&quot;')}">${text}</div>`;
+    }
+
     function fetchDiscordStatus() {
       fetch('https://api.lanyard.rest/v1/users/801089753038061669')
         .then(response => response.json())
@@ -622,26 +694,19 @@
       const asset = activity.assets?.[assetKey];
       if (!asset) return null;
 
-      // Log the raw asset for debugging
-      console.log(`Raw asset for ${activity.name} (${assetKey}):`, asset);
-
-      // Handle mp:external URLs
       if (asset.startsWith('mp:external/')) {
         const externalUrl = asset.split('/').slice(2).join('/');
         return decodeURIComponent(externalUrl);
       }
 
-      // Handle direct URLs
       if (asset.startsWith('http://') || asset.startsWith('https://')) {
         return asset;
       }
 
-      // Handle Spotify assets
       if (asset.startsWith('spotify:')) {
         return `https://i.scdn.co/image/${asset.substring(8)}`;
       }
 
-      // Default to Discord CDN for application assets
       if (activity.application_id) {
         return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${asset}`;
       }
@@ -651,15 +716,6 @@
 
     function updateDiscordStatus(data) {
       const statusElement = document.getElementById('discord-status-container');
-      
-      // Debug log all activities
-      console.log('Activities data:', data.activities.map(a => ({
-        name: a.name,
-        type: a.type,
-        assets: a.assets,
-        application_id: a.application_id
-      })));
-
       let statusHTML = '';
       
       // Status indicator
@@ -695,9 +751,9 @@
         if (customStatus.emoji) {
           if (customStatus.emoji.id) {
             const animated = customStatus.emoji.animated ? 'a' : '';
-            emojiHTML = `<img style="height: 1em; vertical-align: middle; margin-right: 4px;" src="https://cdn.discordapp.com/emojis/${customStatus.emoji.id}.${animated ? 'gif' : 'png'}" alt="${customStatus.emoji.name}" />`;
+            emojiHTML = `<img style="height: 1em; vertical-align: middle; margin-right: 4px;" src="https://cdn.discordapp.com/emojis/${customStatus.emoji.id}.${animated ? 'gif' : 'png'}" alt="${customStatus.emoji.name}" title=":${customStatus.emoji.name}:" />`;
           } else {
-            emojiHTML = `${customStatus.emoji.name} `;
+            emojiHTML = `<span title=":${customStatus.emoji.name}:">${customStatus.emoji.name} </span>`;
           }
         }
         statusHTML += `<div class="status-message">${emojiHTML}${customStatus.state}</div>`;
@@ -707,6 +763,15 @@
       const activities = data.activities.filter(activity => activity.type !== 4);
       if (activities.length > 0) {
         activities.forEach(activity => {
+          const activityId = `${activity.type}-${activity.name}`;
+          if (!activityChanged(previousActivities[activityId], activity)) {
+            const existingActivity = document.querySelector(`[data-activity-id="${activityId}"]`);
+            if (existingActivity) {
+              statusHTML += existingActivity.outerHTML;
+              return;
+            }
+          }
+
           let activityHTML = '';
           
           switch(activity.type) {
@@ -714,40 +779,40 @@
               const gameImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
               
               activityHTML = `
-                <div class="activity game">
+                <div class="activity game" data-activity-id="${activityId}">
                   <div class="activity-header">
                     <i class="fas fa-gamepad"></i> Playing ${activity.name}
                   </div>
                   <div class="activity-content">
                     ${gameImage ? 
-                      `<img src="${gameImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>??</div>';" />` : 
-                      `<div class="placeholder-img">??</div>`}
+                      `<img src="${gameImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>?</div>';" />` : 
+                      `<div class="placeholder-img">?</div>`}
                     <div class="activity-details">
-                      ${activity.details ? `<div class="game-details">${activity.details}</div>` : ''}
-                      ${activity.state ? `<div class="game-state">${activity.state}</div>` : ''}
+                      ${activity.details ? createTruncatedElement(activity.details, 'game-details') : ''}
+                      ${activity.state ? createTruncatedElement(activity.state, 'game-state') : ''}
                     </div>
                   </div>
                 </div>
               `;
               break;
               
-            case 2: // Listening (including LastFM)
+            case 2: // Listening
               const musicImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
-              console.log('Music activity image URL:', musicImage);
+              const currentRotation = rotationAngles[activityId] || 0;
               
               activityHTML = `
-                <div class="activity spotify">
+                <div class="activity spotify" data-activity-id="${activityId}">
                   <div class="activity-header">
                     <i class="fas fa-music"></i> Listening to ${activity.name}
                   </div>
                   <div class="activity-content">
                     ${musicImage ? 
-                      `<img src="${musicImage}" class="activity-img" alt="Album cover" onerror="console.log('Failed to load image:', this.src); this.outerHTML='<div class=\\'placeholder-img\\'>??</div>';" />` : 
-                      `<div class="placeholder-img">??</div>`}
+                      `<img src="${musicImage}" class="activity-img rotating" style="transform: rotate(${currentRotation}deg)" alt="Album cover" onerror="this.outerHTML='<div class=\\'placeholder-img rotating\\' style=\\'transform: rotate(${currentRotation}deg)\\'></div>';" />` : 
+                      `<div class="placeholder-img rotating" style="transform: rotate(${currentRotation}deg)"></div>`}
                     <div class="activity-details">
-                      <div class="song-title">${activity.details || 'Unknown song'}</div>
-                      <div class="song-artist">${activity.state || 'Unknown artist'}</div>
-                      ${activity.assets?.large_text ? `<div class="song-album">${activity.assets.large_text}</div>` : ''}
+                      ${createTruncatedElement(activity.details || 'Unknown song', 'song-title')}
+                      ${createTruncatedElement(activity.state || 'Unknown artist', 'song-artist')}
+                      ${activity.assets?.large_text ? createTruncatedElement(activity.assets.large_text, 'song-album') : ''}
                     </div>
                   </div>
                 </div>
@@ -758,17 +823,17 @@
               const watchImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
               
               activityHTML = `
-                <div class="activity watching">
+                <div class="activity watching" data-activity-id="${activityId}">
                   <div class="activity-header">
                     <i class="fas fa-tv"></i> Watching ${activity.name}
                   </div>
                   <div class="activity-content">
                     ${watchImage ? 
-                      `<img src="${watchImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>??</div>';" />` : 
-                      `<div class="placeholder-img">??</div>`}
+                      `<img src="${watchImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>?</div>';" />` : 
+                      `<div class="placeholder-img">?</div>`}
                     <div class="activity-details">
-                      ${activity.details ? `<div class="media-details">${activity.details}</div>` : ''}
-                      ${activity.state ? `<div class="media-state">${activity.state}</div>` : ''}
+                      ${activity.details ? createTruncatedElement(activity.details, 'media-details') : ''}
+                      ${activity.state ? createTruncatedElement(activity.state, 'media-state') : ''}
                     </div>
                   </div>
                 </div>
@@ -787,17 +852,17 @@
               }
               
               activityHTML = `
-                <div class="activity rich-presence">
+                <div class="activity rich-presence" data-activity-id="${activityId}">
                   <div class="activity-header">
                     <i class="${activityIcon}"></i> ${activityType} ${activity.name}
                   </div>
                   <div class="activity-content">
                     ${activityImage ? 
-                      `<img src="${activityImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>??</div>';" />` : 
-                      `<div class="placeholder-img">??</div>`}
+                      `<img src="${activityImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>?</div>';" />` : 
+                      `<div class="placeholder-img">?</div>`}
                     <div class="activity-details">
-                      ${activity.details ? `<div class="app-details">${activity.details}</div>` : ''}
-                      ${activity.state ? `<div class="app-state">${activity.state}</div>` : ''}
+                      ${activity.details ? createTruncatedElement(activity.details, 'app-details') : ''}
+                      ${activity.state ? createTruncatedElement(activity.state, 'app-state') : ''}
                     </div>
                   </div>
                 </div>
@@ -805,6 +870,14 @@
           }
           
           statusHTML += activityHTML;
+          previousActivities[activityId] = activity;
+        });
+
+        // Clean up rotation angles for removed activities
+        Object.keys(rotationAngles).forEach(activityId => {
+          if (!activities.some(activity => `${activity.type}-${activity.name}` === activityId)) {
+            delete rotationAngles[activityId];
+          }
         });
       } else if (data.discord_status !== 'offline') {
         statusHTML += '<div class="activity-none">Not doing anything</div>';
@@ -813,9 +886,10 @@
       statusElement.innerHTML = statusHTML || 'Offline';
     }
 
-    // Initial fetch and setup interval
+    // Initial fetch and setup
     fetchDiscordStatus();
     setInterval(fetchDiscordStatus, 5000);
+    requestAnimationFrame(updateRotations);
   </script>
 </body>
 </html>
