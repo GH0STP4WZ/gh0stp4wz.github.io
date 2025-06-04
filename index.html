@@ -131,6 +131,9 @@
       display: grid;
       gap: 2rem;
       grid-template-columns: 1fr 3fr;
+      grid-template-areas: 
+        "profile about"
+        "friends friends";
       animation: fadeIn 0.5s ease;
     }
     
@@ -154,8 +157,9 @@
       flex-direction: column;
       align-items: center;
       text-align: left;
-      grid-row: span 2;
       width: 400px;
+      grid-area: profile;
+      height: fit-content;
     }
     
     .profile-picture {
@@ -192,6 +196,10 @@
       font-style: italic;
     }
 
+    .discord-status {
+      width: 100%;
+    }
+
     .discord-status-card {
       background-color: var(--ctp-surface0);
       border-radius: 8px;
@@ -203,29 +211,32 @@
       max-width: 350px;
     }
 
-    .discord-status-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 10px var(--card-hover-shadow);
-    }
-
     .status-content {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
 
-    .status-line {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: bold;
-      text-transform: capitalize;
+    .activities-container {
+      max-height: 150px;
+      overflow-y: auto;
+      margin-top: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--ctp-surface0);
     }
 
-    .status-message {
-      font-style: italic;
-      color: var(--ctp-subtext0);
-      margin-bottom: 0.5rem;
+    .activities-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .activities-container::-webkit-scrollbar-track {
+      background: var(--ctp-surface0);
+      border-radius: 4px;
+    }
+
+    .activities-container::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
     }
 
     .activity {
@@ -233,6 +244,11 @@
       padding-top: 0.8rem;
       margin-top: 0.3rem;
       width: 100%;
+    }
+
+    .activity:first-child {
+      border-top: none;
+      margin-top: 0;
     }
 
     .activity-header {
@@ -377,7 +393,7 @@
     }
     
     .about-section {
-      grid-column: 2;
+      grid-area: about;
     }
     
     .section-title {
@@ -410,7 +426,7 @@
     }
     
     .friends-section {
-      grid-column: 2;
+      grid-area: friends;
     }
     
     .friends-grid {
@@ -523,6 +539,10 @@
     @media (max-width: 768px) {
       .container {
         grid-template-columns: 1fr;
+        grid-template-areas: 
+          "profile"
+          "about"
+          "friends";
       }
       
       .profile-section {
@@ -540,6 +560,10 @@
       .friend-icon {
         width: 50px;
         height: 50px;
+      }
+
+      .status-content {
+        max-height: 200px;
       }
     }
   </style>
@@ -761,24 +785,24 @@
       
       // Activities
       const activities = data.activities.filter(activity => activity.type !== 4);
+      let activitiesHTML = '';
+      
       if (activities.length > 0) {
         activities.forEach(activity => {
           const activityId = `${activity.type}-${activity.name}`;
           if (!activityChanged(previousActivities[activityId], activity)) {
             const existingActivity = document.querySelector(`[data-activity-id="${activityId}"]`);
             if (existingActivity) {
-              statusHTML += existingActivity.outerHTML;
+              activitiesHTML += existingActivity.outerHTML;
               return;
             }
           }
 
-          let activityHTML = '';
-          
           switch(activity.type) {
             case 0: // Playing a game
               const gameImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
               
-              activityHTML = `
+              activitiesHTML += `
                 <div class="activity game" data-activity-id="${activityId}">
                   <div class="activity-header">
                     <i class="fas fa-gamepad"></i> Playing ${activity.name}
@@ -800,7 +824,7 @@
               const musicImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
               const currentRotation = rotationAngles[activityId] || 0;
               
-              activityHTML = `
+              activitiesHTML += `
                 <div class="activity spotify" data-activity-id="${activityId}">
                   <div class="activity-header">
                     <i class="fas fa-music"></i> Listening to ${activity.name}
@@ -822,7 +846,7 @@
             case 3: // Watching
               const watchImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
               
-              activityHTML = `
+              activitiesHTML += `
                 <div class="activity watching" data-activity-id="${activityId}">
                   <div class="activity-header">
                     <i class="fas fa-tv"></i> Watching ${activity.name}
@@ -851,7 +875,7 @@
                 activityType = 'Streaming';
               }
               
-              activityHTML = `
+              activitiesHTML += `
                 <div class="activity rich-presence" data-activity-id="${activityId}">
                   <div class="activity-header">
                     <i class="${activityIcon}"></i> ${activityType} ${activity.name}
@@ -869,7 +893,6 @@
               `;
           }
           
-          statusHTML += activityHTML;
           previousActivities[activityId] = activity;
         });
 
@@ -879,6 +902,8 @@
             delete rotationAngles[activityId];
           }
         });
+
+        statusHTML += `<div class="activities-container">${activitiesHTML}</div>`;
       } else if (data.discord_status !== 'offline') {
         statusHTML += '<div class="activity-none">Not doing anything</div>';
       }
