@@ -14,8 +14,14 @@ export function renderRooms(rooms) {
     const roomsHTML = rooms.map(room => {
         const players = Object.values(room.players);
         const hostPlayer = players.find(p => room.host === Object.keys(room.players).find(key => room.players[key] === p));
-        const gamemodeId = room.rk ? room.rk.split('_')[1] : '';
-        const gamemodeName = GAMEMODE_MAP[gamemodeId] || `Unknown (${gamemodeId})`;
+        
+        // Handle gamemode display for both VS rooms and friend rooms
+        let gamemodeId = '';
+        let gamemodeName = 'Friend Room';
+        if (room.rk) {
+            gamemodeId = room.rk.split('_')[1];
+            gamemodeName = GAMEMODE_MAP[gamemodeId] || `Unknown (${gamemodeId})`;
+        }
         
         const playersHTML = players.map(player => {
             const isHost = player === hostPlayer;
@@ -107,30 +113,53 @@ export function renderRooms(rooms) {
             `;
         }).join('');
 
+        const roomInfo = `
+            <div class="room-info">
+                <div class="info-item">
+                    <span class="info-label">Players</span>
+                    <span class="info-value">${players.length}/12</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Type</span>
+                    <span class="info-value">${room.type === 'anybody' ? 'Public' : 'Private'}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Created</span>
+                    <span class="info-value">${formatTimeAgo(room.created)}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Status</span>
+                    <span class="info-value">${room.suspend ? 'Suspended' : 'Active'}</span>
+                </div>
+                ${room.race ? `
+                    <div class="info-item">
+                        <span class="info-label">Race</span>
+                        <span class="info-value">#${room.race.num}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Course</span>
+                        <span class="info-value">${room.race.course}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">CC</span>
+                        <span class="info-value">${room.race.cc === 1 ? '50cc' : room.race.cc === 2 ? '100cc' : room.race.cc === 3 ? '150cc' : 'Mirror'}</span>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+
         return `
-            <div class="room-card">
+            <div class="room-card ${!room.rk ? 'friend-room' : ''}">
                 <div class="room-header">
                     <div class="room-id">Room ${room.id}</div>
-                    <div class="room-gamemode" onclick="filterByGamemode('${gamemodeId}')" style="cursor: pointer;" title="Click to filter by this gamemode">${gamemodeName}</div>
-                </div>
-                <div class="room-info">
-                    <div class="info-item">
-                        <span class="info-label">Players</span>
-                        <span class="info-value">${players.length}/12</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Type</span>
-                        <span class="info-value">${room.type === 'anybody' ? 'Public' : 'Private'}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Created</span>
-                        <span class="info-value">${formatTimeAgo(room.created)}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Status</span>
-                        <span class="info-value">${room.suspend ? 'Suspended' : 'Active'}</span>
+                    <div class="room-gamemode ${!room.rk ? 'friend-room-badge' : ''}" 
+                         onclick="filterByGamemode('${!room.rk ? 'friend' : gamemodeId}')" 
+                         style="cursor: pointer;" 
+                         title="Click to filter by ${!room.rk ? 'friend rooms' : 'this gamemode'}">
+                        ${!room.rk ? '👥 ' : ''}${gamemodeName}
                     </div>
                 </div>
+                ${roomInfo}
                 <div class="players-section">
                     <div class="players-header">👥 Players (${players.length})</div>
                     <div class="players-grid">

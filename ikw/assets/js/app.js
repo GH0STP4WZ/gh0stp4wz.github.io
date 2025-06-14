@@ -44,6 +44,14 @@ async function fetchRooms() {
                 
                 // Filter for VS rooms only
                 const vsRooms = data.filter(room => {
+                    const showFriendRooms = document.getElementById('friendRoomsToggle')?.checked || false;
+                    
+                    // If it's a friend room, only include if toggle is enabled
+                    if (!room.rk && room.game === 'mariokartwii') {
+                        return showFriendRooms;
+                    }
+                    
+                    // For VS rooms, include if they have a valid room key
                     return room.rk && room.rk.startsWith('vs_') && 
                            room.game === 'mariokartwii' &&
                            GAMEMODE_MAP[room.rk.split('_')[1]];

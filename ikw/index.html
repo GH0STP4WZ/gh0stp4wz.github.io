@@ -41,11 +41,29 @@
         </div>
 
         <div class="filter-controls">
-            <label for="gamemode-filter" class="filter-label">Filter by Gamemode:</label>
-            <select id="gamemode-filter" class="filter-select" onchange="filterRooms()">
-                <option value="all">All Gamemodes</option>
-                <!-- Options will be populated dynamically -->
-            </select>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="gamemode-filter" class="filter-label">Filter by Gamemode:</label>
+                    <select id="gamemode-filter" class="filter-select" onchange="filterRooms()">
+                        <option value="all">All Gamemodes</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="friend-rooms-toggle">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="friendRoomsToggle" onchange="toggleFriendRooms()" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-label">Show Friend Rooms</span>
+                </div>
+            </div>
+            <div id="friendRoomsDisclaimer" class="friend-rooms-disclaimer">
+                <span class="disclaimer-icon">ℹ️</span>
+                <span class="disclaimer-text">
+                    Due to API restrictions, we cannot determine whether a friend room belongs to IKW. 
+                    When enabled, this will display all friend rooms from RWFC.
+                </span>
+            </div>
         </div>
 
         <div class="rooms-wrapper">
