@@ -1,0 +1,395 @@
+/* Filter Controls */
+.filter-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Toggle Switch */
+.friend-rooms-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-quaternary);
+    transition: .4s;
+    border-radius: 24px;
+    border: 1px solid var(--border-light);
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 2px;
+    background-color: var(--text-primary);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--primary);
+    border-color: var(--primary-light);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+    background-color: white;
+}
+
+.toggle-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+/* Friend Rooms Disclaimer */
+.friend-rooms-disclaimer {
+    background: var(--bg-quaternary);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 600px;
+    margin-top: 0.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.disclaimer-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.disclaimer-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Update existing filter styles */
+.filter-label {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.filter-select {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    min-width: 200px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d351b0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+.filter-select:hover {
+    border-color: var(--primary-light);
+}
+
+/* Room Cards */
+.rooms-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.room-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.room-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.room-card:hover {
+    border-color: var(--border-glow);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.room-card:hover::before {
+    opacity: 1;
+}
+
+.room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.room-id {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--bg-quaternary);
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    font-family: 'CTMKF', system-ui;
+}
+
+.room-gamemode {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-sm);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.room-gamemode:not(.friend-room-badge):hover {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    transform: scale(1.05);
+}
+
+.room-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-quaternary);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+}
+
+.info-item:hover {
+    background: var(--bg-secondary);
+    border-color: var(--border-glow);
+}
+
+.info-label {
+    color: var(--text-tertiary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.info-value {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Status */
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background: var(--bg-tertiary);
+    border-radius: 16px;
+    max-width: 600px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--error);
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.status.connected .status-indicator {
+    background: var(--success);
+}
+
+.status.error .status-indicator {
+    background: var(--error);
+    animation: flash 1s ease-in-out infinite;
+}
+
+.status-text {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.last-update {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Add a wrapper for the rooms container to maintain height */
+.rooms-wrapper {
+    min-height: 100vh;
+    position: relative;
+}
+
+.rooms-container {
+    opacity: 1;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.rooms-container.updating {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.no-rooms {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    padding: 4rem 2rem;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    border: 2px dashed var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-suggestion {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    padding: 3rem 2rem;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    border: 2px dashed var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-suggestion .suggestion-text {
+    margin-bottom: 1rem;
+}
+
+.filter-suggestion .suggestion-link {
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.filter-suggestion .suggestion-link:hover {
+    color: var(--primary-light);
+}
+
+.room-card.friend-room {
+    border-color: var(--primary-light);
+    background: linear-gradient(to bottom right, var(--bg-tertiary), var(--bg-quaternary));
+}
+
+.room-card.friend-room::before {
+    background: linear-gradient(90deg, var(--primary-light), var(--primary));
+    opacity: 1;
+}
+
+.friend-room-badge {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.friend-room-badge:hover {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    transform: scale(1.05);
+} 

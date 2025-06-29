@@ -1,0 +1,56 @@
+* {
+    font-family: 'Rubik', 'CTMKF'!important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Enhanced Dark/Black with Hot Pink Accents */
+    --primary: #fb4b3c;
+    --primary-dark: #ae3429;
+    --primary-light: #ff583c;
+    --primary-glow: #ae342970;
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-tertiary: #1a1a1a;
+    --bg-quaternary: #252525;
+    --bg-glass: rgba(10, 10, 10, 0.8);
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-tertiary: #b0b0b0;
+    --text-muted: #808080;
+    --border: #333333;
+    --border-light: #444444;
+    --border-glow: var(--primary-glow);
+    --success: #00ff88;
+    --error: #ff4757;
+    --warning: #ffa726;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px var(--primary-glow);
+    --conn-good: #00ff88;
+    --conn-unstable: #ffa726;
+    --conn-dropped: #ff4757;
+    /* Add transition for opacity */
+    --transition-speed: 200ms;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding-top: 100px; /* Space for fixed header */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Import remaining styles */
+@import 'components/header.css';
+@import 'components/rooms.css';
+@import 'components/players.css';
+@import 'components/connection-map.css';
+@import 'components/footer.css';
+@import 'components/tooltip.css';
+@import 'components/responsive.css'; 

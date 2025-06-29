@@ -1,0 +1,196 @@
+/* Connection Map Button */
+.connection-map-btn {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background: var(--bg-quaternary);
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.connection-map-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+/* Connection Map Modal */
+.connection-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.connection-modal.active {
+    display: flex;
+}
+
+.connection-modal-content {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+}
+
+.connection-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.connection-modal-title {
+    color: var(--primary);
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.connection-modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.connection-modal-close:hover {
+    background: var(--bg-quaternary);
+    color: var(--text-primary);
+}
+
+.connection-map-container {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    background: var(--bg-quaternary);
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    padding: 1rem;
+}
+
+.connection-map {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 400px;
+    font-size: 0.9rem;
+}
+
+.connection-map th,
+.connection-map td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.connection-map th {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.connection-map tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.connection-map .player-row {
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.connection-map .player-id {
+    color: var(--primary);
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.connection-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.connection-dot.good {
+    background-color: var(--conn-good);
+    box-shadow: 0 0 8px var(--conn-good);
+}
+
+.connection-dot.unstable {
+    background-color: var(--conn-unstable);
+    box-shadow: 0 0 8px var(--conn-unstable);
+}
+
+.connection-dot.dropped {
+    background-color: var(--conn-dropped);
+    box-shadow: 0 0 8px var(--conn-dropped);
+}
+
+.connection-dot.self {
+    background-color: var(--text-muted);
+    position: relative;
+}
+
+.connection-dot.self::before {
+    content: '/';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.connection-legend {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+} 

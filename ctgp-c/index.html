@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTGP-C Room Browser</title>
+    <link rel="stylesheet" href="https://www.chadsoft.co.uk/css/ctmkf.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components/header.css">
+    <link rel="stylesheet" href="assets/css/components/rooms.css">
+    <link rel="stylesheet" href="assets/css/components/players.css">
+    <link rel="stylesheet" href="assets/css/components/connection-map.css">
+    <link rel="stylesheet" href="assets/css/components/footer.css">
+    <link rel="stylesheet" href="assets/css/components/tooltip.css">
+    <link rel="stylesheet" href="assets/css/components/responsive.css">
+</head>
+<body>
+    <!-- Add tooltip container to the body -->
+    <div id="tooltip" class="tooltip-container"></div>
+
+    <header class="header">
+        <div class="header-left">
+            <h1>CTGP-C Room Browser</h1>
+            <span class="header-subtitle">View all active Insane Kart Wii rooms</span>
+        </div>
+        <div class="header-right">
+            <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()">
+                Refetch Room Data
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="status" id="status">
+            <div class="status-indicator"></div>
+            <span class="status-text" id="statusText">Connecting...</span>
+            <span class="last-update" id="lastUpdate"></span>
+        </div>
+
+        <div class="filter-controls">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="gamemode-filter" class="filter-label">Filter by Gamemode:</label>
+                    <select id="gamemode-filter" class="filter-select" onchange="filterRooms()">
+                        <option value="all">All Gamemodes</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="friend-rooms-toggle">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="friendRoomsToggle" onchange="toggleFriendRooms()" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-label">Show Friend Rooms</span>
+                </div>
+            </div>
+            <div id="friendRoomsDisclaimer" class="friend-rooms-disclaimer">
+                <span class="disclaimer-icon">ℹ️</span>
+                <span class="disclaimer-text">
+                    Due to API restrictions, we cannot determine whether a friend room belongs to CTGP-C. 
+                    When enabled, this will display all friend rooms from RWFC.
+                </span>
+            </div>
+        </div>
+
+        <div class="rooms-wrapper">
+            <div class="rooms-container" id="roomsContainer">
+                <div class="no-rooms">Loading rooms...</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Connection Map Modal -->
+    <div class="connection-modal" id="connectionModal">
+        <div class="connection-modal-content">
+            <div class="connection-modal-header">
+                <div class="connection-modal-title">
+                    🔌 Connection Map
+                </div>
+                <button class="connection-modal-close" onclick="closeConnectionModal()">×</button>
+            </div>
+            <div id="connectionMapContent">
+                <!-- Connection map content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span class="footer-made-by">
+                    Made with 🖤 by <a href="https://riddim-glitch.is-a.dev" target="_blank" rel="noopener noreferrer">Riddim-GLiTCH</a>, 
+                    Designed by <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a>
+                </span>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="https://www.chadsoft.co.uk/css/ctmkf.css" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        🎨 CTMKF (Chadderz' Mario Kart Font)
+                    </a>
+                    <a href="https://fonts.google.com/specimen/Rubik" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        ⌨️ Rubik Font
+                    </a>
+                    <a href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        📝 JetBrains Mono
+                    </a>
+                    <a href="http://rwfc.net/api/groups" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        🔗 API Endpoint
+                    </a>
+                    <a href="https://github.com/Riddim-GLiTCH/riddim-glitch.github.io/blob/main/CTGP-C/index.html" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        📄 Page Source
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
