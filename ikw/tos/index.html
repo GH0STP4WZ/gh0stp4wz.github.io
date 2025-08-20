@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKWFC - Terms of Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Enhanced Dark/Black with Hot Pink Accents */
+            --primary: #d351b0;
+            --primary-dark: #b8439a;
+            --primary-light: #e578c4;
+            --primary-glow: rgba(211, 81, 176, 0.3);
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-quaternary: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-tertiary: #b0b0b0;
+            --text-muted: #808080;
+            --border: #333333;
+            --border-light: #444444;
+            --border-glow: rgba(211, 81, 176, 0.5);
+            --success: #00ff88;
+            --error: #ff4757;
+            --warning: #ffa726;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 20px var(--primary-glow);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            background: var(--bg-quaternary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-right: 0.5rem;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+        }
+
+        .intro-section {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .intro-section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .intro-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        em {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .penalty-info {
+            background: var(--bg-quaternary);
+            border: 1px solid var(--error);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--error);
+        }
+
+        .penalty-info strong {
+            color: var(--error);
+        }
+
+        .policy-info {
+            background: var(--bg-quaternary);
+            border: 1px solid var(--warning);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--warning);
+        }
+
+        .policy-info strong {
+            color: var(--warning);
+        }
+
+        .note-info {
+            background: var(--bg-quaternary);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .note-info strong {
+            color: var(--primary);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .footer em {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">Insane Kart Wi-Fi Connection</h1>
+            <div class="subtitle">Terms of Service</div>
+            <div class="meta-info">
+                <div class="meta-item">
+                    <span class="meta-label">Effective Date:</span>
+                    <span class="meta-value">August 20, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Last Updated:</span>
+                    <span class="meta-value">August 20, 2025</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="intro-section">
+            <p>Welcome to <strong>Insane Kart Wi-Fi Connection (IKWFC)</strong>, an alternative online service for <em>Mario Kart Wii</em>. By connecting to IKWFC servers, you agree to abide by the following Terms of Service (ToS). These terms exist to ensure a fair, safe, and enjoyable environment for all users.</p>
+
+            <p>This document outlines the rules, enforcement policies, and user expectations while using our service. By accessing or using IKWFC, you acknowledge that you have read, understood, and agreed to be bound by these terms.</p>
+        </div>
+
+        <div class="section">
+            <h2>1. General Conduct Guidelines</h2>
+            <p>All players are expected to follow good sportsmanship, show respect to others, and adhere to fair gameplay principles. Most rules align with those enforced on the Retro Wiimmfi Fan Club (RWFC), with additional policies outlined below.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Prohibited Activities</h2>
+            <p>The following actions are strictly prohibited on IKWFC and may result in disciplinary action, including temporary or permanent bans:</p>
+
+            <h3>2.1 Cheating and Game Manipulation</h3>
+            <ul>
+                <li>Mass item hacks (e.g., infinite shocks or stars)</li>
+                <li>Speed modifications (minor or major)</li>
+                <li>Manipulation of item probability</li>
+                <li>Any other unauthorized advantages</li>
+            </ul>
+            <div class="penalty-info">
+                <strong>Penalty:</strong> Immediate permanent ban without warning.
+            </div>
+
+            <h3>2.2 Server Manipulation</h3>
+            <ul>
+                <li>Starting other players' friend rooms without permission</li>
+                <li>Forcefully removing users from sessions without legitimate authority</li>
+            </ul>
+            <div class="penalty-info">
+                <strong>Penalties:</strong><br>
+                First offense: 30-day ban<br>
+                Subsequent offenses: Permanent ban<br>
+                Ban evasion attempts: Permanent ban applied to all associated profiles
+            </div>
+
+            <h3>2.3 Trolling and Disruptive Gameplay</h3>
+            <p>Malicious gameplay behavior such as targeted attacks, trolling, or intentionally ruining the experience for others is not tolerated.</p>
+            <div class="penalty-info">
+                <strong>Penalty:</strong> Repeat offenses may lead to a permanent ban.
+            </div>
+
+            <h3>2.4 Inappropriate Mii Names (Mild Language)</h3>
+            <div class="penalty-info">
+                <strong>Penalty:</strong> Temporary suspension ranging from 10 minutes to 30 minutes, at moderator discretion.
+            </div>
+
+            <h3>2.5 Offensive or Political Mii Names</h3>
+            <div class="penalty-info">
+                <strong>Penalties:</strong><br>
+                First offense: 7-day ban<br>
+                Second offense: 30-day ban<br>
+                Third offense: Permanent ban
+            </div>
+
+            <h3>2.6 Impersonation of Public Figures</h3>
+            <div class="penalty-info">
+                <strong>Penalty:</strong> Repeat offenses may result in a permanent ban.
+            </div>
+
+            <h3>2.7 Emulator Lag</h3>
+            <div class="policy-info">
+                <strong>Policy:</strong> Continued participation with unplayable lag may result in removal until resolved.
+            </div>
+
+            <h3>2.8 Track Mismatch (Wrong Track Errors)</h3>
+            <div class="penalty-info">
+                <strong>Penalties:</strong><br>
+                Accidental installation error: Up to 10-minute ban<br>
+                Intentional misuse: Permanent ban
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Enforcement and Moderator Discretion</h2>
+            <p>Moderators reserve the right to apply or escalate punishments at their discretion based on context, severity, intent, and history of infractions. All decisions are made to protect the integrity of the server and ensure a fair environment.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Appeals and Disputes</h2>
+            <p>If you believe a ban or disciplinary action was applied to your account unjustly, you may contact IKWFC staff through the appropriate appeal channels.</p>
+            <div class="note-info">
+                <strong>Note:</strong> If there is definitive proof of a violation, we reserve the right to deny appeals without further discussion.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Amendments to These Terms</h2>
+            <p>IKWFC reserves the right to update or modify these Terms of Service at any time. Users are encouraged to review this page periodically. Continued use of the service following changes constitutes acceptance of the revised terms.</p>
+        </div>
+
+        <div class="section">
+            <h2>6. Contact Information</h2>
+            <p>For questions, clarifications, or appeals, please contact IKWFC Staff through our Discord server. Join our community and reach out to staff members by following this link: <strong><a href="https://discord.gg/kSyHsQGUWf" target="_blank" style="color: var(--primary); text-decoration: none; border-bottom: 1px solid var(--primary);">discord.gg/kSyHsQGUWf</a></strong></p>
+        </div>
+
+        <div class="footer">
+            <em>Thank you for playing fairly and being part of the IKWFC community.<br>
+            Enjoy the race!</em>
+        </div>
+    </div>
+</body>
+</html>
