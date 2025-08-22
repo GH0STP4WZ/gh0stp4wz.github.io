@@ -1,6 +1,6 @@
 // API endpoint configuration
-export const API_ENDPOINT = 'http://rwfc.net/api/groups'; // RetroWFC main endpoint
-// export const API_ENDPOINT = 'http://mk.acidpaws.cam/api/groups'; // IKWFC Stage 1 server
+export const API_ENDPOINT = 'http://mk.acidpaws.cam/api/groups'; // IKWFC Stage 1 server
+// export const API_ENDPOINT = 'TBA'; // name tba Stage 2 server
 
 // Auto-refresh interval in milliseconds (20000 = 20 seconds)
 export const REFRESH_INTERVAL = 20000;
@@ -14,8 +14,6 @@ export const CORS_PROXIES = [
 
 // Gamemode mapping
 export const GAMEMODE_MAP = {
-    // "10": "Retros VS", // This is a debug region. I only use it for testing.
-    // "11": "Retros OTT", // Further testing Regions
     "69": "Regular VS",
     "70": "Ultras VS", 
     "71": "Crazy Items",
