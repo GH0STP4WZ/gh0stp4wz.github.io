@@ -189,7 +189,7 @@
             font-style: italic;
         }
 
-        ul {
+        ul, ol {
             margin: 1rem 0;
             padding-left: 1.5rem;
         }
@@ -254,6 +254,18 @@
             line-height: 1.6;
         }
 
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--primary);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--primary-light);
+            border-bottom-color: var(--primary-light);
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -294,20 +306,20 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Last Updated:</span>
-                    <span class="meta-value">August 20, 2025</span>
+                    <span class="meta-value">August 23, 2025</span>
                 </div>
             </div>
         </div>
 
         <div class="intro-section">
-            <p>Welcome to <strong>Insane Kart Wi-Fi Connection (IKWFC)</strong>, an alternative online service for <em>Mario Kart Wii</em>. By connecting to IKWFC servers, you agree to abide by the following Terms of Service (ToS). These terms exist to ensure a fair, safe, and enjoyable environment for all users.</p>
+            <p>Welcome to <strong>Insane Kart Wi-Fi Connection (IKWFC)</strong>, an alternative online service for <em>Mario Kart Wii</em>. By connecting to IKWFC servers or using services provided via our DNS, you automatically agree to these Terms of Service (ToS).</p>
 
-            <p>This document outlines the rules, enforcement policies, and user expectations while using our service. By accessing or using IKWFC, you acknowledge that you have read, understood, and agreed to be bound by these terms.</p>
+            <p>This agreement is between you and IKWFC and its developers. This document outlines the rules, enforcement policies, and user expectations while using our service. By accessing or using IKWFC, you acknowledge that you have read, understood, and agreed to be bound by these terms.</p>
         </div>
 
         <div class="section">
             <h2>1. General Conduct Guidelines</h2>
-            <p>All players are expected to follow good sportsmanship, show respect to others, and adhere to fair gameplay principles. Most rules align with those enforced on the Retro Wi-Fi Connection (RWFC), with additional policies outlined below.</p>
+            <p>All players are expected to follow good sportsmanship, show respect to others, and adhere to fair gameplay principles. Most rules align with those enforced on the Retro Wi-Fi Connection, with additional policies outlined below.</p>
         </div>
 
         <div class="section">
@@ -337,18 +349,30 @@
                 Ban evasion attempts: Permanent ban applied to all associated profiles
             </div>
 
-            <h3>2.3 Trolling and Disruptive Gameplay</h3>
+            <h3>2.3 Network Security and Service Disruption</h3>
+            <ul>
+                <li>Scanning, probing, and intentional and unintentional disruption of services through unrelated and/or external means</li>
+                <li>Any attempts to compromise server infrastructure or security</li>
+                <li>Use of unauthorized tools or scripts that interfere with normal service operations</li>
+            </ul>
+            <div class="penalty-info">
+                <strong>Penalties:</strong><br>
+                First offense: 30-day ban<br>
+                Subsequent offenses: Permanent ban
+            </div>
+
+            <h3>2.4 Trolling and Disruptive Gameplay</h3>
             <p>Malicious gameplay behavior such as targeted attacks, trolling, or intentionally ruining the experience for others is not tolerated.</p>
             <div class="penalty-info">
                 <strong>Penalty:</strong> Repeat offenses may lead to a permanent ban.
             </div>
 
-            <h3>2.4 Inappropriate Mii Names (Mild Language)</h3>
+            <h3>2.5 Inappropriate Mii Names (Mild Language)</h3>
             <div class="penalty-info">
                 <strong>Penalty:</strong> Temporary suspension ranging from 10 minutes to 30 minutes, at moderator discretion.
             </div>
 
-            <h3>2.5 Offensive or Political Mii Names</h3>
+            <h3>2.6 Offensive or Political Mii Names</h3>
             <div class="penalty-info">
                 <strong>Penalties:</strong><br>
                 First offense: 7-day ban<br>
@@ -356,17 +380,17 @@
                 Third offense: Permanent ban
             </div>
 
-            <h3>2.6 Impersonation of Public Figures</h3>
+            <h3>2.7 Impersonation of Public Figures</h3>
             <div class="penalty-info">
                 <strong>Penalty:</strong> Repeat offenses may result in a permanent ban.
             </div>
 
-            <h3>2.7 Emulator Lag</h3>
+            <h3>2.8 Emulator Lag</h3>
             <div class="policy-info">
                 <strong>Policy:</strong> Continued participation with unplayable lag may result in removal until resolved.
             </div>
 
-            <h3>2.8 Track Mismatch (Wrong Track Errors)</h3>
+            <h3>2.9 Track Mismatch (Wrong Track Errors)</h3>
             <div class="penalty-info">
                 <strong>Penalties:</strong><br>
                 Accidental installation error: Up to 10-minute ban<br>
@@ -375,12 +399,22 @@
         </div>
 
         <div class="section">
-            <h2>3. Enforcement and Moderator Discretion</h2>
+            <h2>3. Service Updates and Changes</h2>
+            <p>IKWFC may upgrade (patch) any software distributed through our service or change the Internet content of IKWFC, in part or in whole, at any time. However, any such upgrade or change will be for the benefit of users of IKWFC.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Intellectual Property</h2>
+            <p>All IKWFC servers are based on reverse engineering or packet analysis of legitimate Nintendo WiiConnect24 files. All patchers, content creators, and scripts are protected by applicable intellectual property laws.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. Enforcement and Moderator Discretion</h2>
             <p>Moderators reserve the right to apply or escalate punishments at their discretion based on context, severity, intent, and history of infractions. All decisions are made to protect the integrity of the server and ensure a fair environment.</p>
         </div>
 
         <div class="section">
-            <h2>4. Appeals and Disputes</h2>
+            <h2>6. Appeals and Disputes</h2>
             <p>If you believe a ban or disciplinary action was applied to your account unjustly, you may contact IKWFC staff through the appropriate appeal channels.</p>
             <div class="note-info">
                 <strong>Note:</strong> If there is definitive proof of a violation, we reserve the right to deny appeals without further discussion.
@@ -388,13 +422,34 @@
         </div>
 
         <div class="section">
-            <h2>5. Amendments to These Terms</h2>
-            <p>IKWFC reserves the right to update or modify these Terms of Service at any time. Users are encouraged to review this page periodically. Continued use of the service following changes constitutes acceptance of the revised terms.</p>
+            <h2>7. Non-Assignability</h2>
+            <p>You are responsible for use of your Wii console and IKWFC services by your friends and family. You may not assign this agreement to a third party.</p>
         </div>
 
         <div class="section">
-            <h2>6. Contact Information</h2>
-            <p>For questions, clarifications, or appeals, please contact IKWFC Staff through our Discord server. Join our community and reach out to staff members by following this link: <strong><a href="https://discord.gg/kSyHsQGUWf" target="_blank" style="color: var(--primary); text-decoration: none; border-bottom: 1px solid var(--primary);">discord.gg/kSyHsQGUWf</a></strong></p>
+            <h2>8. Agreement Updates</h2>
+            <p>IKWFC may change the terms and conditions of this agreement at any time as far as this is necessary or helpful to enhance the service or to adapt it to reflect changes in technical or legal requirements.</p>
+            <p>A current version of this agreement will always be available on our website. We will notify users about changes to this agreement at least 5 days before the change becomes official through our Discord server.</p>
+        </div>
+
+        <div class="section">
+            <h2>9. Agreement Interpretation</h2>
+            <p>If any part of this agreement is found to be invalid or unenforceable, that part of the agreement will no longer apply. You agree that the invalid part will be considered deleted from the agreement, but that all other parts of the agreement will remain in effect. You further agree that we may replace the invalid part by a provision which reflects or comes closest to reflecting the initial intention.</p>
+        </div>
+
+        <div class="section">
+            <h2>10. Definitions</h2>
+            <ul>
+                <li><strong>"Content"</strong> means the software and content, including applications and channels, which are available for use through IKWFC services.</li>
+                <li><strong>"IKWFC"</strong> means the service whereby IKWFC can distribute software, material, e-mail and other data to your Wii console, and the Wii Message board of your Wii console, at any time and whereby you can send and receive e-mails, photographs and other material using your Wii console.</li>
+                <li><strong>"Wii console"</strong> means Nintendo's system sold and marketed by Nintendo under the Wii brand, including any succeeding systems and compatible systems.</li>
+                <li><strong>"Services"</strong> means IKWFC and any related services and material delivered to your Wii console over the Internet, including but not limited to Content and messaging services.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>11. Contact Information</h2>
+            <p>For questions, clarifications, or appeals, please contact IKWFC Staff through our Discord server. Join our community and reach out to staff members by following this link: <strong><a href="https://discord.gg/kSyHsQGUWf" target="_blank">discord.gg/kSyHsQGUWf</a></strong></p>
         </div>
 
         <div class="footer">
