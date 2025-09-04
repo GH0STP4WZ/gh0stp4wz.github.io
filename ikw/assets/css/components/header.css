@@ -11,9 +11,10 @@
     border-bottom: 1px solid var(--border);
     padding: 1rem 2rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Changed from center to flex-start */
     justify-content: space-between;
     box-shadow: var(--shadow-md);
+    min-height: 72px; /* Added minimum height to accommodate subtitle */
 }
 
 .header::before {
@@ -30,8 +31,20 @@
 
 .header-left {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; /* Tight spacing between title and subtitle */
+}
+
+.header-logo {
+    height: 40px;
+    width: auto;
+    margin-top: 2px; /* Fine-tune vertical alignment with text */
 }
 
 .header h1 {
@@ -41,6 +54,7 @@
     text-shadow: var(--shadow-glow);
     margin: 0;
     font-family: 'CTMKF', system-ui;
+    line-height: 1.2; /* Tighter line height */
 }
 
 .header-subtitle {
@@ -48,12 +62,15 @@
     font-size: 0.9rem;
     font-weight: 400;
     opacity: 0.8;
+    margin: 5px 0 0 -55px;
+    line-height: 1.2;
 }
 
 .header-right {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-top: 0.5rem; /* Slight adjustment to align with top row */
 }
 
 .refresh-btn {
@@ -103,4 +120,4 @@
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
-} 
+}

@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IKW Room Browser</title>
+    <meta content="Insane Kart Wii Room Browser" property="og:title" />
+    <meta content="The official Insane Kart Wii Room Browser. View all Currently Active Rooms Instantly!" property="og:description" />
+    <meta content="https://GH0STP4WZ.is-a.dev/ikw/" property="og:url" />
+    <meta content="https://raw.githubusercontent.com/GH0STP4WZ/gh0stp4wz.github.io/refs/heads/main/assets/Icons/IKW/IWK-LOGO-TRANS.png" property="og:image" />
+    <meta content="#d351b0" data-react-helmet="true" name="theme-color" />
     <link rel="stylesheet" href="https://www.chadsoft.co.uk/css/ctmkf.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +29,13 @@
 
     <header class="header">
         <div class="header-left">
-            <h1>IKW Room Browser</h1>
-            <span class="header-subtitle">View all active Insane Kart Wii rooms</span>
+            <img src="https://raw.githubusercontent.com/GH0STP4WZ/gh0stp4wz.github.io/refs/heads/main/assets/Icons/IKW/IWK-LOGO-TRANS.png" alt="IKW Logo" class="header-logo">
+            <div class="header-text">
+                <h1>Room Browser</h1>
+                <span class="header-subtitle">View all active Insane Kart Wii rooms</span>
+            </div>
         </div>
+        
         <div class="header-right">
             <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()">
                 Refetch Room Data
@@ -87,7 +96,7 @@
         <div class="footer-content">
             <div class="footer-left">
                 <span class="footer-made-by">
-                    Made with 🖤 by <a href="https://riddim-glitch.is-a.dev" target="_blank" rel="noopener noreferrer">Riddim-GLiTCH</a>, 
+                    Made with 🖤 by <a href="https://gh0stp4wz.is-a.dev" target="_blank" rel="noopener noreferrer">Riddim-GLiTCH</a>, 
                     Designed by <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a>
                 </span>
             </div>
@@ -102,10 +111,10 @@
                     <a href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener noreferrer" class="footer-link">
                         📝 JetBrains Mono
                     </a>
-                    <a href="http://rwfc.net/api/groups" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    <a href="http://ikwfc.xyz/api/groups" target="_blank" rel="noopener noreferrer" class="footer-link">
                         🔗 API Endpoint
                     </a>
-                    <a href="https://github.com/Riddim-GLiTCH/riddim-glitch.github.io/blob/main/ikw/index.html" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    <a href="https://github.com/gh0stp4wz/gh0stp4wz.github.io/blob/main/ikw/index.html" target="_blank" rel="noopener noreferrer" class="footer-link">
                         📄 Page Source
                     </a>
                     <a href="/ikw/tos" target="_blank" rel="noopener noreferrer" class="footer-link">
