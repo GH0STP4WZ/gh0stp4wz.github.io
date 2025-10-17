@@ -3,6 +3,16 @@ import { formatTimeAgo } from './utils.js';
 import { getMiiAvatarUrl } from './mii.js';
 import { showConnectionMap } from './connection-map.js';
 
+function sanitizeHTML(str) {
+    if (typeof str !== 'string') return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 export function renderRooms(rooms) {
     const container = document.getElementById('roomsContainer');
     
@@ -15,19 +25,17 @@ export function renderRooms(rooms) {
         const players = Object.values(room.players);
         const hostPlayer = players.find(p => room.host === Object.keys(room.players).find(key => room.players[key] === p));
         
-        // Handle gamemode display for both VS rooms and friend rooms
         let gamemodeId = '';
         let gamemodeName = 'Friend Room';
         if (room.rk) {
             gamemodeId = room.rk.split('_')[1];
-            gamemodeName = GAMEMODE_MAP[gamemodeId] || `Unknown (${gamemodeId})`;
+            gamemodeName = GAMEMODE_MAP[gamemodeId] || `Unknown (${sanitizeHTML(gamemodeId)})`;
         }
         
         const playersHTML = players.map(player => {
             const isHost = player === hostPlayer;
             const avatarId = `avatar-${player.fc || Math.random()}`;
             
-            // Set up avatar loading
             setTimeout(async () => {
                 const avatarElement = document.getElementById(avatarId);
                 if (!avatarElement) return;
@@ -37,20 +45,19 @@ export function renderRooms(rooms) {
                 try {
                     const avatarUrl = await getMiiAvatarUrl(player);
                     
-                    // Check if there's a guest player and get their Mii
                     let guestAvatarHtml = '';
                     if (player.mii && player.mii.length > 1) {
-                        // Create a temporary player object for the guest to use with getMiiAvatarUrl
                         const guestPlayer = {
                             mii: [{
                                 data: player.mii[1].data,
                                 name: player.mii[1].name
                             }],
-                            fc: `guest-${player.fc}` // Use different FC to avoid cache collision
+                            fc: `guest-${player.fc}`
                         };
                         const guestAvatarUrl = await getMiiAvatarUrl(guestPlayer);
+                        const guestName = sanitizeHTML(player.mii[1].name);
                         guestAvatarHtml = `
-                            <div class="guest-avatar" data-tooltip="Guest: ${player.mii[1].name}">
+                            <div class="guest-avatar" data-tooltip="Guest: ${guestName}">
                                 ${guestAvatarUrl ? 
                                     `<img src="${guestAvatarUrl}" alt="Guest Mii" onerror="this.parentElement.innerHTML='👤';">` : 
                                     '👤'
@@ -62,30 +69,30 @@ export function renderRooms(rooms) {
                     if (avatarUrl) {
                         avatarElement.innerHTML = `
                             <img src="${avatarUrl}" alt="Mii Avatar" onerror="this.parentElement.innerHTML='👤'; this.parentElement.classList.remove('loading');">
-                            ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Opehost enabled">OH</div>' : ''}
+                            ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Openhost enabled">OH</div>' : ''}
                             ${guestAvatarHtml}
                         `;
                         avatarElement.classList.remove('loading');
                     } else {
                         avatarElement.innerHTML = `
                             👤
-                            ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Open hosting enabled">OH</div>' : ''}
+                            ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Openhost enabled">OH</div>' : ''}
                             ${guestAvatarHtml}
                         `;
                         avatarElement.classList.remove('loading');
                     }
                 } catch (error) {
                     console.error('Error loading avatar:', error);
+                    const guestName = player.mii && player.mii.length > 1 ? sanitizeHTML(player.mii[1].name) : '';
                     avatarElement.innerHTML = `
                         👤
-                        ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Open hosting enabled">OH</div>' : ''}
-                        ${player.mii && player.mii.length > 1 ? `<div class="guest-avatar" data-guest-name="${player.mii[1].name}">👤</div>` : ''}
+                        ${player.openhost === "true" ? '<div class="openhost-badge" data-tooltip="Openhost enabled">OH</div>' : ''}
+                        ${guestName ? `<div class="guest-avatar" data-guest-name="${guestName}">👤</div>` : ''}
                     `;
                     avatarElement.classList.remove('loading');
                 }
             }, 100);
 
-            // Build scores section
             const scoresHTML = [];
             if (player.ev) {
                 scoresHTML.push(`<div class="score-item"><span class="score-label">VR:</span><span class="score-value">${player.ev}</span></div>`);
@@ -93,6 +100,9 @@ export function renderRooms(rooms) {
             if (player.eb) {
                 scoresHTML.push(`<div class="score-item"><span class="score-label">BR:</span><span class="score-value">${player.eb}</span></div>`);
             }
+            
+            const playerName = sanitizeHTML(player.name || 'Unknown');
+            const playerFC = sanitizeHTML(player.fc || 'N/A');
             
             return `
                 <div class="player-card">
@@ -102,10 +112,10 @@ export function renderRooms(rooms) {
                     <div class="player-info">
                         <div class="player-name">
                             ${isHost ? '<span class="crown-icon">👑</span>' : ''}
-                            ${player.name || 'Unknown'}
+                            ${playerName}
                         </div>
                         <div class="player-details">
-                            <div class="player-fc">FC: ${player.fc || 'N/A'}</div>
+                            <div class="player-fc">FC: ${playerFC}</div>
                             ${scoresHTML.length > 0 ? `<div class="player-scores">${scoresHTML.join('')}</div>` : ''}
                         </div>
                     </div>
@@ -138,7 +148,7 @@ export function renderRooms(rooms) {
                     </div>
                     <div class="info-item">
                         <span class="info-label">Course</span>
-                        <span class="info-value">${room.race.course}</span>
+                        <span class="info-value">${sanitizeHTML(room.race.course)}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">CC</span>
@@ -151,9 +161,9 @@ export function renderRooms(rooms) {
         return `
             <div class="room-card ${!room.rk ? 'friend-room' : ''}">
                 <div class="room-header">
-                    <div class="room-id">Room ${room.id}</div>
+                    <div class="room-id">Room ${sanitizeHTML(room.id.toString())}</div>
                     <div class="room-gamemode ${!room.rk ? 'friend-room-badge' : ''}" 
-                         onclick="filterByGamemode('${!room.rk ? 'friend' : gamemodeId}')" 
+                         onclick="filterByGamemode('${!room.rk ? 'friend' : sanitizeHTML(gamemodeId)}')" 
                          style="cursor: pointer;" 
                          title="Click to filter by ${!room.rk ? 'friend rooms' : 'this gamemode'}">
                         ${!room.rk ? '👥 ' : ''}${gamemodeName}
@@ -176,4 +186,4 @@ export function renderRooms(rooms) {
     }).join('');
 
     container.innerHTML = roomsHTML;
-} 
+}
