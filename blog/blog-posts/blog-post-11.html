@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="icon" href="{{profilePicture}}" type="image/x-icon" />
+    <title>Speaking up about the WiiDX situation. | {{siteTitle}}</title>
+    <meta content="Riddim-GLiTCH's Blog" property="og:title" />
+    <meta content="Speaking up about the WiiDX situation." property="og:description" />
+    <meta content="https://riddim-glitch.github.io/blog/blog-posts/blog-post-11" property="og:url" />
+    <meta content="{{profilePicture}}" property="og:image" />
+    <meta content="#f38ba8" data-react-helmet="true" name="theme-color" />
+    <style>
+      :root {
+        --ctp-base: #1e1e2e;
+        --ctp-mantle: #181825;
+        --ctp-crust: #11111b;
+        --ctp-text: #cdd6f4;
+        --ctp-subtext0: #a6adc8;
+        --ctp-subtext1: #bac2de;
+        --ctp-surface0: #313244;
+        --ctp-surface1: #45475a;
+        --ctp-surface2: #585b70;
+        --ctp-overlay0: #6c7086;
+        --ctp-overlay1: #7f849c;
+        --ctp-overlay2: #9399b2;
+        --ctp-blue: #89b4fa;
+        --ctp-lavender: #b4befe;
+        --ctp-sapphire: #74c7ec;
+        --ctp-sky: #89dceb;
+        --ctp-teal: #94e2d5;
+        --ctp-green: #a6e3a1;
+        --ctp-yellow: #f9e2af;
+        --ctp-peach: #fab387;
+        --ctp-maroon: #eba0ac;
+        --ctp-red: #f38ba8;
+        --ctp-mauve: #cba6f7;
+        --ctp-pink: #f5c2e7;
+        --ctp-flamingo: #f2cdcd;
+        --ctp-rosewater: #f5e0dc;
+        
+        /* Main accent color */
+        --accent: var(--ctp-red);
+        --bg-opacity: 0.7;
+        --card-bg: rgba(30, 30, 46, 0.85);
+        --card-border: var(--ctp-red);
+        --card-hover-shadow: var(--ctp-red);
+        --text-glow: var(--ctp-red);
+      }
+
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: 'JetBrains Mono', monospace;
+        background-color: var(--ctp-base);
+        background: var(--ctp-crust);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: var(--ctp-text);
+        line-height: 1.6;
+        padding-bottom: 100px; /* Ugly fix for the footer overlapping the page content I guess */
+      }
+
+      /* Navigation */
+      .navbar-wrapper {
+        background-color: var(--ctp-mantle);
+        border-bottom: 1px solid var(--accent);
+        padding: 0.5rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+      }
+      
+      .navigation-bar {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        padding: 0 2rem;
+        gap: 1.5rem;
+      }
+      
+      .navigation-bar a {
+        color: var(--ctp-text);
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      
+      .navigation-bar a:hover {
+        color: var(--accent);
+        text-shadow: 0 0 8px var(--text-glow);
+      }
+      
+      .navigation-bar a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: var(--accent);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        opacity: 0;
+      }
+      
+      .navigation-bar a:hover::after {
+        width: 100%;
+        opacity: 1;
+      }
+      
+      /* Blog Header */
+      .blog-header {
+        margin-top: 6rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      
+      .blog-header h1 {
+        font-size: 2rem;
+        margin: 0.5rem 0;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        color: var(--accent);
+      }
+      
+      .blog-header h1:hover {
+        text-shadow: 0 0 8px var(--text-glow);
+      }
+      
+      .blog-header p {
+        color: var(--ctp-subtext0);
+        font-size: 0.9rem;
+      }
+      
+      .blog-seperator {
+        height: 2px;
+        background-color: var(--accent);
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+        box-shadow: 0 0 5px var(--card-hover-shadow);
+      }
+      
+      /* Blog Post Content */
+      .blog-post {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .blog-post p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .blog-post h2, .blog-post h3, .blog-post h4 {
+        color: var(--accent);
+        margin: 1.5rem 0 1rem;
+        position: relative;
+      }
+      
+      .blog-post h2::after, .blog-post h3::after, .blog-post h4::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--accent);
+        box-shadow: 0 0 5px var(--card-hover-shadow);
+      }
+      
+      .blog-post img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 1rem 0;
+        border: 1px solid var(--card-border);
+      }
+      
+      .blog-post a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      
+      .blog-post a:hover {
+        text-shadow: 0 0 5px var(--text-glow);
+      }
+      
+      .blog-post code {
+        background-color: var(--ctp-surface0);
+        color: var(--ctp-text);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'JetBrains Mono', monospace;
+      }
+      
+      .blog-post pre {
+        background-color: var(--ctp-surface0);
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        border: 1px solid var(--ctp-surface2);
+      }
+      
+      .blog-post pre code {
+        background-color: transparent;
+        padding: 0;
+      }
+      
+      .blog-post blockquote {
+        border-left: 4px solid var(--accent);
+        padding-left: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        font-style: italic;
+        color: var(--ctp-subtext0);
+      }
+
+      .blog-post ol, .blog-post ul {
+        margin: 1rem 0 1.5rem 1.5rem;
+      }
+
+      .blog-post li {
+        margin-bottom: 0.75rem;
+      }
+      
+      /* Footer */
+      #footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding: 2rem 0;
+      }
+      
+      #footer a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+      }
+      
+      #footer a:hover {
+        text-shadow: 0 0 5px var(--text-glow);
+        box-shadow: 0 0 10px var(--card-hover-shadow);
+        background-color: rgba(243, 139, 168, 0.1);
+      }
+      .footer {
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        margin-top: 3rem;
+        padding: 1rem;
+        background-color: var(--ctp-mantle);
+        border-top: 1px solid var(--accent);
+      }
+      /* Responsive */
+      @media (max-width: 768px) {
+        .blog-post {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="navbar-wrapper">
+      <nav class="navigation-bar">
+        <a href="/">Home</a>
+        <a href="/links">Links</a>
+        <a href="/blog">Blog</a>
+        <a href="/downloads-pages/">Downloads</a>
+        <a href="/ikw/">IKW Rooms</a>
+      </nav>
+    </section>
+    
+    <div class="blog-header">
+      <h1>Speaking up about the WiiDX situation.</h1>
+      <p>March 3, 2026 | Gh0stp4wz</p>
+    </div>
+    <div class="blog-seperator"></div>
+    <div class="blog-post">
+      <h2>Preamble</h2>
+      <p>Before anything, I want to make it very clear that this post is not meant as an attack on Mario Kart Wii DX or any of its staff members. However, it should be noted that the statements made about feeling personally attacked are genuine and I do expect an apology for some of these actions.</p>
+
+      <h2>Joining the CT pack Community</h2>
+      <p>Since joining the IKW team, I have seen a lot and I mean a lot of development in the custom track pack community. Most of which good, a lot of which also bad. I have learned a lot about track pack making and developing custom code for track packs.</p>
+      <p>There's a lot that can be said about what goes in the building in track back and my god does it get complicated sometimes.</p>
+      <p>When I first joined IKW, the pack still ran on RetroWFC. An aftermarket online service currently notorious for... I don't really want to talk about that, to be honest.</p>
+      <p>THF, the owner of IKW, really wanted to switch to a server that gives him a little bit more power. So, I started IKWFC together with him. Now, as a manager of IKWFC, I have a responsibility to uphold, namely preventing unauthorized activity on the server, most of which comes down to cheating or disruptive gameplay. I want to do things right, so I take my position very seriously and try to uphold the rules where I can.</p>
+      <p>I'm doing this out of love for the Mario Kart Wii community. I love the game, and I care for a lot of the people in here.</p>
+
+      <h2>Leaving RWFC</h2>
+      <p>Since starting IKWFC, I have noticed that RWC has started to go downhill, very downhill. A lot of allegations have been made against them, making us very glad that we have left that service for our own.</p>
+      <p>We were not the only ones to have this idea. Due to RWFC, rejecting a lot of new packs, a lot of people spawned their own aftermarket online services for their own pack, or switched to already existing ones.</p>
+      <p>The topic of today's blogpost? NewWFC.</p>
+      <p>What makes new WFC special, you might ask? Well, to make a long story short, originally it was the go-to place for hackers. If you wanted to cheat in Mario Kart Wii multiplayer, this is where you go to. On their homepage, they even tout that they do not ban for any reason.</p>
+      <p>(screenshot TBA)</p>
+      <p>So, to make a long story short, this is probably not the place you want to be on if you want to host a Mario Kart Wii track pack.</p>
+
+      <h2>Pointing out the issues</h2>
+      <p>Now, it's worth noting that for track packs like these, they did in fact section off a part of the server that has actual rules. However, I still do not believe this is a good idea because you're on a server that literally just says "we will never ban for any reason". The reason I find this statement alone so problematic with the fact that there are in fact rules is the fact that these are generally the same rules you would expect on an actual legitimate WFC server. Why would you have to go to a server that literally says there are no rules we will never ban and then start enforcing rules? a little bit double cross in my eyes, and a lot of other people agreed with me as they started hacking on there.</p>
+      <p>Obviously, this started a cat and mouse game where people got banned and then started evading a ban to hack again and then people got banned and started evading a ban and then got hacked again. But realize what I just said here. People are getting banned off of a server that never bans for any reason. This is a very important point to make in my honest opinion.</p>
+
+      <h2>Breaking the rules</h2>
+      <p>Mario Kart Wii Deluxe is on the official custom Mario Kart Wiki, also known as <a href="https://wiki.tockdom.com/">https://wiki.tockdom.com/</a>. This means it is required to follow very strict rules regarding the distribution of the pack. packs may, for example, not distribute any unreleased versions of tracks within their pack. And only patch files may be distributed, not entire games.</p>
+      <p>packs like these must also publish the source code of the pulsar engine that they are using, (yes they are using the pulsar engine) and disclose the sources of any code snippets that they are using.</p>
+      <p>I'm not entirely sure about one of these points, but at least two of these are verifiably being broken by Mario Kart Wii Deluxe.</p>
+      <ol>
+        <li><strong>Stolen code.</strong><br>
+        Me and others of the development team for IKW have noticed that Mario Kart with Deluxe seems to have a lot of features either directly taken from or very heavily inspired by features from other packs, including IKW. Features such as the double item box and chain tricking have, for example, been directly taken from IKW. This was without prior information or consent from any of the developers. One could argue that because one of our developers has crossed over to the dark side, they own the right to code and therefore are allowed to do whatever they want with the code. However, I still find it very interesting that some of these features have made it carbon copy over to WiiDX.</li>
+        <li><strong>The WBFS situation.</strong><br>
+        Within their Discord server, there is a download and install section, which makes sense if you're a community for a mod pack. You would want a guide and a quick place to find the downloads for your mods and how to install them. However, like I said, distributing full games of your mod is not allowed as per waky rules. Yet in their Discord server, they have WBFS ROM images of their pack ready to download from media fire and Google Drive. In fact, it is so funny that the owner of the pack has been called using the server nickname "piracy is no party", all while distributing piracy links. Those who share a space with me in the formula kart wii community will have seen the screenshots.</li>
+      </ol>
+
+      <h2>Getting Banned from the discord guild</h2>
+      <p>Rather problematically, I was recently banned from the discord guild. The situation for this was as follows. Someone was hacking. I got on to take a look. Morbid curiosity takes the better of us sometimes after all. So as I was playing, I didn't in fact notice the hacking going on. I joined the conversation inside a discord guild about the hacking and was met with a moderator. This moderator then said that they have taken action to the offending player and they will be back within a month. Hold up, what did you just say a month? Yes, yes, he sure did. Apparently, it is their policy to allow banned players, no matter how bad the offense, to return within a month. On a server that isn't supposed to bad in the first place, but let's put that aside for now and focus on gameplay integrity. Banned are allowed to return after a month. Immediately, this was a red flag in my head. I told them, isn't that a big problematic though? Do which I got the response, well, if they've changed their ways, they can continue playing again. But obviously, if they haven't changed their ways, you're just going to have the same problem, again, in a month. So I point at this issue out to them by saying "right, so your policy is to allow players to find the limit". While I agree, I probably could have chose way better wording. Apparently that was enough to get me banned from the discord guild. And subsequently one of my friends who also was in that conversation, also got banned. This is problematic because this is a person that was previously considered a friend of the development team. Now, because of my wording, I don't entirely disagree with this ban. However, I believe just straight-up banning me without warning is a bit problematic and is a bit of an abuse of power, especially considering that I was shortly after immediately crossbound from a completely unrelated Mario Kart wii Track Pack, Aurora, which is a pack that I genuinely do like and still would like to play, but don't feel comfortable playing because of this unfair and unjust ban, which I only received because I pointed out a flaw in a moderation system in another track packs online service.</p>
+      <p>Now, I'm not going to go into detail about who did it. I just hope that whoever did in fact ended up banning me from both these communities rates this and has a little bit of a head scratcher because I believe this was a complete and other cross of boundaries. I did not deserve this at the very least I deserved a warning that I was threading a thin line. And my other friend, who also got banned, did not deserve any of this at all, because she didn't even do anything wrong to begin with.</p>
+      <p>This has all happened about a year ago now, and I have still not been able to get in touch with anyone on the Wii Deluxe team for any resolution, so I am going to just post this on my blog and hope that they see it, because I'm fucking done trying.</p>
+      <p>That's about it for now.</p>
+    </div>
+    <section id="footer">
+      <a href="/blog/">Back to post browser</a>
+    </section>
+    
+    <!-- Footer -->
+    <div class="footer" style="margin-top: 3rem;">
+      <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
+      <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
+    </div>
+  </body>
+</html>
