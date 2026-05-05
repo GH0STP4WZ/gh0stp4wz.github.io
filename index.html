@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/assets/CSS/global.css"
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="/assets/CSS/global.css" />
+  <link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css" />
   <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
+  <script src="/assets/JS/lanyard.js" defer></script>
+  <link rel="stylesheet" href="/assets/CSS/lanyard.css" />
   <title>Home | Aurora's Site</title>
   <meta content="Aurora's Site" property="og:title" />
   <meta content="This is Aurora's personal website." property="og:description" />
@@ -14,352 +16,119 @@
   <meta content="#f38ba8" data-react-helmet="true" name="theme-color" />
 </head>
 <body>
+  <div class="vhs-lines-bg"></div>
   <div class="navbar">
-    <div class="nav-container">
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/links">Links</a>
-        <a href="/blog">Blog</a>
-        <a href="/downloads-pages/">Downloads</a>
-        <a href="/ikw/">IKW Rooms</a>
-        <a href="/ctgp-c/">CTGP-Classic Rooms</a>
-      </div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <div class="profile-section card">
-      <img id="profile-picture" class="profile-picture" src="https://api.lanyard.rest/801089753038061669.png" alt="Profile Picture" />
-      <h1 class="profile-name">⋆⁺₊☽𝔊𝔥𝔬𝔰𝔱𝔓𝔞𝔴𝔰☾₊⁺⋆</h1>
-      <p class="profile-pronouns">Demi-Girl • It/Its</p>
-      
-      <div class="discord-status">
-        <div class="discord-status-card">
-          <div id="discord-status-container" class="status-content">
-            Loading Discord status...
-          </div>
+      <div class="nav-container">
+        <div class="nav-links">
+          <a href="/" class="active-tab">Home</a>
+          <a href="/links">Links</a>
+          <a href="/blog">Blog</a>
+          <a href="/downloads-pages/">Downloads</a>
+          <a href="/ikw/">IKW Rooms</a>
+          <a href="/ctgp-c/">CTGP-Classic Rooms</a>
         </div>
       </div>
-      
-      <div class="badges">
-        <a href="https://xenia-linux-site.glitch.me/" class="badge">
-          <img src="assets/badges/xeniaS.png" alt="Xenia Badge">
-        </a>
-        <a href="https://www.dictionary.com/browse/porn" class="badge">
-          <img src="assets/badges/not_intended_for_children_03.jpg" alt="Not For Children">
-        </a>
-      </div>
     </div>
     
-    <div class="about-section card">
-      <h2 class="section-title">About Me</h2>
-      <div class="about-content">
-        <p>Hi, my name is Aurora Dess "Ghostie" Hartman, better known online as "GH0STP4WZ" or "R3DGH0STP4WZ". Friends may also just call me GH0ST.</p>
-        <p>I'm a 24 year old autistic transgender (male to female) emo demi-girl who regularly struggles with social anxiety and the occasional depression.</p>
-        <p>I am a part of the <a href="https://wiki.tockdom.com/wiki/Insane_Kart_Wii" style="color: var(--ctp-red);">Insane Kart Wii</a> team as a community moderator and online server manager. I also manage the IKW Time Trial Database as a side job.</p>
-        <p>I primarily work in Mario Kart Wii modding, and basic web development.</p>
-        <p>I do not take commissions. I probably never will take commissions.</p>
-        <p>For contact and socials, see the <a href="/links/" style="color: var(--ctp-red);">links</a> page.</p>
+    <div class="container">
+      <div id="lanyard-badge">
+        <div class="vhs-lines"></div>
+        <div class="glitch-bars" id="glitch-bars"></div>
+        <div id="vhs-track"></div>
+
+        <div class="badge-ribbon"></div>
+        <div class="badge-loading">
+          <span class="ld-heart">♡</span>
+            connecting...
+        </div>
+        <div class="badge-ribbon-bottom"></div>
       </div>
-    </div>
-    
-    <div class="friends-section card">
-      <h2 class="section-title">Friends' Websites</h2>
-      <div class="friends-grid">
-        <a href="https://faey.net/" class="friend-card">
-          <img class="friend-icon" src="assets/placeholder.png" alt="Faey" />
-          <div class="friend-name">Faey.net</div>
-        </a>
-        
-        <a href="https://enkdev.xyz/" class="friend-card">
-          <img class="friend-icon" src="https://enkdev.xyz/img/enkdev_logoDefault.png" alt="EnKdev" />
-          <div class="friend-name">EnKdev.xyz</div>
-        </a>
-        
-        <a href="https://luxploit.net/" class="friend-card">
-          <img class="friend-icon" src="https://luxploit.net/images/pfp.png" alt="luxploit" />
-          <div class="friend-name">luxploit.net</div>
-        </a>
-        
-        <a href="https://neoumbreon.com/" class="friend-card">
-          <img class="friend-icon" src="https://neoumbreon.com/media/neoumbreon.png" alt="NeoUmbreon" />
-          <div class="friend-name">neoumbreon.com</div>
-        </a>
-        
-        <a href="https://github.com/Notiphiliac" class="friend-card">
-          <img class="friend-icon" src="https://avatars.githubusercontent.com/u/59151989" alt="Notiphiliac" />
-          <div class="friend-name">github.com/notiphiliac</div>
-        </a>
-        
-        <a href="https://github.com/zrodevkaan" class="friend-card">
-          <img class="friend-icon" src="https://avatars.githubusercontent.com/u/90235641" alt="zrodevkaan" />
-          <div class="friend-name">github.com/zrodevkaan</div>
-        </a>
-        
-        <a href="https://inkstray.neocities.org" class="friend-card">
-          <img class="friend-icon" src="https://avatars.githubusercontent.com/u/80412260" alt="Inkstray" />
-          <div class="friend-name">inkstray.neocities.org</div>
-        </a>
-
-        <a href="https://hereticalproductions.net/" class="friend-card">
-          <img class="friend-icon" src="https://hereticalproductions.net/images/aeriscasual.gif" alt="Aeris" />
-          <div class="friend-name">hereticalproductions.net</div>
-        </a>
+      <div class="about-section card">
+        <div class="vhs-lines"></div>
+        <div class="glitch-bars" id="glitch-bars"></div>
+        <div class="card-ribbon"></div>
+        <div class="faux-titlebar">
+          <h2 class="section-title">About_Me.exe</h2>
+          <div class="faux-controls">
+            <i class="control-btn nf-md-window_minimize"></i>
+            <i class="control-btn nf-md-window_maximize"></i>
+            <i class="control-btn nf-md-window_close"></i>
+          </div>
+        </div>
+        <div class="about-content">
+          <p>Heya! I'm Aurora Dess Hartman, but I often go by "GH0STP4WZ" (Ghost paws) or "R3DGH0STP4WZ" (Red ghost paws).<br />People may also just call me GH0ST13 (Ghostie) or just GH0ST.</p>
+          <p>I'm a 24-year-old transgender demigirl with a passion for web development and Mario Kart Wii modding.</p>
+          <p>I'm also a big fan of video games such as Mario Kart Wii, Silver-age Minecraft, Terraria, Warframe, and other titles alike.</p>
+          <p>Music is also a big part of my life, and I enjoy listening to various genres such as Dubstep, Riddim, Webcore/Breakcore, and a little bit of Metal.</p>
+          <p>Currently, I'm working on improving my web development skills and contributing to the Mario Kart Wii modding community.</p>
+          <p>At the moment, I do not take commissions. I probably never will take commissions. I don't think the hassle is worth it.</p>
+          <p>Feel free to check out my <a href="/links">links page</a> to find me on various platforms, or just explore the site to see what I'm up to!</p>
+        </div>
+        <div class="card-ribbon-bottom"></div>
       </div>
-    </div>
-  </div>
-  
-  <div class="footer">
-    <p>&copy; 2025 Aurora "GH0STP4WZ" Hartman</p>
-    <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
-  </div>
-
-  <script>
-    let previousActivities = {};
-    let rotationAngles = {};
-    let lastFrameTime = 0;
-    const ROTATION_SPEED = 30; // degrees per second
-
-    function updateRotations(currentTime) {
-      if (!lastFrameTime) lastFrameTime = currentTime;
-      const deltaTime = (currentTime - lastFrameTime) / 1000; // Convert to seconds
-      lastFrameTime = currentTime;
-
-      document.querySelectorAll('.rotating').forEach(element => {
-        const activityId = element.closest('[data-activity-id]').getAttribute('data-activity-id');
-        if (!rotationAngles[activityId]) {
-          rotationAngles[activityId] = 0;
-        }
-        
-        rotationAngles[activityId] = (rotationAngles[activityId] + ROTATION_SPEED * deltaTime) % 360;
-        element.style.transform = `rotate(${rotationAngles[activityId]}deg)`;
-      });
-
-      requestAnimationFrame(updateRotations);
-    }
-
-    function activityChanged(oldActivity, newActivity) {
-      if (!oldActivity || !newActivity) return true;
-      return JSON.stringify(oldActivity) !== JSON.stringify(newActivity);
-    }
-
-    function createTruncatedElement(text, className) {
-      return `<div class="text-truncate ${className}" title="${text.replace(/"/g, '&quot;')}">${text}</div>`;
-    }
-
-    function fetchDiscordStatus() {
-      fetch('https://api.lanyard.rest/v1/users/801089753038061669')
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            updateDiscordStatus(data.data);
-          }
-        })
-        .catch(error => console.error('Error fetching Discord status:', error));
-    }
-
-    function getAssetUrl(activity, assetKey) {
-      const asset = activity.assets?.[assetKey];
-      if (!asset) return null;
-
-      if (asset.startsWith('mp:external/')) {
-        const externalUrl = asset.split('/').slice(2).join('/');
-        return decodeURIComponent(externalUrl);
-      }
-
-      if (asset.startsWith('http://') || asset.startsWith('https://')) {
-        return asset;
-      }
-
-      if (asset.startsWith('spotify:')) {
-        return `https://i.scdn.co/image/${asset.substring(8)}`;
-      }
-
-      if (activity.application_id) {
-        return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${asset}`;
-      }
-
-      return asset;
-    }
-
-    function updateDiscordStatus(data) {
-      const statusElement = document.getElementById('discord-status-container');
-      let statusHTML = '';
       
-      // Status indicator
-      if (data.discord_status) {
-        let statusIcon = '';
-        let statusText = data.discord_status;
-        
-        switch(data.discord_status) {
-          case 'online':
-            statusIcon = '<span style="color: var(--ctp-green);">●</span>';
-            statusText = 'Online';
-            break;
-          case 'idle':
-            statusIcon = '<span style="color: var(--ctp-yellow);">●</span>';
-            statusText = 'Idle';
-            break;
-          case 'dnd':
-            statusIcon = '<span style="color: var(--ctp-red);">●</span>';
-            statusText = 'Do Not Disturb';
-            break;
-          default:
-            statusIcon = '<span style="color: var(--ctp-surface0);">●</span>';
-            statusText = 'Offline';
-        }
-        
-        statusHTML += `<div class="status-line">${statusIcon} ${statusText}</div>`;
-      }
       
-      // Custom Status
-      const customStatus = data.activities.find(activity => activity.type === 4);
-      if (customStatus && customStatus.state) {
-        let emojiHTML = '';
-        if (customStatus.emoji) {
-          if (customStatus.emoji.id) {
-            const animated = customStatus.emoji.animated ? 'a' : '';
-            emojiHTML = `<img style="height: 1em; vertical-align: middle; margin-right: 4px;" src="https://cdn.discordapp.com/emojis/${customStatus.emoji.id}.${animated ? 'gif' : 'png'}" alt="${customStatus.emoji.name}" title=":${customStatus.emoji.name}:" />`;
-          } else {
-            emojiHTML = `<span title=":${customStatus.emoji.name}:">${customStatus.emoji.name} </span>`;
-          }
-        }
-        statusHTML += `<div class="status-message">${emojiHTML}${customStatus.state}</div>`;
-      }
-      
-      // Activities
-      const activities = data.activities.filter(activity => activity.type !== 4);
-      let activitiesHTML = '';
-      
-      if (activities.length > 0) {
-        activities.forEach(activity => {
-          const activityId = `${activity.type}-${activity.name}`;
-          if (!activityChanged(previousActivities[activityId], activity)) {
-            const existingActivity = document.querySelector(`[data-activity-id="${activityId}"]`);
-            if (existingActivity) {
-              activitiesHTML += existingActivity.outerHTML;
-              return;
-            }
-          }
-
-          switch(activity.type) {
-            case 0: // Playing a game
-              const gameImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
-              
-              activitiesHTML += `
-                <div class="activity game" data-activity-id="${activityId}">
-                  <div class="activity-header">
-                    <i class="fas fa-gamepad"></i> Playing ${activity.name}
-                  </div>
-                  <div class="activity-content">
-                    ${gameImage ? 
-                      `<img src="${gameImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>?</div>';" />` : 
-                      `<div class="placeholder-img">?</div>`}
-                    <div class="activity-details">
-                      ${activity.details ? createTruncatedElement(activity.details, 'game-details') : ''}
-                      ${activity.state ? createTruncatedElement(activity.state, 'game-state') : ''}
-                    </div>
-                  </div>
-                </div>
-              `;
-              break;
-              
-            case 2: // Listening
-              const musicImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
-              const currentRotation = rotationAngles[activityId] || 0;
-              
-              activitiesHTML += `
-                <div class="activity spotify" data-activity-id="${activityId}">
-                  <div class="activity-header">
-                    <i class="fas fa-music"></i> Listening to ${activity.name}
-                  </div>
-                  <div class="activity-content">
-                    ${musicImage ? 
-                      `<img src="${musicImage}" class="activity-img rotating" style="transform: rotate(${currentRotation}deg)" alt="Album cover" onerror="this.outerHTML='<div class=\\'placeholder-img rotating\\' style=\\'transform: rotate(${currentRotation}deg)\\'></div>';" />` : 
-                      `<div class="placeholder-img rotating" style="transform: rotate(${currentRotation}deg)"></div>`}
-                    <div class="activity-details">
-                      ${createTruncatedElement(activity.details || 'Unknown song', 'song-title')}
-                      ${createTruncatedElement(activity.state || 'Unknown artist', 'song-artist')}
-                      ${activity.assets?.large_text ? createTruncatedElement(activity.assets.large_text, 'song-album') : ''}
-                    </div>
-                  </div>
-                </div>
-              `;
-              break;
-              
-            case 3: // Watching
-              const watchImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
-              
-              activitiesHTML += `
-                <div class="activity watching" data-activity-id="${activityId}">
-                  <div class="activity-header">
-                    <i class="fas fa-tv"></i> Watching ${activity.name}
-                  </div>
-                  <div class="activity-content">
-                    ${watchImage ? 
-                      `<img src="${watchImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>?</div>';" />` : 
-                      `<div class="placeholder-img">?</div>`}
-                    <div class="activity-details">
-                      ${activity.details ? createTruncatedElement(activity.details, 'media-details') : ''}
-                      ${activity.state ? createTruncatedElement(activity.state, 'media-state') : ''}
-                    </div>
-                  </div>
-                </div>
-              `;
-              break;
-              
-            default: // Other activities
-              const activityImage = getAssetUrl(activity, 'large_image') || activity.assets?.large_image;
-              
-              let activityIcon = 'fas fa-desktop';
-              let activityType = 'Using';
-              
-              if (activity.type === 1) {
-                activityIcon = 'fas fa-video';
-                activityType = 'Streaming';
-              }
-              
-              activitiesHTML += `
-                <div class="activity rich-presence" data-activity-id="${activityId}">
-                  <div class="activity-header">
-                    <i class="${activityIcon}"></i> ${activityType} ${activity.name}
-                  </div>
-                  <div class="activity-content">
-                    ${activityImage ? 
-                      `<img src="${activityImage}" class="activity-img" alt="${activity.name}" onerror="this.outerHTML='<div class=\\'placeholder-img\\'>?</div>';" />` : 
-                      `<div class="placeholder-img">?</div>`}
-                    <div class="activity-details">
-                      ${activity.details ? createTruncatedElement(activity.details, 'app-details') : ''}
-                      ${activity.state ? createTruncatedElement(activity.state, 'app-state') : ''}
-                    </div>
-                  </div>
-                </div>
-              `;
-          }
+      <div class="friends-section card">
+        <div class="vhs-lines"></div>
+        <div class="glitch-bars" id="glitch-bars"></div>
+        <div class="card-ribbon"></div>
+        <div class="faux-titlebar">
+          <h2 class="section-title">Friends_Links.jar</h2>
+          <div class="faux-controls">
+            <i class="control-btn nf-md-window_minimize"></i>
+            <i class="control-btn nf-md-window_maximize"></i>
+            <i class="control-btn nf-md-window_close"></i>
+          </div>
+        </div>
+        <div class="friends-grid">
+          <a href="https://faey.net/" class="friend-card">
+            <img class="friend-icon" src="assets/placeholder.png" alt="Faey" />
+            <div class="friend-name">Faey.net</div>
+          </a>
           
-          previousActivities[activityId] = activity;
-        });
+          <a href="https://enkdev.xyz/" class="friend-card">
+            <img class="friend-icon" src="https://enkdev.xyz/img/enkdev_logoDefault.png" alt="EnKdev" />
+            <div class="friend-name">EnKdev.xyz</div>
+          </a>
+          
+          <a href="https://luxploit.net/" class="friend-card">
+            <img class="friend-icon" src="https://luxploit.net/images/pfp.png" alt="luxploit" />
+            <div class="friend-name">luxploit.net</div>
+          </a>
+          
+          <a href="https://neoumbreon.com/" class="friend-card">
+            <img class="friend-icon" src="https://neoumbreon.com/media/neoumbreon.png" alt="NeoUmbreon" />
+            <div class="friend-name">neoumbreon.com</div>
+          </a>
+          
+          <a href="https://github.com/Notiphiliac" class="friend-card">
+            <img class="friend-icon" src="https://avatars.githubusercontent.com/u/59151989" alt="Notiphiliac" />
+            <div class="friend-name">github.com/notiphiliac</div>
+          </a>
+          
+          <a href="https://github.com/zrodevkaan" class="friend-card">
+            <img class="friend-icon" src="https://avatars.githubusercontent.com/u/90235641" alt="zrodevkaan" />
+            <div class="friend-name">github.com/zrodevkaan</div>
+          </a>
+          
+          <a href="https://inkstray.neocities.org" class="friend-card">
+            <img class="friend-icon" src="https://avatars.githubusercontent.com/u/80412260" alt="Inkstray" />
+            <div class="friend-name">inkstray.neocities.org</div>
+          </a>
 
-        // Clean up rotation angles for removed activities
-        Object.keys(rotationAngles).forEach(activityId => {
-          if (!activities.some(activity => `${activity.type}-${activity.name}` === activityId)) {
-            delete rotationAngles[activityId];
-          }
-        });
-
-        statusHTML += `<div class="activities-container">${activitiesHTML}</div>`;
-      } else if (data.discord_status !== 'offline') {
-        statusHTML += '<div class="activity-none">Not doing anything</div>';
-      }
-      
-      statusElement.innerHTML = statusHTML || 'Offline';
-    }
-
-    // Initial fetch and setup
-    fetchDiscordStatus();
-    setInterval(fetchDiscordStatus, 5000);
-    requestAnimationFrame(updateRotations);
-  </script>
-    <script src="https://unpkg.com/twemoji@14.0.2/dist/twemoji.min.js" integrity="sha384-ICOlZarapRIX6UjKPcWKEpubjg7lGADN7Y9fYP4DU9zm0aPFhgnP5ef+XFaPyKv+" crossorigin="anonymous"></script>
+          <a href="https://hereticalproductions.net/" class="friend-card">
+            <img class="friend-icon" src="https://hereticalproductions.net/images/aeriscasual.gif" alt="Aeris" />
+            <div class="friend-name">hereticalproductions.net</div>
+          </a>
+        </div>
+        <div class="card-ribbon-bottom"></div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>&copy; 2025 Aurora "GH0STP4WZ" Hartman</p>
+      <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
+    </div>
+  <script src="https://unpkg.com/twemoji@14.0.2/dist/twemoji.min.js" integrity="sha384-ICOlZarapRIX6UjKPcWKEpubjg7lGADN7Y9fYP4DU9zm0aPFhgnP5ef+XFaPyKv+" crossorigin="anonymous"></script>
 </body>
 </html>
