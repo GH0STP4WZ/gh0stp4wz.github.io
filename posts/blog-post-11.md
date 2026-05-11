@@ -1,12 +1,13 @@
 ---
-title: Speaking up about the WiiDX situation.
+title: Speaking up about the WiiDX situation
 date: March 3, 2026
 themeColor: #f38ba8
+lastUpdated: May 11, 2026
 ---
 
 # Preamble
 
-Before anything, I want to make it very clear that this post is not meant as an attack on Mario Kart Wii DX or any of its staff members. However, it should be noted that the statements made about feeling personally attacked are genuine and I do expect an apology for some of these actions.
+I previously wrote this blogpost, thinking it would be final in its current state, but I was told there was some details I got wrong, that I would like to correct in this updated blogpost. It should still be noted that I want to make it very clear that this post is not meant as an attack on Mario Kart Wii DX or any of its staff members. However, it should be noted that the statements made about feeling personally attacked are genuine and I do expect an apology for some of these actions.
 
 ## Joining the CT pack Community
 
@@ -25,11 +26,30 @@ I'm doing this out of love for the Mario Kart Wii community. I love the game, an
 Since starting IKWFC, I have noticed that RWC has started to go downhill, very downhill. A lot of allegations have been made against them, making us very glad that we have left that service for our own.
 We were not the only ones to have this idea. Due to RWFC, rejecting a lot of new packs, a lot of people spawned their own aftermarket online services for their own pack, or switched to already existing ones.
 The topic of today's blogpost? NewWFC.
-What makes new WFC special, you might ask? Well, to make a long story short, originally it was the go-to place for hackers. If you wanted to cheat in Mario Kart Wii multiplayer, this is where you go to. On their homepage, they even tout that they do not ban for any reason.
+What makes new WFC special, you might ask? Well, to make a long story short, originally it was the go-to place for hackers. If you wanted to cheat in Mario Kart Wii multiplayer, this is where you go to.
+In the past, NewWFC had a line on their home page, warning people of these hackers. As you can see in this screenshot.
 
-(screenshot TBA)
+![Screenshot of NewWFC Home Page via Wayback Machine.](/posts/post-media/11/wayback%20ss.png)
 
-So, to make a long story short, this is probably not the place you want to be on if you want to host a Mario Kart Wii track pack.
+This screenshot is from <t:1770641040:D>, at the beginning of this year. At the time of initially writing this, this was still there.
+They have since removed that bottom most line:
+
+![Screenshot of NewWFC's current home page.](/posts/post-media/11/current%20ss.png)
+
+This, while conveniently still not providing any actual rules. They *do* have a ToS, but its contents are too general and non-descript to even have any impact on anything related to hacking/cheating on the service. 
+
+![Terms of Service](/posts/post-media/11/TOS.png)
+
+It is in fact, so bland that I am willing to bet they asked ChatGPT for an example of a ToS, and said "Fuck it, We ball" and just went with it.
+</br>
+In any case, the distinct lack of rules, while also conveniently not saying anything about people taking advantage of this lack of rules, leads me to believe that NewWFC is probably one of the worst WFC services you could associate with, if what you want is fair play online. *Especially* considering the fact that they have been the hackers' paradise for the longest time, and even mentioned that *for the longest time* on their home page.
+</br>
+I feel this way because I think it is inherently wrong to randomly start enforcing rules on a service that is widely known for not having rules, and while the removal of the notice of hackers may make it seem that they are starting to lean towards a more fair system, I think they should make it more clear what their stance on hackers is.
+</br>
+And its not even like its that hard to make it very clear; As you could either just:
+ - Make it very clear the service is no longer meant for hacking/cheating *at all*, and post strict rules and policies dictating the way the service is meant to be used.
+ - Disasociate the sections of the service not meant for hacking on by not giving it the exact same label as the service meant for hacking on. (E.g. by calling it CleanWFC or WFC-DX or something)
+ - Just dont use NewWFC.
 
 ## Pointing out the issues
 
@@ -40,12 +60,10 @@ Obviously, this started a cat and mouse game where people got banned and then st
 ## Breaking the rules
 
 Mario Kart Wii Deluxe is on the official custom Mario Kart Wiki, also known as https://wiki.tockdom.com/. This means it is required to follow very strict rules regarding the distribution of the pack. packs may, for example, not distribute any unreleased versions of tracks within their pack. And only patch files may be distributed, not entire games.
-packs like these must also publish the source code of the pulsar engine that they are using, (yes they are using the pulsar engine) and disclose the sources of any code snippets that they are using.
-
-I'm not entirely sure about one of these points, but at least two of these are verifiably being broken by Mario Kart Wii Deluxe.
+I previously stated that packs like these are required to publish their source code, and disclose the sources of snippets they are using. But I was informed that quickly after posting, Pulsar uses MIT. Which invalidates that point. However, I stand by my point that not disclosing the source of codes you use is at the very least problematic, as it makes it easier to steal content and just claim its of your own making, and the similarities are merely a coincidence.
 
 1. Stolen code.
-Me and others of the development team for IKW have noticed that Mario Kart with Deluxe seems to have a lot of features either directly taken from or very heavily inspired by features from other packs, including IKW. Features such as the double item box and chain tricking have, for example, been directly taken from IKW. This was without prior information or consent from any of the developers. One could argue that because one of our developers has crossed over to the dark side, they own the right to code and therefore are allowed to do whatever they want with the code. However, I still find it very interesting that some of these features have made it carbon copy over to WiiDX.
+Me and others of the development team for IKW have noticed that Mario Kart with Deluxe seems to have a lot of features either directly taken from or very heavily inspired by features from other packs, including IKW. Features such as the double item box, for example, are heavily inspired by similar features from IKW. The problem herein lies that the pack would feel inauthentic. But worse yet, could incorrectly make people think IKW is taking features from WiiDX, just to name a couple examples.
 2. The WBFS situation.
 Within their Discord server, there is a download and install section, which makes sense if you're a community for a mod pack. You would want a guide and a quick place to find the downloads for your mods and how to install them. However, like I said, distributing full games of your mod is not allowed as per waky rules. Yet in their Discord server, they have WBFS ROM images of their pack ready to download from media fire and Google Drive. In fact, it is so funny that the owner of the pack has been called using the server nickname "piracy is no party", all while distributing piracy links. Those who share a space with me in the formula kart wii community will have seen the screenshots.
 
@@ -57,4 +75,11 @@ Now, I'm not going to go into detail about who did it. I just hope that whoever 
 
 This has all happened about a year ago now, and I have still not been able to get in touch with anyone on the Wii Deluxe team for any resolution, so I am going to just post this on my blog and hope that they see it, because I'm fucking done trying. 
 
-That's about it for now.
+## Addendum: Some personal statements post-revision.
+I understand that some of the changes recently made to some of the sections may make me look a little bit stupid, if you've read the original post. And I do apologize for the wrong statements I've made. This is, in fact, the first post I've actually had to revise.
+I'll admit, I could have made the revision a bit sooner. And I'll also take blame for that.
+
+It still is worth pointing out, however, that the existance of this pack is still problematic. And that I still feel like more people *should* be talking about things.
+
+Unfortunately, however, As of writing this edit, News has come out about the Custom Mario Kart Wiki being shut down. Something I will also write a blog-post about.
+
