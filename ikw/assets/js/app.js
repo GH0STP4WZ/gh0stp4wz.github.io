@@ -86,7 +86,7 @@ async function fetchRooms() {
         throw error || new Error('All CORS proxies failed');
         
     } catch (error) {
-        console.error('API ERROR:', error, 'If you think this is incorrect, Please reach out to Riddim-glitch!');
+        console.error('API ERROR:', error, 'If you think this is incorrect, Please reach out to gh0stp4wz!');
         updateStatus('error', `Error: ${error.message}`);
         document.getElementById('roomsContainer').innerHTML = 
             `<div class="no-rooms">Failed to load rooms: ${error.message}</div>`;
