@@ -21,6 +21,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Generate blog posts
+      run: node blog-generator.js
+
     - name: Build the blog
       run: npm run build
 
@@ -34,9 +37,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git add -A
-        if ! git diff-index --quiet HEAD; then
-          git commit -m "Generate blog"
-          git push
-        else
-          echo "No changes detected, skipping commit and push."
-        fi
+        git commit -m "Generate blog posts" --allow-empty
+        git push

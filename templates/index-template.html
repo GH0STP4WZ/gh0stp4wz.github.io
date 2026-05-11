@@ -4,273 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="/assets/CSS/global.css" />
+  <link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css" />
   <link rel="icon" href="{{profilePicture}}" type="image/x-icon" />
   <title>Blog | {{siteTitle}}</title>
-  <meta content="Riddim-GLiTCH's Site" property="og:title" />
-  <meta content="This is Riddim-GLiTCH's blog." property="og:description" />
-  <meta content="https://riddim-glitch.github.io/blog" property="og:url" />
+  <meta content="GH0STP4WZ's Site" property="og:title" />
+  <meta content="This is GH0STP4WZ's blog." property="og:description" />
+  <meta content="https://gh0stp4wz.github.io/blog" property="og:url" />
   <meta content="{{profilePicture}}" property="og:image" />
   <meta content="{{themeColor}}" data-react-helmet="true" name="theme-color" />
-  <style>
-    :root {
-      --ctp-base: #1e1e2e;
-      --ctp-mantle: #181825;
-      --ctp-crust: #11111b;
-      --ctp-text: #cdd6f4;
-      --ctp-subtext0: #a6adc8;
-      --ctp-subtext1: #bac2de;
-      --ctp-surface0: #313244;
-      --ctp-surface1: #45475a;
-      --ctp-surface2: #585b70;
-      --ctp-overlay0: #6c7086;
-      --ctp-overlay1: #7f849c;
-      --ctp-overlay2: #9399b2;
-      --ctp-blue: #89b4fa;
-      --ctp-lavender: #b4befe;
-      --ctp-sapphire: #74c7ec;
-      --ctp-sky: #89dceb;
-      --ctp-teal: #94e2d5;
-      --ctp-green: #a6e3a1;
-      --ctp-yellow: #f9e2af;
-      --ctp-peach: #fab387;
-      --ctp-maroon: #eba0ac;
-      --ctp-red: #f38ba8;
-      --ctp-mauve: #cba6f7;
-      --ctp-pink: #f5c2e7;
-      --ctp-flamingo: #f2cdcd;
-      --ctp-rosewater: #f5e0dc;
-      
-      /* Main accent color */
-      --accent: var(--ctp-red);
-      --bg-opacity: 0.7;
-      --card-bg: rgba(30, 30, 46, 0.85);
-      --card-border: var(--ctp-red);
-      --card-hover-shadow: var(--ctp-red);
-      --text-glow: var(--ctp-red);
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: 'JetBrains Mono', monospace;
-      background-color: var(--ctp-base);
-      background: var(--ctp-crust);
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: var(--ctp-text);
-      line-height: 1.6;
-      padding-bottom: 100px; /* Ugly fix for the footer overlapping the page content I guess */
-    }
-
-    /* Navigation */
-    .navbar {
-      background-color: var(--ctp-mantle);
-      border-bottom: 1px solid var(--accent);
-      padding: 0.5rem 0;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-    }
-    
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      padding: 0 2rem;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    
-    .nav-links a {
-      color: var(--ctp-text);
-      text-decoration: none;
-      font-weight: bold;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    
-    .nav-links a:hover {
-      color: var(--accent);
-      text-shadow: 0 0 8px var(--text-glow);
-    }
-    
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 50%;
-      background-color: var(--accent);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-      opacity: 0;
-    }
-    
-    .nav-links a:hover::after {
-      width: 100%;
-      opacity: 1;
-    }
-    
-    /* Main container */
-    .container {
-      max-width: 1200px;
-      margin: 6rem auto 2rem;
-      padding: 0 1rem;
-    }
-    
-    /* Blog Header */
-    .blog-header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    #profile-picture {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 10px var(--card-hover-shadow);
-      transition: all 0.3s ease;
-    }
-    
-    #profile-picture:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px var(--card-hover-shadow);
-    }
-    
-    .blog-header h1 {
-      color: var(--accent);
-      margin: 0;
-      font-size: 2.5rem;
-      text-shadow: 0 0 10px var(--text-glow);
-    }
-    
-    /* Blog Posts Section */
-    #page-content {
-      margin-top: 2rem;
-    }
-    
-    .blog-headline {
-      margin-bottom: 2rem;
-    }
-    
-    .blog-headline h2 {
-      color: var(--ctp-subtext0);
-      font-size: 1.3rem;
-      font-weight: normal;
-    }
-    
-    /* Blog Posts */
-    #blog-posts {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    
-    .blog-post-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .blog-post-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--card-hover-shadow);
-      border-color: var(--accent);
-    }
-    
-    .blog-post {
-      display: block;
-      padding: 1.5rem;
-      color: var(--ctp-text);
-      text-decoration: none;
-      height: 100%;
-    }
-    
-    .blog-post:hover {
-      text-decoration: none;
-    }
-    
-    .post-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-      transition: all 0.3s ease;
-    }
-    
-    .blog-post-card:hover .post-title {
-      text-shadow: 0 0 8px var(--text-glow);
-    }
-    
-    .post-date {
-      color: var(--ctp-subtext0);
-      font-size: 0.9rem;
-      font-style: italic;
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .blog-post-card {
-      animation: fadeIn 0.5s ease forwards;
-      animation-delay: calc(var(--animation-order) * 0.1s);
-      opacity: 0;
-    }
-    
-    /* Footer */
-    .footer {
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      padding: 1rem;
-      background-color: var(--ctp-mantle);
-      border-top: 1px solid var(--accent);
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .blog-header {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      #blog-posts {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -279,7 +21,7 @@
       <div class="nav-links">
         <a href="/">Home</a>
         <a href="/links">Links</a>
-        <a href="/blog">Blog</a>
+        <a href="/blog" class="active-tab">Blog</a>
         <a href="/downloads-pages/">Downloads</a>
         <a href="/ikw/">IKW Rooms</a>
       </div>
@@ -288,16 +30,28 @@
   
   <!-- Main Content -->
   <div class="container">
-    <div class="card">
-      <div class="blog-header">
+    <!-- <div class="card"> -->
+      <div class="header">
         <img
-          id="profile-picture"
+          class="profile-picture"
           src="{{profilePicture}}"
           alt="Profile Picture"
         />
         <h1>Auroras Blog</h1>
       </div>
-      
+    <!-- </div> -->
+      <div class="card">
+        <div class="vhs-lines"></div>
+        <div class="glitch-bars" id="glitch-bars"></div>
+        <div class="card-ribbon"></div>
+        <div class="faux-titlebar">
+          <h2 class="section-title">Blog_Posts.md</h2>
+          <div class="faux-controls">
+            <i class="control-btn nf-md-window_minimize"></i>
+            <i class="control-btn nf-md-window_maximize"></i>
+            <i class="control-btn nf-md-window_close"></i>
+          </div>
+        </div>
       <div id="page-content">
         <div class="blog-headline">
           <h2>Welcome to my blog! These are my posts, sorted from newest to oldest:</h2>
@@ -311,7 +65,7 @@
   
   <!-- Footer -->
   <div class="footer">
-    <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
+    <p>&copy; 2026 Aurora "GH0STP4WZ" Hartman</p>
     <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
   </div>
 

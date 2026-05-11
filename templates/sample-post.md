@@ -1,7 +1,8 @@
 ---
-title: My New Blog System
-date: March 11, 2025
-themeColor: #8a2be2
+title: My Post
+date: December 12, 2023
+themeColor: #f38ba8
+lastUpdated: March 15, 2026
 ---
 
 # My New Blog System
