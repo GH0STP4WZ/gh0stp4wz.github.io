@@ -4,322 +4,73 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/CSS/global.css" />
+    <link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css" />
     <link rel="icon" href="https://api.lanyard.rest/801089753038061669.png" type="image/x-icon" />
-    <title>My opinion on AI code | Auroras website</title>
-    <meta content="Riddim-GLiTCH's Blog" property="og:title" />
-    <meta content="My opinion on AI code" property="og:description" />
-    <meta content="https://riddim-glitch.github.io/blog/blog-posts/{{filename}}" property="og:url" />
+    <title>A New Identity…(again) | Auroras website</title>
+    <meta content="GH0STP4WZ's Blog" property="og:title" />
+    <meta content="A New Identity…(again)" property="og:description" />
+    <meta content="https://gh0stp4wz.github.io/blog/blog-posts/blog-post-2.html" property="og:url" />
     <meta content="https://api.lanyard.rest/801089753038061669.png" property="og:image" />
-    <meta content="#8a2be2" data-react-helmet="true" name="theme-color" />
-    <style>
-      :root {
-        --ctp-base: #1e1e2e;
-        --ctp-mantle: #181825;
-        --ctp-crust: #11111b;
-        --ctp-text: #cdd6f4;
-        --ctp-subtext0: #a6adc8;
-        --ctp-subtext1: #bac2de;
-        --ctp-surface0: #313244;
-        --ctp-surface1: #45475a;
-        --ctp-surface2: #585b70;
-        --ctp-overlay0: #6c7086;
-        --ctp-overlay1: #7f849c;
-        --ctp-overlay2: #9399b2;
-        --ctp-blue: #89b4fa;
-        --ctp-lavender: #b4befe;
-        --ctp-sapphire: #74c7ec;
-        --ctp-sky: #89dceb;
-        --ctp-teal: #94e2d5;
-        --ctp-green: #a6e3a1;
-        --ctp-yellow: #f9e2af;
-        --ctp-peach: #fab387;
-        --ctp-maroon: #eba0ac;
-        --ctp-red: #f38ba8;
-        --ctp-mauve: #cba6f7;
-        --ctp-pink: #f5c2e7;
-        --ctp-flamingo: #f2cdcd;
-        --ctp-rosewater: #f5e0dc;
-        
-        /* Main accent color */
-        --accent: var(--ctp-red);
-        --bg-opacity: 0.7;
-        --card-bg: rgba(30, 30, 46, 0.85);
-        --card-border: var(--ctp-red);
-        --card-hover-shadow: var(--ctp-red);
-        --text-glow: var(--ctp-red);
-      }
-
-      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-      
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      
-      body {
-        font-family: 'JetBrains Mono', monospace;
-        background-color: var(--ctp-base);
-        background: var(--ctp-crust);
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        color: var(--ctp-text);
-        line-height: 1.6;
-        padding-bottom: 100px; /* Ugly fix for the footer overlapping the page content I guess */
-      }
-
-      /* Navigation */
-      .navbar-wrapper {
-        background-color: var(--ctp-mantle);
-        border-bottom: 1px solid var(--accent);
-        padding: 0.5rem 0;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(10px);
-      }
-      
-      .navigation-bar {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        padding: 0 2rem;
-        gap: 1.5rem;
-      }
-      
-      .navigation-bar a {
-        color: var(--ctp-text);
-        text-decoration: none;
-        font-weight: bold;
-        position: relative;
-        transition: color 0.3s ease;
-      }
-      
-      .navigation-bar a:hover {
-        color: var(--accent);
-        text-shadow: 0 0 8px var(--text-glow);
-      }
-      
-      .navigation-bar a::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -5px;
-        left: 50%;
-        background-color: var(--accent);
-        transition: all 0.3s ease;
-        transform: translateX(-50%);
-        opacity: 0;
-      }
-      
-      .navigation-bar a:hover::after {
-        width: 100%;
-        opacity: 1;
-      }
-      
-      /* Blog Header */
-      .blog-header {
-        margin-top: 6rem;
-        margin-bottom: 2rem;
-        text-align: center;
-      }
-      
-      .blog-header h1 {
-        font-size: 2rem;
-        margin: 0.5rem 0;
-        font-weight: bold;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-        color: var(--accent);
-      }
-      
-      .blog-header h1:hover {
-        text-shadow: 0 0 8px var(--text-glow);
-      }
-      
-      .blog-header p {
-        color: var(--ctp-subtext0);
-        font-size: 0.9rem;
-      }
-      
-      .blog-seperator {
-        height: 2px;
-        background-color: var(--accent);
-        width: 80%;
-        max-width: 1200px;
-        margin: 0 auto 2rem;
-        box-shadow: 0 0 5px var(--card-hover-shadow);
-      }
-      
-      /* Blog Post Content */
-      .blog-post {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 2rem;
-        background-color: var(--card-bg);
-        border: 1px solid var(--card-border);
-        border-radius: 12px;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      
-      .blog-post p {
-        margin-bottom: 1.5rem;
-      }
-      
-      .blog-post h2, .blog-post h3, .blog-post h4 {
-        color: var(--accent);
-        margin: 1.5rem 0 1rem;
-        position: relative;
-      }
-      
-      .blog-post h2::after, .blog-post h3::after, .blog-post h4::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--accent);
-        box-shadow: 0 0 5px var(--card-hover-shadow);
-      }
-      
-      .blog-post img {
-        max-width: 100%;
-        border-radius: 8px;
-        margin: 1rem 0;
-        border: 1px solid var(--card-border);
-      }
-      
-      .blog-post a {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: bold;
-        transition: all 0.3s ease;
-      }
-      
-      .blog-post a:hover {
-        text-shadow: 0 0 5px var(--text-glow);
-      }
-      
-      .blog-post code {
-        background-color: var(--ctp-surface0);
-        color: var(--ctp-text);
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-        font-family: 'JetBrains Mono', monospace;
-      }
-      
-      .blog-post pre {
-        background-color: var(--ctp-surface0);
-        padding: 1rem;
-        border-radius: 8px;
-        overflow-x: auto;
-        margin: 1.5rem 0;
-        border: 1px solid var(--ctp-surface2);
-      }
-      
-      .blog-post pre code {
-        background-color: transparent;
-        padding: 0;
-      }
-      
-      .blog-post blockquote {
-        border-left: 4px solid var(--accent);
-        padding-left: 1rem;
-        margin-left: 0;
-        margin-right: 0;
-        font-style: italic;
-        color: var(--ctp-subtext0);
-      }
-      
-      /* Footer */
-      #footer {
-        text-align: center;
-        margin-top: 3rem;
-        padding: 2rem 0;
-      }
-      
-      #footer a {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        position: relative;
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        border: 1px solid var(--accent);
-        border-radius: 8px;
-      }
-      
-      #footer a:hover {
-        text-shadow: 0 0 5px var(--text-glow);
-        box-shadow: 0 0 10px var(--card-hover-shadow);
-        background-color: rgba(243, 139, 168, 0.1);
-      }
-      .footer {
-        text-align: center;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        margin-top: 3rem;
-        padding: 1rem;
-        background-color: var(--ctp-mantle);
-        border-top: 1px solid var(--accent);
-      }
-      /* Responsive */
-      @media (max-width: 768px) {
-        .blog-post {
-          padding: 1.5rem;
-        }
-      }
-    </style>
+    <meta content="#f38ba8" data-react-helmet="true" name="theme-color" />
   </head>
   <body>
-    <section class="navbar-wrapper">
-      <nav class="navigation-bar">
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="nav-links">
         <a href="/">Home</a>
         <a href="/links">Links</a>
-        <a href="/blog">Blog</a>
+        <a href="/blog" class="active-tab">Blog</a>
         <a href="/downloads-pages/">Downloads</a>
         <a href="/ikw/">IKW Rooms</a>
-      </nav>
-    </section>
-    
-    <div class="blog-header">
-      <h1>My opinion on AI code</h1>
-      <p>March 17, 2025 | Aurora</p>
+      </div>
     </div>
-    <div class="blog-seperator"></div>
-    <div class="blog-post">
-      <h1>My opinion on AI</h1>
-<p>I feel like it needs to be said. AI code is not a great thing to do, but I cannot say it&#39;s a horrible thing to do either. I feel like I&#39;m gonna have this question asked a lot anyway, so I might as well put it out in the blog post. I was watching  <a href="https://youtu.be/FQiebDjRRiE?si=fMXkoN8N0dQQTgj0"><code>🔗 a video by Brodie Robertson</code></a> that literally just talks about whether or not AI contributions are a good thing, and conclusion, they&#39;re not, spoiler alert, I agree.</p>
-<p>But what you have got to realize is that in 2025, people are going to start learning how to program. And in 2025, they also know that they can ask any large language model for any assistance.
-This is fine. AI assisted code is fine. It always has been, it always will be. I do not disagree with asking for help. However, the minute you let the AI write all your code for you and you only tweak minor things, that&#39;s when you&#39;re doing it wrong.</p>
-<p>The fact still remains, an AI only knows what it knows from reading what is on the internet and what is on the internet is likely copyrighted or protected by some sort of license. Using set code would be a violation of set license or copyright. And that&#39;s not even getting into the fact that this isn&#39;t even how you&#39;re supposed to write code. If you don&#39;t understand the language you&#39;re about to use, don&#39;t use the language.</p>
-<p>A good example of this is this very website thing. I know very basic JavaScript, so I asked an AI to help me fix the rest of my JavaScript so that I can make this thing that reads Markdown files and turns them into HTML. That thing is responsible for generating this post you are reading right now. Outside of that, I tend to avoid JavaScript because I do not know enough about it yet to feel comfortable using it.
-The code in use here is AI-assisted. Keyword: assisted. And this, this is fine.</p>
-<p>Completely AI generated code is not fine. Because as I said above, it is more than likely a license violation or copyright infringement. Either that, or it&#39;s pulled straight from some kind of documentation that doesn&#39;t even apply to the current situation and just won&#39;t work.</p>
-<blockquote>
-<p>But Aurora, what if I taught my own LLM from my own works?</p>
-</blockquote>
-<p>Well, then there&#39;s the following issue. If you have in fact done this, then how is the AI supposed to know what&#39;s right or wrong? What does work and doesn&#39;t work?
-Because, as we all know, an AI is not able to test their own code.</p>
-<p>TL;DR then:
-Do I agree with A.I. being used in code? Yes. Do i think its good? Not in its current state. Do I want people to depend on it? No. As long as you have your A.I. assist you, I am fine with it. Just don&#39;t make contributions that are entirely AI because they more than likely have used code from some other repo with some other license that you cannot use in your project because of licensing conflict. In 2025, people will unfortunately grow up to learn to ask an AI instead of the internet, and to be frank, that&#39;s fine. Things change.</p>
+  </div>
+    
+    <div class="container blog-page-container">
+      <div class="card blog-page-card">
+        <div class="faux-titlebar">
+          <h2 class="section-title">A New Identity…(again).md</h2>
+          <div class="faux-controls">
+            <i class="control-btn nf-md-window_minimize"></i>
+            <i class="control-btn nf-md-window_maximize"></i>
+            <i class="control-btn nf-md-window_close"></i>
+          </div>
+        </div>
 
+        <div class="blog-header">
+          <p>May 11, 2026 | Aurora</p>
+        </div>
+        <div class="blog-seperator"></div>
+        <div class="blog-post">
+          <p>I keep doing this, don&#39;t I?<br>Changing my name like I change my underwear…This time it will stick—I promise.<br>You see, I&#39;ve been going through the most microscopic identity crisis for the better part of this year now, and even a little bit before that. So, Who the fuck I am has been a bit of a question.</p>
+<h1>Allow me to introduce myself…Again…</h1>
+<p>Hi. My name is Aurora Dess Hartman. Online, I go by the names &quot;GH0STP4WZ&quot; or &quot;R3DGH0STP4WZ&quot;.<br>At the time of writing this post, I am a 24 year old Transgender Demigirl that goes by It/She/They pronouns.<br>I am a Furry, here&#39;s my Fursona&#39;s Reference sheet.<br><img src="/posts/post-media/12/Aurora_Rev_2full.png" alt=""  class="blog-media" /></p>
+<h6>Yes, She&#39;s named after me. Long Story, Will explain further below.</h6>
+<h2>About the change.</h2>
+<p>For a while now, I&#39;ve had tis internal crisis that constantly proved to me that calling myself both a Music Genre, and an obscure event in anything that computes, was not the best idea. And while &quot;Riddim_GLiTCH&quot; had a cool ring to it, It started to feel...off, as time passed on.<br>I started wondering what my name could look like if I picked something more sensible. Which eventually, Landed me on Red Ghost. Red, because that is my favorite colour, and Ghost because I find general anonymity online to be a fairly important thing in my life.<br>With this name in the back of my head, I enountered an artist; &quot;Ghwostie&quot;, who has another Alias, &quot;Ghwostpaws&quot;. Realizing how well that rolled off the tongue; &quot;Red Ghost Paws&quot;, I thought that that should be my next name, RedGhostPaws. But I didn&#39;t like how similar it was to this artists name, so I changed it up a little bit.<br><br>And thus, &quot;R3DGH0STP4WZ&quot; became a thing. I experimented with the name for a little while, and learned that I was extremely comfortabe with this name.<br><br>I&#39;m gonna try my best to stick with this name. I know it is not uncommon for people to change their alias, but I dont wanna constantly change everything about me. This makes it harder to follow me or find my work. As well as just in general cause confusion. Like, what should people call me?<br><br>I wanna stick to something I&#39;m comfortable with, and actually <em>be</em> someone on the internet. I mean, that is literally the biggest reason I even have this little corner on the internet!</p>
+<h2>Furry Talk</h2>
+<p>Quickly coming back to the refsheet I placed under the introduction section, Theres a couple things I wanna talk about.<br><br>Things I&#39;ll seperate into a couple categories.</p>
+<h3>About Aurora The Lucario</h3>
+<p>Aurora, As I mentioned before, shares her name with me, the writer. This, Dear reader, is no coincidence. And is actually part of the story about how I settled on my own name. This Story, Also happens to be my fursona&#39;s origin story.<br><br>So, As I mentioned, I am a transgender demi-girl. I am an individual who was born with male genitalia, but strongly feels they should have female genitalia. I also see myself as non-binary, but extremely feminine. To summarize, I was born as a boy, But strongly feel as though I should be a girl. However, I feel this feeling is too ambigous to definitively call myself a woman.<br><br>These circumstances make the name I was given at birth, not fit my identity. And I would like to be called something else. This is why I call myself Aurora. Or Aura for short.<br><br></p>
+<p>But how did I settle on this name?<br><br></p>
+<p>To make a long story short, I was always a big fan of the Pokémon franchise. Playing it regularly during my Middleschool days. I was the textbook definition of a Pokémon Fan, hyperfixations and all.<br><br>During one of my playthroughs of the platinum game, I managed to obtain a female Lucario, who I nicknamed &quot;Aurora&quot;. At first I didn&#39;t think much of her. But she would soon grow into my strongest Pokémon yet, serving me well until Pokémon Ultra Moon version, where she, as far as I know, remains trapped, for the rest of eternity. I sold that copy on a fateful day—My mother wanted me to sell my beloved 3DS in order to pay off the Nintendo switch I was gonna buy right after.</p>
+<h6>Yes, I cried a little.</h6>
+<p>It was because of this, that I was never able to transfer the Lucario over to any of the current games—which, might I add, I&#39;ve honestly lost interest in, because the whole superhero VS villain organization narrative has been reduced to a smoking pile of ash. The worst you get nowadays is a couple of hooligans bullying you a bit.<br><br>But I digress.<br><br><br>Eventually, I started thinking about those lost memories. I don&#39;t exactly remember when, but at some point during the active span of Sword and Shield, I had a dream. I was somewhere in Sinnoh, the big city with all the Deoxys Rocks. Dragged through a hallway and then put on my knees. Team Galactic Grunts emptied my bag and summoned my entire team of pokémon out of their pokéballs. Including Aurora.<br><br>I sat there, looking around to see what was going on, until one of the group leaders approached with a gun, and started executing my party members. Warning me to never get in the way of thier plans again.<br><br>I remember this part very distinctly. When they held Aurora at gunpoint, something in me Snapped, Almost as if they were about to kill a part of me.<br><br>Next thing I know, I&#39;m your average isekai protagonist who is way too overpowered, fighting off Team Galactic like my life depended on it. Only to then book it holding the Lucario&#39;s paw firmly.<br><br>That dream concluded with the most adorable voice coming out of Aurora, thanking me for saving her. I then woke up. I&#39;ve never forgotten that dream, and since that dream, Aurora has always internally been a part of me.<br><br>Fast forward to more current times—I&#39;m having a gender disphoria crisis, and feel my Identity doesn&#39;t fit me. This time however, I realize that my closest friends...they all have fursona&#39;s based on their favorite Pokémon species. And just like that; Aurora.<br></p>
+<h3>My name.</h3>
+<p>Everything suddenly made sense. Ever since that encounter, I had been feeling a bit uncertain about my gender. And even after coming out as trans, something didnt sit right. But, Aurora...12 year old me had it right then and there. I&#39;ve gone so long not knowing for sure, but here I am finally realizing that I was sitting on my true identity all along.<br></p>
+<p>I am Aurora Dess &quot;GH0STP4WZ&quot; Hartman. I have finally found myself after struggling with my identity for years, and I am proud of who I am.<br><br>These struggles have been a bane of my existance. But since I finally have a name that I genuinely feel happy with, I&#39;ve genuinely felt better about myself over all, my general wellbeing has genuinely improved significantly since this discovery, and I&#39;m starting to feel better about myself every day.<br><br>This just about concludes all I really wanted to say for this post.<br>There isnt really much else to add.<br><br>Until next time, reader! 👋</p>
+
+        </div>
+      </div>
+      <section id="footer">
+        <a href="/blog/">Back to post browser</a>
+      </section>
     </div>
-    <section id="footer">
-      <a href="/blog/">Back to post browser</a>
-    </section>
-    
+
     <!-- Footer -->
-    <div class="footer" style="margin-top: 3rem;">
-      <p>&copy; 2025 Aurora "Riddim-GLiTCH" Hartman</p>
+    <div class="footer">
+      <p>&copy; 2026 Aurora "GH0STP4WZ" Hartman</p>
       <p>Made with ❤️ and 🏳️‍⚧️ rights</p>
     </div>
   </body>
