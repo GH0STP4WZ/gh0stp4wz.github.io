@@ -1,25 +1,94 @@
 ---
-title: The ISwearChris Investigation
-date: May 12, 2026
+title: The Retro Rewind Blacklist Situation
+date: September 9, 2026
 themeColor: #f38ba8
 ---
-# The ISwearChris Investigation
-I know starting a document with a title like this carries some weight, and that I better come up with something proving I have a good reason behind the actual investigation.
+# I have been put on a list.
+Its not really a significant list to be honest. Not something that I would have sleepless nights over—not something that will make me lost my credibility as a mod dev. But, It is still a list. A bad one. One that honestly deserves to be talked about.
+I am offcourse talking about the Retro Rewind Track Authors Blacklist, a list that dictates whose tracks are allowed to be included in the Retro Rewind Custom Track Pack.
 
-So, allow me to present these screenshots:
-![Screenshot 1](/posts/post-media/14/screenshot%201.png)
-![Screenshot 2](/posts/post-media/14/screenshot%202.png)
-![Screenshot 3](/posts/post-media/14/screenshot%203.png)
-![Screenshot 4](/posts/post-media/14/screenshot%204.png)
-Thats right, I was not kidding when I said I wanted to take a look at his works.<br>
-Yes, I am in fact alleging ISC of Plagarism, And yes, we have another Plagarism drama before GTAVI dropped.<br>
-<br>
-Let's look at the facts.
-• ISwearChris's version of <code><small>DS</small></code> Wario's Stadium is said to be a remake of the Mario Kart 8 version of the track
-==> The Model and Colision match Numerosity's version practivally perfectly, save for a few tiny edits made to the final underwater section.<br>
-• ISwearChris's version of <code><small>GBA</small></code> Ribbon Road is said to be a remake of the Mario Kart 8 Deluxe version.
-==> The Model and Colision match Garbiella's version practically perfectly, save for a few tiny edits made in the final ribbon section<br>
-• ISwearChris's version of <code><small>Wii U</small></code> Super Bell Subway is said to be a remake
-==> The Model and Collision *PERFECTLY* match up with Version 1.3 of TheGamingBram's version of the same track.
+![alt text](image.png)
 
-Me, Ironflash, TheGamingBram and ToadetteHackFan have all sat down and looked over these similarities and have concluded the following findings:
+Okay, Let me break down some of the things that are on the list before I go over why I am so offended to actually be on this list the way I am.
+
+The first point mentions literally anyone who explicitly asks for their works to not be included. This is honestly a good thing, I have absolutely zero problems with it. BUT, they phrase it so weirdly that it genuinely tells me they are acting like they are being bullied for vibecoding their project.
+"Anyone who explicitly asks for their tracks not to be included in distributions that use AI/Anyone who has an Anti AI text on their user page or is know to be Anti AI"
+If you are gonna phrase it like that you are already aware of the problem.
+
+"Anyone who is known to be Anti RR"
+I don't really know what to say to this. It feels a little "Youre mean to me so you dont get to be in my thing".
+
+At the bottom of the image, we have a user named JorisMKW, who is blacklisted for being Anti AI but they forgot why they put him there.
+🤔
+
+Honestly, if your entire list is just AI haters, I'm starting to see a pattern here.
+
+Now theres three people who I really wish I didnt have to talk about that are on this list that need further context because their reason is a bit obsucre. And I really wish I didnt have to talk about them because these kinds of people are absolutely disgusting and dont belong in any community in my opinion.
+
+Riidefi, vrock02 and Zackruff, for clarification reason, do deserve to be on this list. All three of them might as well live on epstein island, taking this quote from one of my closer friends in the Mario Kart Wii community.
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:d3qerl6cguqrfvmfnkzsmulc/app.bsky.feed.post/3mv2sbonuwk2p" data-bluesky-cid="bafyreibf77fwzn35waeisgombzce6zj4frnpby5rpeju4tqprwauetmhaq" data-bluesky-embed-color-mode="system"><p lang="en">notable to me: also listed are riidefi, Vrock02, Zachruff, disgusting manipulative people who solicited... certain kinds of images and videos from me when i was underage, all adults and held zero remorse. and those people are just listed next to my friends and people who are simply anti-AI lol</p>&mdash; mkwcat (<a href="https://deer.social/profile/did:plc:d3qerl6cguqrfvmfnkzsmulc?ref_src=embed">@mkw.cat</a>) <a href="https://deer.social/profile/did:plc:d3qerl6cguqrfvmfnkzsmulc/post/3mv2sbonuwk2p?ref_src=embed">September 9, 2026 at 7:24 AM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+
+Finally, I would like to talk about why I am included in this list:
+I am apparently Anti RR.
+
+Let me be very clear on this: I do not have a problem with Retro Rewind as a track pack.
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:7nwwxcy3bho72k65zdpmx7wz/app.bsky.feed.post/3mv45ondigs2q" data-bluesky-cid="bafyreiguzv36kap4wiajeri2h7jewiguzy4j5mb3kqdhf6rnaediun4kge" data-bluesky-embed-color-mode="system"><p lang="en">Never once said I have a problem with RR by the way—I actually like RR. The idea behind it is honestly cool and I would genuinely support literally any other team to develop it. And thats the thing. Literally any other team—Its the vibecoders and plagarists I have problems with.<br><br><a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz/post/3mv45ondigs2q?ref_src=embed">[image or embed]</a></p>&mdash; GH0STP4WZ — Aurora/Dess (<a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz?ref_src=embed">@gh0stp4wz.is-a.dev</a>) <a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz/post/3mv45ondigs2q?ref_src=embed">September 9, 2026 at 8:20 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:7nwwxcy3bho72k65zdpmx7wz/app.bsky.feed.post/3mv45ondv522q" data-bluesky-cid="bafyreicacjqwbomu5qehvy4issh5ordx6secnglt2df7lp4cipmds2yzu4" data-bluesky-embed-color-mode="system"><p lang="en">Its crazy to me to think that just cuz I&#x27;m outspoken about something that is in the public eye very controversial and taboo. And to them be lumped into the same group as literal predators because they felt kicked in the dick enough—lemme remind you once again: I have no problem with RR.</p>&mdash; GH0STP4WZ — Aurora/Dess (<a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz?ref_src=embed">@gh0stp4wz.is-a.dev</a>) <a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz/post/3mv45ondv522q?ref_src=embed">September 9, 2026 at 8:20 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:7nwwxcy3bho72k65zdpmx7wz/app.bsky.feed.post/3mv45ondw4c2q" data-bluesky-cid="bafyreiaqnaii7y4qzkuksfrjdupuq4b6efa5w4vpux5dr6of6jx6g3d6fq" data-bluesky-embed-color-mode="system"><p lang="en">Maybe if you feel personally attacked by so many people, or feel they all hold a grudge against you enough you show strong resentment to them, you gotta stop to think maybe you are the problem? Maybe receiving all the backlash for using AI means you shouldn&#x27;t be using AI. Just a thought @RRTeam</p>&mdash; GH0STP4WZ — Aurora/Dess (<a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz?ref_src=embed">@gh0stp4wz.is-a.dev</a>) <a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz/post/3mv45ondw4c2q?ref_src=embed">September 9, 2026 at 8:20 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:7nwwxcy3bho72k65zdpmx7wz/app.bsky.feed.post/3mv45vaxvac2q" data-bluesky-cid="bafyreihfvm72czz7445pty73zye73apmwlungjsjjr4zixmicc6iepiwba" data-bluesky-embed-color-mode="system"><p lang="en">By the way, this is not even mentioning any of the other problems I have with things I know the RR team is involved in. Things I am not sure I am allowed to talk about (yes it&#x27;s that bad)</p>&mdash; GH0STP4WZ — Aurora/Dess (<a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz?ref_src=embed">@gh0stp4wz.is-a.dev</a>) <a href="https://deer.social/profile/did:plc:7nwwxcy3bho72k65zdpmx7wz/post/3mv45vaxvac2q?ref_src=embed">September 9, 2026 at 8:24 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+
+
+# The Problems With RR
+
+Theres a couple reasons why I have a problem with a list like this existing.
+And yea, Like I said on BlueSky, Some of it is bad enough, I'm not even sure I am even allowed to talk about it publically yet. But regardless, this should give you an idea of the copious amounts of disgust I have for the current *Retro Rewind Team*. And why, to be frank, I think its offensive that such a list is even allowed to exist.
+
+The Lead Developer of RR has a history of Plagarism, where he would "update" other peoples tracks by taking their work, doing a little bit of touching up here and there, and then publish them as a standalone work. Often times without crediting the original author. Already a pretty disgusting start to an ever distressing backstory of a team. ZPL, would then also go on to do commisions. Where someone would request a track and pay a sum of money for ZPL to then make a version of this track. A lot of these commisions were later also found to be plagarized works of other peoples tracks without proper attribution or even consent. Imagine paying a really good artist to draw a nice piece of your OC, and they respond by just recoloring an image of someone elses OC that kinda looks like yours. That is a scam if I've ever seen one.
+
+Luckily, A lot of the proper attribution has been given a couple years ago when it was found that this plagarism was going on, and ZPL was required to correct the attribution lest he would risk permanent removal of access to the custom mario kart wiki.
+
+ZPL already owned Retro Rewind at the time, and while this was going on, I would honstly say that at this point in time, it was an honest to god good track pack. It didnt introduce a lot of features, but what do you even want from a track pack that prides itself in being a collection of ALL Nintendo desinged tracks, ported to Mario Kart Wii. And honestly, this as an idea for a track pack still stands as a really solid one. I genuinely think if retro rewind went back to its roots, it would be a great pack. I just dont like what it has become nowadays.
+
+With the development of many things in computers, eventually came "AI". A so called intelligience that just makes a REALLY well educated guess on what the next word it should print be. An image generator that can somehow turn words you type into it into a brand new image that depics exactly what you describe to it.
+AI made huge waves because of how weirdly intelligent it seemed. And before long, people started including AI into their workflows.
+
+Now, ask yourself this. If a guessing machine is able to make such a well educated guess on how to respond to what you ask from it, where does it get the data from to know what is the most likely response to give?
+Thats right, its conversations on the internet. Chatbots are nothing more than mimicking machines that try to emulate a conversation it has seen on the internet. It is still a computer at heart. 1s and 0s, true or false, no inbetween no around. It has no emotion, no actual inteligence, It doesnt know diddly squad shit, and most of all. It cannot actually learn. What it "learns" is just you giving it more data by interacting with it.
+
+Code? Scraped data from github.
+
+Art? Scraped from twitter/x and image boards.
+
+Consent from the original artists? Whats that, can you eat it?
+
+That is exactly why I dislike AI. Its very existance is built on the false pretence that you can just do whatever on the internet. And while yes, to a certain agree, once you put something out on there, it is generally public domain and people can pick at it however they want, but there is still such a thing as licences and copyright. Things people worked hard on, putting their blood sweat and tears into, on hardware that they had to pay actual money for to be able to own and do their work on. Their work is being fed to a guessing machine that just vomits out a best case scenario on what it thinks is the most logical response. But thats the thing. It cannot think the same way like us humans. So not only is it using data that it likely doesnt even have any rights of using, it also cannot even consider how to use it correctly.
+
+ZPL, Around the time that The Mario Kart Wii PC port was released, publically stated in a now deleted youtube video that, yes, Retro Rewind and The Mario Kart Wii PC Port were made with the heavy use of AI. Producing code that is in a literal legal gray area, for a project that in it of itself is also in a legal gray area. Morals be dahmned I guess, because the minute you bring up how AI is actually in a couple ways harmful to the environment, produces questionable product, and has enabled so many bad things—Like any other AI bro, the Retro Rewind team starts Karening. As in, they pretend to be a victim of bullying and harassment.
+When a lot of CT creators asked to be removed from, and not included in future releases of the pack, they all thought it was a personal attack to them. Huh...Almost as if they are larping as the victim here...
+
+Which brings me to another thing. Retro Rewind seems to have become a bit of an ego trip for ZPL. As they were the first track pack to have a dedicated WFC built around it. RetroWFC, which was forked off of WiiLinkWFC, was made to accomodate Retro Rewind, and only Retro Rewind. And they intentionally disabled one of the checks the server needs to enforce bans properly, Opening themselves up for a whole slueth of hacking and cheating online.
+
+During a conversation about the list with a couple of my friends, Scyhigh also brought this up.
+![alt text](image-2.png)
+
+It is insane to me that they are willing to put in So much effort, into doing as little as actual work as possible, and be the biggest topic on the block.
+
+But worse yet is this particular comment by one of the devs
+![alt text](image-3.png)
+Prevent further escalations? Letting us move on? Bro if 90% of the people in that list are listed as Anti AI, and you know that AI is a controversial thing, Maybe just accept the fact that doing something that is considered highly controversial and taboo will get people talking about you. Such a list shouldnt even need to exist. Why am I, someone who is outspoken against AI, being lumped into the same group of people that has literal predators in them?
+
+You were hiding this on purpose. You knew it was gonna start drama, so why do you even have that list to begin with?
+
+To Quote Seeky
+![alt text](image-4.png)
+
+
+# Further Escalation
+
+Look, I really don't wanna bring drama to the table. But I really need this to be said.
+
+Aside from all of this, I am sitting on a whole slueth of evidence of not okay things members of the RR team are involved in. A lot of which I am not sure I can talk about publically. As some of it is genuinely illegal.
+
+A metaphorical glass that has been overflowing for a while now—and this list isnt just another drop of water, it tipped the glass over for me. There are so many things I would like to bring to the table surrounding Retro Rewind that have been a genuine stress factor in my life. I am not even remotely involved with any of what Retro Rewind is doing, but what it is doing, affects the Mario Kart Wii community as a whole, including me. And if you even saw a glimpse of the stuff I've been forwarded, You'd be wishing you were never part of the Mario Kart Wii community.
+
+I really hope that this leak gets the ball rolling on potential sanctions on wether or not Retro Rewind is allowed to exist on the Custom Mario Kart Wii Wiki in its current state. Because a lot of the things they have been doing have caused a lot of drama in and around many communities around the game. 
