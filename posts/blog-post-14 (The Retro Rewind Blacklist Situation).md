@@ -7,7 +7,7 @@ themeColor: #f38ba8
 Its not really a significant list to be honest. Not something that I would have sleepless nights over—not something that will make me lost my credibility as a mod dev. But, It is still a list. A bad one. One that honestly deserves to be talked about.
 I am offcourse talking about the Retro Rewind Track Authors Blacklist, a list that dictates whose tracks are allowed to be included in the Retro Rewind Custom Track Pack.
 
-![alt text](image.png)
+![alt text](/posts/post-media/14/image.png)
 
 Okay, Let me break down some of the things that are on the list before I go over why I am so offended to actually be on this list the way I am.
 
@@ -69,18 +69,18 @@ When a lot of CT creators asked to be removed from, and not included in future r
 Which brings me to another thing. Retro Rewind seems to have become a bit of an ego trip for ZPL. As they were the first track pack to have a dedicated WFC built around it. RetroWFC, which was forked off of WiiLinkWFC, was made to accomodate Retro Rewind, and only Retro Rewind. And they intentionally disabled one of the checks the server needs to enforce bans properly, Opening themselves up for a whole slueth of hacking and cheating online.
 
 During a conversation about the list with a couple of my friends, Scyhigh also brought this up.
-![alt text](image-2.png)
+![alt text](/posts/post-media/14/image-2.png)
 
 It is insane to me that they are willing to put in So much effort, into doing as little as actual work as possible, and be the biggest topic on the block.
 
 But worse yet is this particular comment by one of the devs
-![alt text](image-3.png)
+![alt text](/posts/post-media/14/image-3.png)
 Prevent further escalations? Letting us move on? Bro if 90% of the people in that list are listed as Anti AI, and you know that AI is a controversial thing, Maybe just accept the fact that doing something that is considered highly controversial and taboo will get people talking about you. Such a list shouldnt even need to exist. Why am I, someone who is outspoken against AI, being lumped into the same group of people that has literal predators in them?
 
 You were hiding this on purpose. You knew it was gonna start drama, so why do you even have that list to begin with?
 
 To Quote Seeky
-![alt text](image-4.png)
+![alt text](/posts/post-media/14/image-4.png)
 
 
 # Further Escalation
