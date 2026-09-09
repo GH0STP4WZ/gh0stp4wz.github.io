@@ -1,6 +1,21 @@
 // blog-generator.js
 const fs = require('fs');
 const path = require('path');
+
+// Keep marked working on older Node runtimes used by some build environments.
+if (typeof Array.prototype.at !== 'function') {
+  Array.prototype.at = function(index) {
+    const length = this.length >>> 0;
+    let resolvedIndex = Number(index) || 0;
+
+    if (resolvedIndex < 0) {
+      resolvedIndex += length;
+    }
+
+    return resolvedIndex < 0 || resolvedIndex >= length ? undefined : this[resolvedIndex];
+  };
+}
+
 const marked = require('marked');
 
 function renderMedia(href, title, text) {
@@ -193,10 +208,10 @@ function getAllPosts() {
       isUpdated: lastUpdated && lastUpdated !== date
     };
   }).sort((a, b) => {
-    // Sort by lastUpdated (or date if lastUpdated doesn't exist) - newest first
+    // Sort by lastUpdated (or date if lastUpdated doesn't exist) - oldest first
     const dateA = new Date(a.lastUpdated || a.date);
     const dateB = new Date(b.lastUpdated || b.date);
-    return dateB - dateA;
+    return dateA - dateB;
   });
 }
 
@@ -238,18 +253,21 @@ function generatePost(post, index) {
 function generateIndex(posts) {
   let html = indexTemplate;
   
-  // Group posts by date
+  // Group posts by lastUpdated or date
   const groupedPosts = {};
   posts.forEach((post, index) => {
-    if (!groupedPosts[post.date]) {
-      groupedPosts[post.date] = [];
+    const groupDate = post.lastUpdated || post.date;
+    if (!groupedPosts[groupDate]) {
+      groupedPosts[groupDate] = [];
     }
-    groupedPosts[post.date].push({ ...post, index });
+    groupedPosts[groupDate].push({ ...post, index });
   });
   
   // Generate the list of blog posts with date grouping
   let postsHTML = '';
-  Object.keys(groupedPosts).forEach(date => {
+  // Sort dates newest first
+  const sortedDates = Object.keys(groupedPosts).sort((a, b) => new Date(b) - new Date(a));
+  sortedDates.forEach(date => {
     postsHTML += `<h3 class="blog-date-header">${date}</h3>\n`;
     groupedPosts[date].forEach(post => {
       const updatedBadge = post.isUpdated ? '<span class="updated-badge" title="Updated on ' + post.lastUpdated + '">Updated</span>' : '';
@@ -291,4 +309,28 @@ function generateBlog() {
 }
 
 // Run the generator
-generateBlog();
+if (process.argv.includes('--live')) {
+  console.log('Starting in live mode...');
+  generateBlog();
+  console.log('Watching for changes...');
+  
+  // Watch posts directory
+  fs.watch(config.postsDirectory, { recursive: true }, (eventType, filename) => {
+    if (filename && filename.endsWith('.md')) {
+      console.log(`Detected change in ${filename}, rebuilding...`);
+      generateBlog();
+    }
+  });
+  
+  // Watch templates directory
+  fs.watch('templates', { recursive: true }, (eventType, filename) => {
+    if (filename && (filename.endsWith('.html') || filename.endsWith('.md'))) {
+      console.log(`Detected change in template ${filename}, rebuilding...`);
+      generateBlog();
+    }
+  });
+  
+  console.log('Live mode active. Press Ctrl+C to exit.');
+} else {
+  generateBlog();
+}
