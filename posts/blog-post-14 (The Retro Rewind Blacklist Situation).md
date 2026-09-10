@@ -2,6 +2,7 @@
 title: The Retro Rewind Blacklist Situation
 date: September 9, 2026
 themeColor: #f38ba8
+lastUpdated: September 10, 2026
 ---
 # The Retro Rewind Blacklist Situation
 I'd like to preface this document with the notice that the version you are currently reading is NOT the original document. You are currently reading a revised version of this document, that ammends previous statements to produce a more transparent and clear statement regarding my views on this situation. It also includes new information that have surfaced between individual revisions of this document.</br>
