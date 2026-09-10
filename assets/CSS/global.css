@@ -1096,3 +1096,23 @@ a {
     max-height: 200px;
     }
 }
+
+blockquote {
+    /* border-left: 4px solid var(--accent); */
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text);
+    font-style: italic;
+    background-color: var(--ctp-mantle);
+    border-radius: 8px;
+    position: relative;
+    &::before {
+        content: "";
+        background-color: var(--accent);
+        width: 4px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
